@@ -1,1 +1,1 @@
-# Comparison-of-maze-solving-algorithms
+# Comparison of maze solving algorithms
