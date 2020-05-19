@@ -1,6 +1,9 @@
 
 package maze.main;
 
+import javafx.application.Application;
+import maze.ui.MazeUI;
+
 /**
  * The main class that is used to run the program.
  * @author taleiko
@@ -12,5 +15,6 @@ public class Main {
      */
     public static void main(final String[] args) {
         System.out.println("Hello");
+        Application.launch(MazeUI.class);
     }
 }
