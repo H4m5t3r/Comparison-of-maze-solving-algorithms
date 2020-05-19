@@ -3,6 +3,6 @@ This week I attended the introduction lecture and decided what kind of algorithm
 
 I was hesitative when I chose what algorithms to analyze. I am still a bit unsure of whether dead-end filling and the recursive maze solving algorithm are good algorithms to compare but it seems like it could work.
 
-The next steps will probably be to find out how to generate random mazes and to start implement the maze solving algorithms. I already started reading the Daedalus maze program page but did not read that much theory since I was still unsure of the topic of my project.
+The next steps will probably be to find out how to generate random mazes and to start implementing the maze solving algorithms. I already started reading the Daedalus maze program page but did not read that much theory since I was still unsure of the topic of my project.
 
 Amount of hours spent this week: 12
