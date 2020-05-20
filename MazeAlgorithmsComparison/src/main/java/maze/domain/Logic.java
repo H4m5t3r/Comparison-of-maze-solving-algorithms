@@ -15,7 +15,7 @@ public class Logic {
     private int mazeLength;
     
     public Logic() {
-        this.mazeWidth = 3;
+        this.mazeWidth = 1;
         this.mazeLength = 1;
     }
     /**
@@ -30,7 +30,7 @@ public class Logic {
      * Decreases the generated maze's width.
      */
     public void decreaseWidth() {
-        if (mazeWidth > 3) {
+        if (mazeWidth > 1) {
             mazeWidth--;
         }
     }
@@ -60,5 +60,9 @@ public class Logic {
     
     public void initializeGenerator() {
         generator = new MazeGenerator(mazeWidth, mazeLength);
+    }
+    
+    public char[][] getMazeFromGenerator() {
+        return generator.getMaze();
     }
 }

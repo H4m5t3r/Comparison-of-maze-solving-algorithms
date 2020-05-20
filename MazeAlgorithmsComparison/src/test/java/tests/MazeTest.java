@@ -5,7 +5,7 @@
  */
 package tests;
 
-import maze.domain.Maze;
+import maze.domain.MazeGenerator;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,11 +18,11 @@ import static org.junit.Assert.*;
  * @author taleiko
  */
 public class MazeTest {
-    private Maze maze;
+    private MazeGenerator maze;
     
     @Before
     public void setUp() {
-        this.maze = new Maze(10, 10);
+        this.maze = new MazeGenerator(10, 10);
     }
     
     @Test

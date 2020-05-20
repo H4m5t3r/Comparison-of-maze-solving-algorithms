@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import maze.domain.Logic;
 
@@ -26,10 +27,12 @@ public class MazeUI extends Application {
     private Button decreaseLength;
     private Label width;
     private Label length;
+    private Button generate;
     
     //View maze scene
     private Pane viewMazePane;
     private Scene viewMazeScene;
+    private char[][] maze;
     
     //Program logic
     private Logic logic;
@@ -37,6 +40,8 @@ public class MazeUI extends Application {
     @Override
     public void init() {
         this.logic = new Logic();
+        
+        //newMazeScene
         this.newMazePane = new Pane();
         plusMinusButtons = new Pane();
         widthAndLength = new Pane();
@@ -54,22 +59,26 @@ public class MazeUI extends Application {
         length.setLayoutY(400);
         
         //Setting the x and y coordinates for the buttons.
-        increaseWidth.setLayoutX(50);
+        increaseWidth.setLayoutX(100);
         increaseWidth.setLayoutY(50);
         increaseWidth.setPrefWidth(30);
         
         
-        decreaseWidth.setLayoutX(100);
+        decreaseWidth.setLayoutX(50);
         decreaseWidth.setLayoutY(50);
         decreaseWidth.setPrefWidth(30);
         
-        increaseLength.setLayoutX(150);
-        increaseLength.setLayoutY(50);
+        increaseLength.setLayoutX(100);
+        increaseLength.setLayoutY(200);
         increaseLength.setPrefWidth(30);
         
-        decreaseLength.setLayoutX(200);
-        decreaseLength.setLayoutY(50);
+        decreaseLength.setLayoutX(50);
+        decreaseLength.setLayoutY(200);
         decreaseLength.setPrefWidth(30);
+        
+        generate = new Button("Generate");
+        generate.setLayoutX(400);
+        generate.setLayoutY(400);
         
         this.newMazeScene = new Scene(newMazePane, 500, 500);
     }
@@ -84,11 +93,13 @@ public class MazeUI extends Application {
     @Override
     public void start(Stage window) throws Exception {
         plusMinusButtons.getChildren().addAll(increaseWidth, decreaseWidth, 
-                increaseLength, decreaseLength);
+                increaseLength, decreaseLength, generate);
         widthAndLength.getChildren().addAll(width, length);
         
         newMazePane.getChildren().addAll(widthAndLength, plusMinusButtons);
         
+        //Setting button actions
+        //newMazeScene
         increaseWidth.setOnAction((event) -> {
             logic.increaseWidth();
             updateNewMazeScreen();
@@ -107,6 +118,20 @@ public class MazeUI extends Application {
         decreaseLength.setOnAction((event) -> {
             logic.decreaseLength();
             updateNewMazeScreen();
+        });
+        
+        generate.setOnAction((event) -> {
+            logic.initializeGenerator();
+            //viewMazeScene
+            maze = logic.getMazeFromGenerator();
+            viewMazePane = new Pane();
+            for (int y = 0; y < maze.length; y++) {
+                for (int x = 0; x < maze[0].length; x++) {
+                    viewMazePane.getChildren().add(new Rectangle(y * 25, x * 25, 24, 24));
+                }
+            }
+            viewMazeScene = new Scene(viewMazePane, 500, 500);
+            window.setScene(viewMazeScene);
         });
         
         window.setScene(newMazeScene);
