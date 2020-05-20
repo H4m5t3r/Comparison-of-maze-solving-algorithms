@@ -12,11 +12,11 @@ package maze.domain;
 public class Logic {
     private MazeGenerator generator;
     private int mazeWidth;
-    private int mazeLength;
+    private int mazeHeight;
     
     public Logic() {
         this.mazeWidth = 1;
-        this.mazeLength = 1;
+        this.mazeHeight = 1;
     }
     /**
      * Increases the generated maze's width.
@@ -35,31 +35,31 @@ public class Logic {
         }
     }
     /**
-     * Increases the generated maze's length.
+     * Increases the generated maze's height.
      */
-    public void increaseLength() {
-        if (mazeLength < 20) {
-            mazeLength++;
+    public void increaseHeight() {
+        if (mazeHeight < 20) {
+            mazeHeight++;
         }
     }
     /**
-     * Decreases the generated maze's length.
+     * Decreases the generated maze's height.
      */
-    public void decreaseLength() {
-        if (mazeLength > 1) {
-            mazeLength--;
+    public void decreaseHeight() {
+        if (mazeHeight > 1) {
+            mazeHeight--;
         }
     }
     
     public int getWidth() {
         return this.mazeWidth;
     }
-    public int getLength() {
-        return this.mazeLength;
+    public int getHeight() {
+        return this.mazeHeight;
     }
     
     public void initializeGenerator() {
-        generator = new MazeGenerator(mazeWidth, mazeLength);
+        generator = new MazeGenerator(mazeWidth, mazeHeight);
     }
     
     public char[][] getMazeFromGenerator() {
