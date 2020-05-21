@@ -122,6 +122,7 @@ public class MazeUI extends Application {
         
         generate.setOnAction((event) -> {
             logic.initializeGenerator();
+            logic.generateMaze();
             //viewMazeScene
             maze = logic.getMazeFromGenerator();
             viewMazePane = new Pane();

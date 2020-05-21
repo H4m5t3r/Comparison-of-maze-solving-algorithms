@@ -2,6 +2,9 @@
 package maze.domain;
 
 import java.util.ArrayDeque;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * This class generates a random maze.
@@ -13,8 +16,14 @@ public class MazeGenerator {
      */
     private final char[][] maze;
     private boolean[][] visited;
-    private final ArrayDeque<Cell> stack;
-    private Cell current;
+    private ArrayDeque<Integer> stackx;
+    private ArrayDeque<Integer> stacky;
+//    private int currentx;
+//    private int currenty;
+    private Integer[] directions;
+    private List<Integer> directionsList;
+    private int[] directionsArray;
+    private ArrayDeque<Integer> directionsStack;
 
     /**
      * Creates a new base for a maze with the given width and length.
@@ -29,25 +38,138 @@ public class MazeGenerator {
             }
         }
         visited = new boolean[mazeWidth][mazeHeight];
-        stack = new ArrayDeque<>();
+        stackx = new ArrayDeque<>();
+        stacky = new ArrayDeque<>();
+        //MAKE A BETTER VERSION
+        directions = new Integer[4];
+        for (int i = 0; i < directions.length; i++) {
+            directions[i] = i;
+        }
+        directionsList = Arrays.asList(directions);
+        directionsArray = new int[4];
+        directionsStack = new ArrayDeque<>();
     }
     
     /**
      * Generates a maze using recursive backtracking.
      */
     public void generateMaze() {
-        current = new Cell(0, 0);
         for (int i = 0; i < visited.length; i++) {
             for (int j = 0; j < visited[0].length; j++) {
                 visited[i][j] = false;
             }
         }
         visited[0][0] = true;
-//        removeWall();
-        try {
-            removeWall(-1, -1);
-        } catch (Exception e) {
-            
+        removeWall(2 * 0+ 1, 2 * 0 + 1);
+//        Collections.shuffle(directionsList);
+        for (int i = 0; i < 4; i++) {
+            directionsStack.push(directionsList.get(i));
+        }
+        //Recursion begins
+        for (int i = 0; i < 4; i++) {
+            if (directionsStack.peek() == 1) {
+                stackx.push(1);
+                stacky.push(0);
+                try {
+                    recursion();
+                    removeWall(0 + 2, 0 + 1);
+                } catch (Exception e) {
+                    stackx.pop();
+                    stacky.pop();
+                }
+            }
+//            else if (directionsStack.peek() == 2) {
+//                stackx.push(0);
+//                stacky.push(1);
+//                try {
+//                    recursion();
+//                    removeWall(0 + 1, 0 + 2);
+//                } catch (Exception e) {
+//                    stackx.pop();
+//                    stacky.pop();
+//                }
+//            }
+            directionsStack.pop();
+        }
+    }
+    
+    public void recursion() {
+        visited[stacky.peek()][stackx.peek()] = true;
+        removeWall(2 * stacky.peek() + 1, 2 * stackx.peek() + 1);
+        //Debugging
+        for (int x = 0; x < maze.length; x++) {
+            for (int y = 0; y < maze[0].length; y++) {
+                System.out.print(maze[x][y]);
+            }
+            System.out.println("");
+        }
+        System.out.println("");
+        //Going in all possible directions
+//        Collections.shuffle(directionsList);
+        for (int i = 0; i < directionsList.size(); i++) {
+            directionsStack.push(directionsList.get(i));
+        }
+        for (int i = 0; i < 4; i++) {
+            if (null != directionsStack.peek()) switch (directionsStack.peek()) {
+                case 0:
+                    try {
+                        stackx.push(stackx.peek());
+                        stacky.push(stacky.peek() - 1);
+                        if (!visited[stacky.peek() - 1][stackx.peek()]) {
+                            recursion();
+                        }
+                    } catch (Exception e) {
+                        System.out.println("ErrorUP");
+                        stackx.pop();
+                        stacky.pop();
+                    }
+                    directionsStack.pop();
+                    break;
+                case 1:
+                    try {
+                        stackx.push(stackx.peek() + 1);
+                        stacky.push(stacky.peek());
+                        if (!visited[stacky.peek()][stackx.peek() + 1]) {
+                            recursion();
+                        }
+                    } catch (Exception e) {
+                        System.out.println("ErrorRIGHT");
+                        stackx.pop();
+                        stacky.pop();
+                    }
+                    directionsStack.pop();
+                    break;
+                case 2:
+                    try {
+                        stackx.push(stackx.peek());
+                        stacky.push(stacky.peek() + 1);
+                        if (!visited[stacky.peek() + 1][stackx.peek()]) {
+                            recursion();
+                        }
+                    } catch (Exception e) {
+                        System.out.println("ErrorDOWN");
+                        stackx.pop();
+                        stacky.pop();
+                    }
+                    directionsStack.pop();
+                    break;
+                case 3:
+                    try {
+                        stackx.push(stackx.peek() - 1);
+                        stacky.push(stacky.peek());
+                        if (!visited[stacky.peek()][stackx.peek() - 1]) {
+                            recursion();
+                        }
+                    } catch (Exception e) {
+                        System.out.println("ErrorLEFT");
+                        stackx.pop();
+                        stacky.pop();
+                    }
+                    directionsStack.pop();
+                    break;
+                default:
+                    break;
+            }
         }
     }
     /**

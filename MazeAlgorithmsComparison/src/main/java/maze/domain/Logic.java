@@ -15,8 +15,8 @@ public class Logic {
     private int mazeHeight;
     
     public Logic() {
-        this.mazeWidth = 1;
-        this.mazeHeight = 1;
+        this.mazeWidth = 2;
+        this.mazeHeight = 2;
     }
     /**
      * Increases the generated maze's width.
@@ -60,6 +60,10 @@ public class Logic {
     
     public void initializeGenerator() {
         generator = new MazeGenerator(mazeWidth, mazeHeight);
+    }
+    
+    public void generateMaze() {
+        generator.generateMaze();
     }
     
     public char[][] getMazeFromGenerator() {
