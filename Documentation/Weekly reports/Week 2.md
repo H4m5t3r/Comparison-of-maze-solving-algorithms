@@ -17,6 +17,6 @@ When I manage to get the maze generating algorithm working my next step will be 
 |19.5|6| I started gathering information about maze generation, created a base structure for the program and added Checkstyle. |
 |20.5|5| I worked on the GUI and started implementing the recursive backtracing maze generation algorithm. |
 |21.5|4| I made some progress with the recursive backtracing algorithm but it doesn't work correctly yet. |
-|22.5|7| I worked on the recursive backtracing algorithm and updated the documentation. |
+|22.5|8| I worked on the recursive backtracing algorithm and updated the documentation. |
 
-Total number of hours this week: 22
+Total number of hours this week: 23
