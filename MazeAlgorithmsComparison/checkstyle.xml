@@ -226,4 +226,9 @@
     <module name="FileTabCharacter">
         <property name="eachLine" value="true"/>
     </module>
+
+    <!-- Suppression filter (skipped files) -->
+    <module name="SuppressionFilter">
+    	<property name="file" value="skipped_files.xml" />
+    </module>
 </module>

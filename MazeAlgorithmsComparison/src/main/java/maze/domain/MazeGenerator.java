@@ -24,6 +24,7 @@ public class MazeGenerator {
     private List<Integer> directionsList;
     private int[] directionsArray;
     private ArrayDeque<Integer> directionsStack;
+    private int directionsToGo;
 
     /**
      * Creates a new base for a maze with the given width and length.
@@ -37,16 +38,17 @@ public class MazeGenerator {
                 maze[y][x] = '#';
             }
         }
+        directionsToGo = 4;
         visited = new boolean[mazeWidth][mazeHeight];
         stackx = new ArrayDeque<>();
         stacky = new ArrayDeque<>();
         //MAKE A BETTER VERSION
-        directions = new Integer[4];
+        directions = new Integer[directionsToGo];
         for (int i = 0; i < directions.length; i++) {
             directions[i] = i;
         }
         directionsList = Arrays.asList(directions);
-        directionsArray = new int[4];
+        directionsArray = new int[directionsToGo];
         directionsStack = new ArrayDeque<>();
     }
     
@@ -62,11 +64,11 @@ public class MazeGenerator {
         visited[0][0] = true;
         removeWall(2 * 0+ 1, 2 * 0 + 1);
 //        Collections.shuffle(directionsList);
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < directionsToGo; i++) {
             directionsStack.push(directionsList.get(i));
         }
         //Recursion begins
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < directionsToGo; i++) {
             if (directionsStack.peek() == 1) {
                 stackx.push(1);
                 stacky.push(0);
@@ -109,7 +111,7 @@ public class MazeGenerator {
         for (int i = 0; i < directionsList.size(); i++) {
             directionsStack.push(directionsList.get(i));
         }
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < directionsToGo; i++) {
             if (null != directionsStack.peek()) switch (directionsStack.peek()) {
                 case 0:
                     try {

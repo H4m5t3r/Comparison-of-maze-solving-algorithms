@@ -10,14 +10,38 @@ package maze.domain;
  * @author taleiko
  */
 public class Logic {
+    /**
+     * The class that creates mazes.
+     */
     private MazeGenerator generator;
+    /**
+     * The maze's width.
+     */
     private int mazeWidth;
+    /**
+     * The maze's height.
+     */
     private int mazeHeight;
+    /**
+     * The maze's maximum width.
+     */
     private final int maxWidth;
+    /**
+     * The maze's maximum height.
+     */
     private final int maxHeight;
+    /**
+     * The maze's minimum width.
+     */
     private final int minWidth;
+    /**
+     * The maze's minimum height.
+     */
     private final int minHeight;
-    
+
+    /**
+     * A constructor where the default, maximum and minimum values can be adjusted.
+     */
     public Logic() {
         this.mazeWidth = 2;
         this.mazeHeight = 2;
@@ -30,7 +54,7 @@ public class Logic {
      * Increases the generated maze's width.
      */
     public void increaseWidth() {
-        if (mazeWidth < 20) {
+        if (mazeWidth < maxWidth) {
             mazeWidth++;
         }
     }
@@ -46,7 +70,7 @@ public class Logic {
      * Increases the generated maze's height.
      */
     public void increaseHeight() {
-        if (mazeHeight < 20) {
+        if (mazeHeight < maxHeight) {
             mazeHeight++;
         }
     }
@@ -58,38 +82,70 @@ public class Logic {
             mazeHeight--;
         }
     }
-    
+
+    /**
+     * Initializes the maze generator.
+     */
     public void initializeGenerator() {
         generator = new MazeGenerator(mazeWidth, mazeHeight);
     }
-    
+
+    /**
+     * Tells the maze generator to generate a maze.
+     */
     public void generateMaze() {
         generator.generateMaze();
     }
-    
+
     //Get methods
-    
+
+    /**
+     * Returns the two-dimensional character array that visualizes the maze.
+     * @return char[][] maze
+     */
     public char[][] getMazeFromGenerator() {
         return generator.getMaze();
     }
-    
+
+    /**
+     * Returns the current width value.
+     * @return mazeWidth
+     */
     public int getWidth() {
         return this.mazeWidth;
     }
+    /**
+     * Returns the current height value.
+     * @return mazeHeight
+     */
     public int getHeight() {
         return this.mazeHeight;
     }
-    
+    /**
+     * Returns the maximum width.
+     * @return maxWidth
+     */
     public int getMaxWidth() {
         return this.maxWidth;
     }
+    /**
+     * Returns the maximum height.
+     * @return maxHeight
+     */
     public int getMaxHeight() {
         return this.maxHeight;
     }
-    
+    /**
+     * Returns the minimum width.
+     * @return minWidth
+     */
     public int getMinWidth() {
         return this.minWidth;
     }
+    /**
+     * Returns the minimum height.
+     * @return minHeight
+     */
     public int getMinHeight() {
         return this.minHeight;
     }
