@@ -8,6 +8,8 @@ I created JUnit tests for the methods that have been completed. They can be run 
 
 There are a few spots in the code that could be replaced with methods instead of using repetetive code. I will do some changes when the maze generating code works corretly. Other improvements what could be done would be to correct the current Checkstyle errors. Right now there are 5 that are linked to the Logic and MazeGenerator classes. The rest of the errors are related to the GUI class which, as mentioned earlier, for some reason is still included in the Checkstyle scan.
 
+For some reason there is an error when I try to generate a Javadoc. The file is generated but I couldn't figure out how to get rid of the error.
+
 When I manage to get the maze generating algorithm working my next step will be to implement the maze solving algorithms and make improvements to the code.
 
 | Day | Hours | What I did  |

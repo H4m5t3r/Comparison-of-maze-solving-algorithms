@@ -26,3 +26,7 @@ Run the JUnit tests
 ```
 mvn test
 ```
+Generate a Javadoc that cna be found in */target/site/apidocs*
+```
+mvn javadoc:javadoc
+```
