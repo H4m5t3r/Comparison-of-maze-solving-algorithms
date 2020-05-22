@@ -136,7 +136,7 @@ public class MazeGenerator {
             directionsStack.push(directionsList.get(i));
         }
         for (int i = 0; i < directionsToGo; i++) {
-            //REPLACE REPEATING CODE WITH ONE METHOD
+            //REPLACE REPETETIVE CODE WITH ONE METHOD
             if (null != directionsStack.peek()) {
                 switch (directionsStack.peek()) {
                     case 0:
