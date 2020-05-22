@@ -128,12 +128,14 @@ public class MazeUI extends Application {
             viewMazePane = new Pane();
             for (int y = 0; y < maze.length; y++) {
                 for (int x = 0; x < maze[0].length; x++) {
-                    if (maze[y][x] == '#') {
-                        viewMazePane.getChildren().add(new Rectangle(y * 25, x * 25, 24, 24));
+                    if (y == 1 && x == 1) {
+                        viewMazePane.getChildren().add(new Rectangle(x * 25, y * 25, 15, 15));
+                    } else if (maze[y][x] == '#') {
+                        viewMazePane.getChildren().add(new Rectangle(x * 25, y * 25, 24, 24));
                     }
                 }
             }
-            viewMazeScene = new Scene(viewMazePane, 500, 500);
+            viewMazeScene = new Scene(viewMazePane, 700, 700);
             window.setScene(viewMazeScene);
         });
         
