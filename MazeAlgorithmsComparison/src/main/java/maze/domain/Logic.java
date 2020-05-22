@@ -25,11 +25,7 @@ public class Logic {
     /**
      * The maze's maximum width.
      */
-    private final int maxWidth;
-    /**
-     * The maze's maximum height.
-     */
-    private final int maxHeight;
+    private final int maxSize;
     /**
      * The maze's minimum width.
      */
@@ -40,13 +36,13 @@ public class Logic {
     private final int minHeight;
 
     /**
-     * A constructor where the default, maximum and minimum values can be adjusted.
+     * A constructor where the default, maximum and minimum values can be
+     * adjusted.
      */
     public Logic() {
         this.mazeWidth = 2;
         this.mazeHeight = 2;
-        this.maxWidth = 20;
-        this.maxHeight = 20;
+        this.maxSize = 20;
         this.minWidth = 1;
         this.minHeight = 1;
     }
@@ -54,7 +50,7 @@ public class Logic {
      * Increases the generated maze's width.
      */
     public void increaseWidth() {
-        if (mazeWidth < maxWidth) {
+        if (mazeWidth < maxSize) {
             mazeWidth++;
         }
     }
@@ -70,7 +66,7 @@ public class Logic {
      * Increases the generated maze's height.
      */
     public void increaseHeight() {
-        if (mazeHeight < maxHeight) {
+        if (mazeHeight < maxSize) {
             mazeHeight++;
         }
     }
@@ -126,14 +122,14 @@ public class Logic {
      * @return maxWidth
      */
     public int getMaxWidth() {
-        return this.maxWidth;
+        return this.maxSize;
     }
     /**
      * Returns the maximum height.
-     * @return maxHeight
+     * @return maxSize
      */
     public int getMaxHeight() {
-        return this.maxHeight;
+        return this.maxSize;
     }
     /**
      * Returns the minimum width.

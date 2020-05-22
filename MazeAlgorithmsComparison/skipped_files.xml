@@ -6,4 +6,5 @@
 
 <suppressions>
     <suppress files="maze.ui.MazeUI.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="maze.main.Main.java" checks="[a-zA-Z0-9]*"/>
 </suppressions>

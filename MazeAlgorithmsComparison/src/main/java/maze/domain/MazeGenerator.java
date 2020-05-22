@@ -15,15 +15,37 @@ public class MazeGenerator {
      * Uses a two-dimensional array to store the maze.
      */
     private final char[][] maze;
+    /**
+     * The two-dimensional boolean array which is used to determine whether or
+     * not the algorithm has already visited a "room" in the labyrinth.
+     */
     private boolean[][] visited;
+    /**
+     * The stack used for storing the x coordinate of the rooms it visits.
+     */
     private ArrayDeque<Integer> stackx;
+    /**
+     * The stack used for storing the y coordinate of the rooms it visits.
+     */
     private ArrayDeque<Integer> stacky;
-//    private int currentx;
-//    private int currenty;
+    /**
+     * A temporary array which will be removed if I find a better way to
+     * randomize the directions.
+     */
     private Integer[] directions;
+    /**
+     * A list that is shuffled when the order of the directions is chosen.
+     */
     private List<Integer> directionsList;
-    private int[] directionsArray;
+    /**
+     * The array used for keeping track of what directions have been checked in
+     * a specific spot in the maze.
+     */
     private ArrayDeque<Integer> directionsStack;
+    /**
+     * A variable used for cases when the program needs to know many directions
+     * there are. In this labyrinth it is assigned the value 4.
+     */
     private int directionsToGo;
 
     /**
@@ -48,10 +70,9 @@ public class MazeGenerator {
             directions[i] = i;
         }
         directionsList = Arrays.asList(directions);
-        directionsArray = new int[directionsToGo];
         directionsStack = new ArrayDeque<>();
     }
-    
+
     /**
      * Generates a maze using recursive backtracking.
      */
@@ -84,8 +105,8 @@ public class MazeGenerator {
 //                stackx.push(0);
 //                stacky.push(1);
 //                try {
+//                    removeWall(2, 1);
 //                    recursion();
-//                    removeWall(0 + 1, 0 + 2);
 //                } catch (Exception e) {
 //                    stackx.pop();
 //                    stacky.pop();
@@ -94,7 +115,10 @@ public class MazeGenerator {
             directionsStack.pop();
         }
     }
-    
+
+    /**
+     * The recursive method that is used to visit all "rooms" in the maze.
+     */
     public void recursion() {
         visited[stacky.peek()][stackx.peek()] = true;
         removeWall(2 * stacky.peek() + 1, 2 * stackx.peek() + 1);
@@ -113,73 +137,75 @@ public class MazeGenerator {
         }
         for (int i = 0; i < directionsToGo; i++) {
             //REPLACE REPEATING CODE WITH ONE METHOD
-            if (null != directionsStack.peek()) switch (directionsStack.peek()) {
-                case 0:
-                    try {
-                        stackx.push(stackx.peek());
-                        stacky.push(stacky.peek() - 1);
-                        if (!visited[stacky.peek()][stackx.peek()]) {
-                            System.out.println("Going UP");
-                            removeWallBetweenRooms(0);
-                            recursion();
+            if (null != directionsStack.peek()) {
+                switch (directionsStack.peek()) {
+                    case 0:
+                        try {
+                            stackx.push(stackx.peek());
+                            stacky.push(stacky.peek() - 1);
+                            if (!visited[stacky.peek()][stackx.peek()]) {
+                                System.out.println("Going UP");
+                                removeWallBetweenRooms(0);
+                                recursion();
+                            }
+                        } catch (Exception e) {
+                            System.out.println("ErrorUP");
+                            stackx.pop();
+                            stacky.pop();
                         }
-                    } catch (Exception e) {
-                        System.out.println("ErrorUP");
+                        directionsStack.pop();
+                        break;
+                    case 1:
+                        try {
+                            stackx.push(stackx.peek() + 1);
+                            stacky.push(stacky.peek());
+                            if (!visited[stacky.peek()][stackx.peek()]) {
+                                System.out.println("Going RIGHT");
+                                removeWallBetweenRooms(1);
+                                recursion();
+                            }
+                        } catch (Exception e) {
+                            System.out.println("ErrorRIGHT");
+                            stackx.pop();
+                            stacky.pop();
+                        }
+                        directionsStack.pop();
+                        break;
+                    case 2:
+                        try {
+                            stackx.push(stackx.peek());
+                            stacky.push(stacky.peek() + 1);
+                            if (!visited[stacky.peek()][stackx.peek()]) {
+                                System.out.println("Going DOWN");
+                                removeWallBetweenRooms(2);
+                                recursion();
+                            }
+                        } catch (Exception e) {
+                            System.out.println("ErrorDOWN");
+                            stackx.pop();
+                            stacky.pop();
+                        }
+                        directionsStack.pop();
+                        break;
+                    case 3:
+                        try {
+                            stackx.push(stackx.peek() - 1);
+                            stacky.push(stacky.peek());
+                            if (!visited[stacky.peek()][stackx.peek()]) {
+                                System.out.println("Going LEFT");
+                                removeWallBetweenRooms(3);
+                                recursion();
+                            }
+                        } catch (Exception e) {
+                            System.out.println("ErrorLEFT");
+                        }
+                        directionsStack.pop();
                         stackx.pop();
                         stacky.pop();
-                    }
-                    directionsStack.pop();
-                    break;
-                case 1:
-                    try {
-                        stackx.push(stackx.peek() + 1);
-                        stacky.push(stacky.peek());
-                        if (!visited[stacky.peek()][stackx.peek()]) {
-                            System.out.println("Going RIGHT");
-                            removeWallBetweenRooms(1);
-                            recursion();
-                        }
-                    } catch (Exception e) {
-                        System.out.println("ErrorRIGHT");
-                        stackx.pop();
-                        stacky.pop();
-                    }
-                    directionsStack.pop();
-                    break;
-                case 2:
-                    try {
-                        stackx.push(stackx.peek());
-                        stacky.push(stacky.peek() + 1);
-                        if (!visited[stacky.peek()][stackx.peek()]) {
-                            System.out.println("Going DOWN");
-                            removeWallBetweenRooms(2);
-                            recursion();
-                        }
-                    } catch (Exception e) {
-                        System.out.println("ErrorDOWN");
-                        stackx.pop();
-                        stacky.pop();
-                    }
-                    directionsStack.pop();
-                    break;
-                case 3:
-                    try {
-                        stackx.push(stackx.peek() - 1);
-                        stacky.push(stacky.peek());
-                        if (!visited[stacky.peek()][stackx.peek()]) {
-                            System.out.println("Going LEFT");
-                            removeWallBetweenRooms(3);
-                            recursion();
-                        }
-                    } catch (Exception e) {
-                        System.out.println("ErrorLEFT");
-                    }
-                    directionsStack.pop();
-                    stackx.pop();
-                    stacky.pop();
-                    break;
-                default:
-                    break;
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }
@@ -192,9 +218,9 @@ public class MazeGenerator {
         maze[y][x] = ' ';
     }
     /**
-     * Checks what direction the algorithm came from and carves a path between 
+     * Checks what direction the algorithm came from and carves a path between
      * the rooms.
-     * @param direction 
+     * @param direction
      */
     public void removeWallBetweenRooms(final int direction) {
         switch (direction) {
