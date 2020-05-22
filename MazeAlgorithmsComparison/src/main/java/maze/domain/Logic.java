@@ -13,10 +13,18 @@ public class Logic {
     private MazeGenerator generator;
     private int mazeWidth;
     private int mazeHeight;
+    private final int maxWidth;
+    private final int maxHeight;
+    private final int minWidth;
+    private final int minHeight;
     
     public Logic() {
         this.mazeWidth = 2;
         this.mazeHeight = 2;
+        this.maxWidth = 20;
+        this.maxHeight = 20;
+        this.minWidth = 1;
+        this.minHeight = 1;
     }
     /**
      * Increases the generated maze's width.
@@ -51,13 +59,6 @@ public class Logic {
         }
     }
     
-    public int getWidth() {
-        return this.mazeWidth;
-    }
-    public int getHeight() {
-        return this.mazeHeight;
-    }
-    
     public void initializeGenerator() {
         generator = new MazeGenerator(mazeWidth, mazeHeight);
     }
@@ -66,7 +67,30 @@ public class Logic {
         generator.generateMaze();
     }
     
+    //Get methods
+    
     public char[][] getMazeFromGenerator() {
         return generator.getMaze();
+    }
+    
+    public int getWidth() {
+        return this.mazeWidth;
+    }
+    public int getHeight() {
+        return this.mazeHeight;
+    }
+    
+    public int getMaxWidth() {
+        return this.maxWidth;
+    }
+    public int getMaxHeight() {
+        return this.maxHeight;
+    }
+    
+    public int getMinWidth() {
+        return this.minWidth;
+    }
+    public int getMinHeight() {
+        return this.minHeight;
     }
 }

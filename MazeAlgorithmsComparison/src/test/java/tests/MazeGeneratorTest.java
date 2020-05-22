@@ -6,10 +6,7 @@
 package tests;
 
 import maze.domain.MazeGenerator;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -17,7 +14,7 @@ import static org.junit.Assert.*;
  *
  * @author taleiko
  */
-public class MazeTest {
+public class MazeGeneratorTest {
     private MazeGenerator maze;
     
     @Before
@@ -26,7 +23,7 @@ public class MazeTest {
     }
     
     @Test
-    public void mazeBaseIsOnlyMadeOfWalls() {
+    public void mazeBaseIsOnlyMadeOfWallsAfterInit() {
         for (int y = 0; y < maze.getMaze().length; y++) {
             for (int x = 0; x < maze.getMaze()[0].length; x++) {
                 assertTrue(maze.getMaze()[y][x] == '#');
@@ -39,7 +36,7 @@ public class MazeTest {
         for (int y = 0; y < maze.getMaze().length; y++) {
             for (int x = 0; x < maze.getMaze()[0].length; x++) {
                 assertTrue(maze.getMaze()[y][x] == '#');
-                maze.removeWall(x, y);
+                maze.removeWall(y, x);
                 assertTrue(maze.getMaze()[y][x] == ' ');
             }
         }
