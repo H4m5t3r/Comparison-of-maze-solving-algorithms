@@ -1,18 +1,25 @@
 package maze.data_structures;
 
 /**
- *
+ * A linked list data structure that uses the class LinkedListNode as nodes.
  * @author taleiko
  */
 public class LinkedList {
     private LinkedListNode first;
     private int size;
     
+    /**
+     * A constructor that sets the size to 0 and the first node in the list to
+     * null since no nodes are added when the list is initialized.
+     */
     public LinkedList() {
         this.size = 0;
         this.first = null;
     }
-    
+    /**
+     * Adds the i to the end of the list.
+     * @param i
+     */
     public void add(int i) {
         if (this.first == null) {
             this.first = new LinkedListNode(i, null);
@@ -26,7 +33,11 @@ public class LinkedList {
         }
         this.size++;
     }
-    
+    /**
+     * Returns the value at v.
+     * @param v
+     * @return integerAtV
+     */
     public int get(long v) {
         LinkedListNode search = this.first;
         for (int j = 0; j < v; j++) {
@@ -34,7 +45,13 @@ public class LinkedList {
         }
         return search.getValue();
     }
-    
+    /**
+     * Adds a value to the list without replacing any variables. It can be used
+     * An example would be if you have a list with the values 0 and 2 in it and
+     * want to insert the value 1 between them.
+     * @param i
+     * @param v 
+     */
     public void insert(int i, int v) {
         if (i == 0) {
             LinkedListNode wasFirst = new LinkedListNode(this.first.getValue(), this.first.getNext());
@@ -51,7 +68,10 @@ public class LinkedList {
         }
         this.size++;
     }
-    
+    /**
+     * Removes the value with the index i from the list.
+     * @param i 
+     */
     public void remove(long i) {
         if (i == this.size - 1) {
             LinkedListNode search = this.first;
@@ -70,18 +90,27 @@ public class LinkedList {
         }
         this.size--;
     }
-    
+    /**
+     * Copies the values on the list to another list.
+     * @param list 
+     */
     public void copyTo(LinkedList list) {
+        list.clear();
         for (int i = 0; i < this.size; i++) {
             list.add(this.get(i));
         }
     }
-    
+    /**
+     * Removes all values from the list.
+     */
     public void clear() {
         this.first = null;
         this.size = 0;
     }
-    
+    /**
+     * Returns the number of integers on the list.
+     * @return size
+     */
     public int size() {
         return this.size;
     }
