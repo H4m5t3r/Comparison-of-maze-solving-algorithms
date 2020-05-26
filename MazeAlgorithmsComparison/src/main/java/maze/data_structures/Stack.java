@@ -3,25 +3,31 @@ package maze.data_structures;
 
 /**
  * A class that implements a stack data structure where the size of the stack
- * is given. 
+ * is given.
  * @author taleiko
  */
 public class Stack {
+    /**
+     * The array that is used for storing the values in the stack.
+     */
     private final int[] stack;
+    /**
+     * An integer that remembers where the top of the stack is.
+     */
     private int top;
     /**
      * Creates a stack that has space for i integers.
-     * @param i 
+     * @param i
      */
-    public Stack(int i) {
+    public Stack(final int i) {
         stack = new int[i];
         top = 0;
     }
     /**
      * Adds an integer to the stack.
-     * @param data 
+     * @param data
      */
-    public void push(int data) {
+    public void push(final int data) {
         stack[top] = data;
         top++;
     }

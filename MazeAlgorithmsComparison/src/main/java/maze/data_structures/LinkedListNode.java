@@ -5,17 +5,23 @@ package maze.data_structures;
  * @author taleiko
  */
 public class LinkedListNode {
+    /**
+     * The integer stored in the node.
+     */
     private final int number;
+    /**
+     * The next node in the list.
+     */
     private LinkedListNode next;
-    
+
     /**
      * A constructor that creates a node with a value and the next node.
      * @param value
-     * @param next 
+     * @param nextNode
      */
-    public LinkedListNode(int value, LinkedListNode next) {
+    public LinkedListNode(final int value, final LinkedListNode nextNode) {
         this.number = value;
-        this.next = next;
+        this.next = nextNode;
     }
     /**
      * Returns the integer stored in the node.
@@ -33,9 +39,9 @@ public class LinkedListNode {
     }
     /**
      * Sets the node that comes next in the list.
-     * @param node 
+     * @param node
      */
-    public void setNext(LinkedListNode node) {
+    public void setNext(final LinkedListNode node) {
         this.next = node;
     }
 }

@@ -5,9 +5,16 @@ package maze.data_structures;
  * @author taleiko
  */
 public class LinkedList {
+    /**
+     * The first node in the list.
+     */
     private LinkedListNode first;
+    /**
+     * The size of the stack that is updated when integers are added and
+     * removed.
+     */
     private int size;
-    
+
     /**
      * A constructor that sets the size to 0 and the first node in the list to
      * null since no nodes are added when the list is initialized.
@@ -20,7 +27,7 @@ public class LinkedList {
      * Adds the i to the end of the list.
      * @param i
      */
-    public void add(int i) {
+    public void add(final int i) {
         if (this.first == null) {
             this.first = new LinkedListNode(i, null);
         } else {
@@ -38,7 +45,7 @@ public class LinkedList {
      * @param v
      * @return integerAtV
      */
-    public int get(long v) {
+    public int get(final long v) {
         LinkedListNode search = this.first;
         for (int j = 0; j < v; j++) {
             search = search.getNext();
@@ -50,11 +57,12 @@ public class LinkedList {
      * An example would be if you have a list with the values 0 and 2 in it and
      * want to insert the value 1 between them.
      * @param i
-     * @param v 
+     * @param v
      */
-    public void insert(int i, int v) {
+    public void insert(final int i, final int v) {
         if (i == 0) {
-            LinkedListNode wasFirst = new LinkedListNode(this.first.getValue(), this.first.getNext());
+            LinkedListNode wasFirst = new LinkedListNode(this.first.getValue(),
+                    this.first.getNext());
             LinkedListNode newFirst = new LinkedListNode(v, wasFirst);
             this.first = newFirst;
         } else {
@@ -70,9 +78,9 @@ public class LinkedList {
     }
     /**
      * Removes the value with the index i from the list.
-     * @param i 
+     * @param i
      */
-    public void remove(long i) {
+    public void remove(final long i) {
         if (i == this.size - 1) {
             LinkedListNode search = this.first;
             for (int j = 0; j < i - 1; j++) {
@@ -92,9 +100,9 @@ public class LinkedList {
     }
     /**
      * Copies the values on the list to another list.
-     * @param list 
+     * @param list
      */
-    public void copyTo(LinkedList list) {
+    public void copyTo(final LinkedList list) {
         list.clear();
         for (int i = 0; i < this.size; i++) {
             list.add(this.get(i));
