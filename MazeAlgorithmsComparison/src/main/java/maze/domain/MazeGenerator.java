@@ -66,12 +66,11 @@ public class MazeGenerator {
         visited = new boolean[mazeWidth][mazeHeight];
         stackx = new Stack(mazeWidth * mazeHeight);
         stacky = new Stack(mazeWidth * mazeHeight);
-        //MAKE A BETTER VERSION
         directions = new Integer[directionsToGo];
         directionsList = new LinkedList();
         for (int i = 0; i < directions.length; i++) {
             directions[i] = i;
-            directionsList.add(i);
+//            directionsList.add(i);
         }
         directionsStack = new Stack(mazeWidth * mazeHeight * 4);
     }
@@ -85,6 +84,10 @@ public class MazeGenerator {
                 visited[i][j] = false;
             }
         }
+        for (int i = 0; i < directionsToGo; i++) {
+            directionsList.add(i);
+        }
+        addRandomDirectionOrderToDirectionsStack();
         visited[0][0] = true;
         removeWall(2 * 0 + 1, 2 * 0 + 1);
 //        Collections.shuffle(directionsList);
@@ -135,9 +138,7 @@ public class MazeGenerator {
         System.out.println("");
         //Going in all possible directions
 //        Collections.shuffle(directionsList);
-        for (int i = 0; i < directionsList.size(); i++) {
-            directionsStack.push(directionsList.get(i));
-        }
+        addRandomDirectionOrderToDirectionsStack();
         for (int i = 0; i < directionsToGo; i++) {
             //REPLACE REPETETIVE CODE WITH ONE METHOD?
             switch (directionsStack.peek()) {
@@ -217,6 +218,18 @@ public class MazeGenerator {
                     break;
             }
         }
+    }
+    /**
+     * 
+     */
+    public void addRandomDirectionOrderToDirectionsStack() {
+        for (int i = 0; i < directionsToGo; i++) {
+            directionsList.add(i);
+        }
+        directionsStack.push(directionsList.remove(System.nanoTime() % 4));
+        directionsStack.push(directionsList.remove(System.nanoTime() % 3));
+        directionsStack.push(directionsList.remove(System.nanoTime() % 2));
+        directionsStack.push(directionsList.remove(0));
     }
     /**
      * Used for carving out corridors in the maze.
