@@ -7,9 +7,11 @@ package maze.data_structures;
  */
 public class DataStructuresTesting {
     public static void main(String[] args) {
-        Stack s = new Stack(10);
-        s.push(0);
+        Stack s = new Stack(16);
+        s.push(1);
+        s.push(2);
         System.out.println(s.peek());
+        System.out.println(s.pop());
         System.out.println(s.pop());
     }
 }

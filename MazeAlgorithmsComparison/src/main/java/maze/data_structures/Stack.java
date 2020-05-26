@@ -19,7 +19,7 @@ public class Stack {
      * Creates a stack that has space for i integers.
      * @param i
      */
-    public Stack(final int i) {
+    public Stack(int i) {
         stack = new int[i];
         top = 0;
     }
@@ -27,7 +27,7 @@ public class Stack {
      * Adds an integer to the stack.
      * @param data
      */
-    public void push(final int data) {
+    public void push(int data) {
         stack[top] = data;
         top++;
     }
@@ -60,5 +60,15 @@ public class Stack {
      */
     public boolean isEmpty() {
         return top == 0;
+    }
+    
+    public void show() {
+        for (int i = 0; i < stack.length; i++) {
+            System.out.print(stack[i]);
+            if (i != top - 1) {
+                System.out.print(", ");
+            }
+        }
+        System.out.println("");
     }
 }

@@ -36,8 +36,8 @@ public class Logic {
      * adjusted.
      */
     public Logic() {
-        this.mazeWidth = 2;
-        this.mazeHeight = 2;
+        this.mazeWidth = 16;
+        this.mazeHeight = 16;
         this.maxSize = 20;
         this.minWidth = 1;
         this.minHeight = 1;
