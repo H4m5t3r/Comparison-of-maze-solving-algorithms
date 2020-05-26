@@ -59,6 +59,7 @@
                     <excludes>
                         <exclude>maze/ui/**/*</exclude>
                         <exclude>maze/main/**/*</exclude>
+                        <exclude>maze/data_structures/*Testing*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
