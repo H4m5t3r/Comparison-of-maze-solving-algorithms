@@ -4,6 +4,7 @@ package maze.domain;
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -36,7 +37,7 @@ public class MazeGenerator {
     /**
      * A list that is shuffled when the order of the directions is chosen.
      */
-    private List<Integer> directionsList;
+    private LinkedList<Integer> directionsList;
     /**
      * The array used for keeping track of what directions have been checked in
      * a specific spot in the maze.
@@ -66,10 +67,11 @@ public class MazeGenerator {
         stacky = new ArrayDeque<>();
         //MAKE A BETTER VERSION
         directions = new Integer[directionsToGo];
+        directionsList = new LinkedList<>();
         for (int i = 0; i < directions.length; i++) {
             directions[i] = i;
+            directionsList.add(i);
         }
-        directionsList = Arrays.asList(directions);
         directionsStack = new ArrayDeque<>();
     }
 
@@ -137,7 +139,7 @@ public class MazeGenerator {
         }
         for (int i = 0; i < directionsToGo; i++) {
             //REPLACE REPETETIVE CODE WITH ONE METHOD
-            if (null != directionsStack.peek()) {
+            if (directionsStack.peek() != null) {
                 switch (directionsStack.peek()) {
                     case 0:
                         try {
@@ -145,15 +147,17 @@ public class MazeGenerator {
                             stacky.push(stacky.peek() - 1);
                             if (!visited[stacky.peek()][stackx.peek()]) {
                                 System.out.println("Going UP");
-                                removeWallBetweenRooms(0);
+                                removeWallBetweenRooms(directionsStack.peek());
                                 recursion();
                             }
                         } catch (Exception e) {
                             System.out.println("ErrorUP");
-                            stackx.pop();
-                            stacky.pop();
+                            System.out.println("x: " + stackx.peek());
+                            System.out.println("y: " + stacky.peek());
                         }
                         directionsStack.pop();
+                        stackx.pop();
+                        stacky.pop();
                         break;
                     case 1:
                         try {
@@ -161,15 +165,17 @@ public class MazeGenerator {
                             stacky.push(stacky.peek());
                             if (!visited[stacky.peek()][stackx.peek()]) {
                                 System.out.println("Going RIGHT");
-                                removeWallBetweenRooms(1);
+                                removeWallBetweenRooms(directionsStack.peek());
                                 recursion();
                             }
                         } catch (Exception e) {
                             System.out.println("ErrorRIGHT");
-                            stackx.pop();
-                            stacky.pop();
+                            System.out.println("x: " + stackx.peek());
+                            System.out.println("y: " + stacky.peek());
                         }
                         directionsStack.pop();
+                        stackx.pop();
+                        stacky.pop();
                         break;
                     case 2:
                         try {
@@ -177,15 +183,17 @@ public class MazeGenerator {
                             stacky.push(stacky.peek() + 1);
                             if (!visited[stacky.peek()][stackx.peek()]) {
                                 System.out.println("Going DOWN");
-                                removeWallBetweenRooms(2);
+                                removeWallBetweenRooms(directionsStack.peek());
                                 recursion();
                             }
                         } catch (Exception e) {
                             System.out.println("ErrorDOWN");
-                            stackx.pop();
-                            stacky.pop();
+                            System.out.println("x: " + stackx.peek());
+                            System.out.println("y: " + stacky.peek());
                         }
                         directionsStack.pop();
+                        stackx.pop();
+                        stacky.pop();
                         break;
                     case 3:
                         try {
@@ -193,11 +201,13 @@ public class MazeGenerator {
                             stacky.push(stacky.peek());
                             if (!visited[stacky.peek()][stackx.peek()]) {
                                 System.out.println("Going LEFT");
-                                removeWallBetweenRooms(3);
+                                removeWallBetweenRooms(directionsStack.peek());
                                 recursion();
                             }
                         } catch (Exception e) {
                             System.out.println("ErrorLEFT");
+                            System.out.println("x: " + stackx.peek());
+                            System.out.println("y: " + stacky.peek());
                         }
                         directionsStack.pop();
                         stackx.pop();
