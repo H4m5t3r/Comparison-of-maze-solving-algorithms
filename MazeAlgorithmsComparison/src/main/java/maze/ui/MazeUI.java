@@ -33,6 +33,9 @@ public class MazeUI extends Application {
     private Pane viewMazePane;
     private Scene viewMazeScene;
     private char[][] maze;
+    private Button deadEndSolve;
+    
+    //
     
     //Program logic
     private Logic logic;
@@ -80,6 +83,9 @@ public class MazeUI extends Application {
         generate.setLayoutX(300);
         generate.setLayoutY(300);
         
+        //ViewMazeScene
+        deadEndSolve = new Button("Dead-end filling");
+        
         this.newMazeScene = new Scene(newMazePane, 500, 500);
     }
     
@@ -120,6 +126,11 @@ public class MazeUI extends Application {
             updateNewMazeScreen();
         });
         
+        //viewMazeScene
+        deadEndSolve.setOnAction((event) -> {
+            logic.deadEndSolve();
+        });
+        
         generate.setOnAction((event) -> {
             logic.initializeGenerator();
             logic.generateMaze();
@@ -135,6 +146,7 @@ public class MazeUI extends Application {
                     }
                 }
             }
+            viewMazePane.getChildren().add(deadEndSolve);
             viewMazeScene = new Scene(viewMazePane, 700, 700);
             window.setScene(viewMazeScene);
         });

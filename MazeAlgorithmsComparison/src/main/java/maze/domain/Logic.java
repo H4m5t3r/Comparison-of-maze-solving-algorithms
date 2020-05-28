@@ -11,6 +11,10 @@ public class Logic {
      */
     private MazeGenerator generator;
     /**
+     * 
+     */
+    private MazeSolver solver;
+    /**
      * The maze's width.
      */
     private int mazeWidth;
@@ -87,6 +91,10 @@ public class Logic {
      */
     public void generateMaze() {
         generator.generateMaze();
+    }
+    
+    public void deadEndSolve() {
+        solver.deadEndFillSolve(generator.getMaze());
     }
 
     //Get methods

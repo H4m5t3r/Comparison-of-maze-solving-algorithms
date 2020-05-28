@@ -48,7 +48,7 @@ public class MazeGenerator {
      * A variable used for cases when the program needs to know many directions
      * there are. In this labyrinth it is assigned the value 4.
      */
-    private int directionsToGo;
+    private final int directionsToGo;
 
     /**
      * Creates a new base for a maze with the given width and length.
@@ -124,6 +124,22 @@ public class MazeGenerator {
             }
             directionsStack.pop();
         }
+        
+        //Adding the entrance and exit
+        //Entrance
+        long out = (System.nanoTime() % visited.length) * 2 + 1;
+        int outint = 1;
+        while (outint < out) {
+            outint += 2;
+        }
+        maze[0][outint] = ' ';
+        //Exit
+        out = (System.nanoTime() % visited.length) * 2 + 1;
+        outint = 1;
+        while (outint < out) {
+            outint += 2;
+        }
+        maze[maze.length - 1][outint] = ' ';
     }
 
     /**
@@ -133,12 +149,12 @@ public class MazeGenerator {
         visited[stacky.peek()][stackx.peek()] = true;
         removeWall(2 * stacky.peek() + 1, 2 * stackx.peek() + 1);
         //Debugging
-        for (int y = 0; y < maze.length; y++) {
-            for (int x = 0; x < maze[0].length; x++) {
+//        for (int y = 0; y < maze.length; y++) {
+//            for (int x = 0; x < maze[0].length; x++) {
 //                System.out.print(maze[y][x]);
-            }
+//            }
 //            System.out.println("");
-        }
+//        }
 //        System.out.println("");
         //Going in all possible directions
 //        Collections.shuffle(directionsList);
