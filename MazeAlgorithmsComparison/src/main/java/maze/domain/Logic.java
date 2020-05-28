@@ -40,11 +40,12 @@ public class Logic {
      * adjusted.
      */
     public Logic() {
-        this.mazeWidth = 20;
-        this.mazeHeight = 20;
+        this.mazeWidth = 100;
+        this.mazeHeight = 100;
         this.maxSize = 20;
         this.minWidth = 1;
         this.minHeight = 1;
+        solver = new MazeSolver();
     }
     /**
      * Increases the generated maze's width.
@@ -93,8 +94,8 @@ public class Logic {
         generator.generateMaze();
     }
     
-    public void deadEndSolve() {
-        solver.deadEndFillSolve(generator.getMaze());
+    public void deadEndSolve(char[][] maze) {
+        solver.deadEndFillSolve(maze);
     }
 
     //Get methods

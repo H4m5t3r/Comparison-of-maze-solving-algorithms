@@ -16,6 +16,9 @@ import maze.domain.Logic;
  */
 public class MazeUI extends Application {
     //JavaFX
+    int rectWidth;
+    int rectHeight;
+    int extraHeight;
     //Maze preset scene
     private Pane newMazePane;
     private Pane plusMinusButtons;
@@ -35,7 +38,9 @@ public class MazeUI extends Application {
     private char[][] maze;
     private Button deadEndSolve;
     
-    //
+    //SolvedMazeScene
+    private Scene solvedMazeScene;
+    private Pane solvedMazePane;
     
     //Program logic
     private Logic logic;
@@ -43,6 +48,9 @@ public class MazeUI extends Application {
     @Override
     public void init() {
         this.logic = new Logic();
+        rectWidth = 4;
+        rectHeight = 4;
+        extraHeight = 30;
         
         //newMazeScene
         this.newMazePane = new Pane();
@@ -80,10 +88,10 @@ public class MazeUI extends Application {
         decreaseHeight.setPrefWidth(30);
         
         generate = new Button("Generate");
-        generate.setLayoutX(300);
-        generate.setLayoutY(300);
+        generate.setLayoutX(0);
+        generate.setLayoutY(0);
         
-        //ViewMazeScene
+        //viewMazeScene
         deadEndSolve = new Button("Dead-end filling");
         
         this.newMazeScene = new Scene(newMazePane, 500, 500);
@@ -126,11 +134,6 @@ public class MazeUI extends Application {
             updateNewMazeScreen();
         });
         
-        //viewMazeScene
-        deadEndSolve.setOnAction((event) -> {
-            logic.deadEndSolve();
-        });
-        
         generate.setOnAction((event) -> {
             logic.initializeGenerator();
             logic.generateMaze();
@@ -139,16 +142,30 @@ public class MazeUI extends Application {
             viewMazePane = new Pane();
             for (int y = 0; y < maze.length; y++) {
                 for (int x = 0; x < maze[0].length; x++) {
-                    if (y == 1 && x == 1) {
-                        viewMazePane.getChildren().add(new Rectangle(x * 25, y * 25, 15, 15));
-                    } else if (maze[y][x] == '#') {
-                        viewMazePane.getChildren().add(new Rectangle(x * 25, y * 25, 24, 24));
+                    if (maze[y][x] == '#') {
+                        viewMazePane.getChildren().add(new Rectangle(x * rectWidth, y * rectHeight + extraHeight, rectWidth, rectHeight));
                     }
                 }
             }
             viewMazePane.getChildren().add(deadEndSolve);
-            viewMazeScene = new Scene(viewMazePane, 700, 700);
+            viewMazeScene = new Scene(viewMazePane);
             window.setScene(viewMazeScene);
+        });
+        
+        //solvedMazeScene
+        deadEndSolve.setOnAction((event) -> {
+            logic.deadEndSolve(maze);
+            solvedMazePane = new Pane();
+            for (int y = 0; y < maze.length; y++) {
+                for (int x = 0; x < maze[0].length; x++) {
+                    if (maze[y][x] == '#') {
+                        solvedMazePane.getChildren().add(new Rectangle(x * rectWidth, y * rectHeight + extraHeight, rectWidth, rectHeight));
+                    }
+                }
+            }
+            solvedMazePane.getChildren().add(generate);
+            solvedMazeScene = new Scene(solvedMazePane);
+            window.setScene(solvedMazeScene);
         });
         
         window.setScene(newMazeScene);
