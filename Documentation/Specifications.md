@@ -31,7 +31,7 @@ An example of a small test maze:
 ######### #######
 ```
 
-The mazes will be created using the recursive backtracker method. This algorithm randomly chooses a direction to go when given a starting point and digs its way through the allowed area until there are no places left to go. It uses a stack to backtrack to places it has visited in the labyrinth. I may also add more maze generating algorithms if there is time for that.
+The mazes will be created using the **recursive backtracker method**. This algorithm randomly chooses a direction to go when given a starting point and digs its way through the allowed area until there are no places left to go. It uses a stack to backtrack to places it has visited in the labyrinth. I may also add more maze generating algorithms if there is time for that.
 
 ## Dead-end filling
 The dead-end filling method (Maze solving algorithm, Wikipedia 2020) is based on finding all the dead-ends and filling all of these paths with walls until a crossroad is reached since they cannot lead to the exit. This will leave the algorithm with only the correct path. (Maze solving algorithm, Wikipedia 2020)

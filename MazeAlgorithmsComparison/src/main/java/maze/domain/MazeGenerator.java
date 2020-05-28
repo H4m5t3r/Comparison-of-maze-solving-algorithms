@@ -100,24 +100,28 @@ public class MazeGenerator {
                 stackx.push(1);
                 stacky.push(0);
                 try {
-                    removeWall(1, 2);
-                    recursion();
+                    if (!visited[0][1]) {
+                        recursion();
+                        removeWall(1, 2);
+                    }
                 } catch (Exception e) {
                     stackx.pop();
                     stacky.pop();
                 }
             }
-//            else if (directionsStack.peek() == 2) {
-//                stackx.push(0);
-//                stacky.push(1);
-//                try {
-//                    removeWall(2, 1);
-//                    recursion();
-//                } catch (Exception e) {
-//                    stackx.pop();
-//                    stacky.pop();
-//                }
-//            }
+            else if (directionsStack.peek() == 2) {
+                stackx.push(0);
+                stacky.push(1);
+                try {
+                    if (!visited[1][0]) {
+                        recursion();
+                        removeWall(2, 1);
+                    }
+                } catch (Exception e) {
+                    stackx.pop();
+                    stacky.pop();
+                }
+            }
             directionsStack.pop();
         }
     }
