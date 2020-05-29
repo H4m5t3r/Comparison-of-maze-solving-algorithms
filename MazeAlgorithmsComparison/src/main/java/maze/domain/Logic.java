@@ -42,7 +42,7 @@ public class Logic {
     public Logic() {
         this.mazeWidth = 100;
         this.mazeHeight = 100;
-        this.maxSize = 20;
+        this.maxSize = 150;
         this.minWidth = 1;
         this.minHeight = 1;
         solver = new MazeSolver();
@@ -63,6 +63,10 @@ public class Logic {
             mazeWidth--;
         }
     }
+    
+    public void setWidth(int w) {
+        mazeWidth = w;
+    }
     /**
      * Increases the generated maze's height.
      */
@@ -78,6 +82,10 @@ public class Logic {
         if (mazeHeight > 1) {
             mazeHeight--;
         }
+    }
+    
+    public void setHeight(int h) {
+        mazeHeight = h;
     }
 
     /**

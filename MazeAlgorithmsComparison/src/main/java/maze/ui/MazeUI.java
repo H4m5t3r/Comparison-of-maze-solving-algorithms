@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import maze.domain.Logic;
@@ -21,16 +22,27 @@ public class MazeUI extends Application {
     int extraHeight;
     //Maze preset scene
     private Pane newMazePane;
-    private Pane plusMinusButtons;
+    private Pane changeSizeButtons;
     private Pane widthAndHeight;
     private Scene newMazeScene;
     private Button increaseWidth;
     private Button decreaseWidth;
     private Button increaseHeight;
     private Button decreaseHeight;
+    private Button w10;
+    private Button w50;
+    private Button w100;
+    private Button w150;
+    private Button h10;
+    private Button h50;
+    private Button h100;
+    private Button h150;
     private Label width;
     private Label length;
+    private Label widthText;
+    private Label lengthText;
     private Button generate;
+    private Button options;
     
     //View maze scene
     private Pane viewMazePane;
@@ -54,7 +66,7 @@ public class MazeUI extends Application {
         
         //newMazeScene
         this.newMazePane = new Pane();
-        plusMinusButtons = new Pane();
+        changeSizeButtons = new Pane();
         widthAndHeight = new Pane();
         increaseWidth = new Button("+");
         decreaseWidth = new Button("-");
@@ -63,23 +75,30 @@ public class MazeUI extends Application {
         
         width = new Label("" + logic.getWidth());
         width.setLayoutX(85);
-        width.setLayoutY(55);
+        width.setLayoutY(135);
         
         length = new Label("" + logic.getHeight());
         length.setLayoutX(85);
         length.setLayoutY(205);
         
+        widthText = new Label("Maze width:");
+        widthText.setLayoutX(60);
+        widthText.setLayoutY(105);
+        
+        lengthText = new Label("Maze height:");
+        lengthText.setLayoutX(60);
+        lengthText.setLayoutY(175);
+        
         //Setting the x and y coordinates for the buttons.
-        increaseWidth.setLayoutX(100);
-        increaseWidth.setLayoutY(50);
+        increaseWidth.setLayoutX(115);
+        increaseWidth.setLayoutY(130);
         increaseWidth.setPrefWidth(30);
         
-        
         decreaseWidth.setLayoutX(50);
-        decreaseWidth.setLayoutY(50);
+        decreaseWidth.setLayoutY(130);
         decreaseWidth.setPrefWidth(30);
         
-        increaseHeight.setLayoutX(100);
+        increaseHeight.setLayoutX(115);
         increaseHeight.setLayoutY(200);
         increaseHeight.setPrefWidth(30);
         
@@ -87,9 +106,47 @@ public class MazeUI extends Application {
         decreaseHeight.setLayoutY(200);
         decreaseHeight.setPrefWidth(30);
         
+        //Width "shortcuts"
+        w10 = new Button("10");
+        w10.setLayoutX(170);
+        w10.setLayoutY(130);
+        
+        w50 = new Button("50");
+        w50.setLayoutX(220);
+        w50.setLayoutY(130);
+        
+        w100 = new Button("100");
+        w100.setLayoutX(270);
+        w100.setLayoutY(130);
+        
+        w150 = new Button("150");
+        w150.setLayoutX(330);
+        w150.setLayoutY(130);
+        
+        //Height "shortcuts"
+        h10 = new Button("10");
+        h10.setLayoutX(170);
+        h10.setLayoutY(200);
+        
+        h50 = new Button("50");
+        h50.setLayoutX(220);
+        h50.setLayoutY(200);
+        
+        h100 = new Button("100");
+        h100.setLayoutX(270);
+        h100.setLayoutY(200);
+        
+        h150 = new Button("150");
+        h150.setLayoutX(330);
+        h150.setLayoutY(200);
+        
         generate = new Button("Generate");
         generate.setLayoutX(0);
         generate.setLayoutY(0);
+        
+        options = new Button("Options");
+        options.setLayoutX(130);
+        options.setLayoutY(0);
         
         //viewMazeScene
         deadEndSolve = new Button("Dead-end filling");
@@ -101,16 +158,17 @@ public class MazeUI extends Application {
         newMazePane.getChildren().clear();
         width.setText("" + logic.getWidth());
         length.setText("" + logic.getHeight());
-        newMazePane.getChildren().addAll(widthAndHeight, plusMinusButtons);
+        newMazePane.getChildren().addAll(widthAndHeight, changeSizeButtons);
     }
     
     @Override
     public void start(Stage window) throws Exception {
-        plusMinusButtons.getChildren().addAll(increaseWidth, decreaseWidth, 
-                increaseHeight, decreaseHeight, generate);
-        widthAndHeight.getChildren().addAll(width, length);
+        changeSizeButtons.getChildren().addAll(increaseWidth, decreaseWidth, 
+                increaseHeight, decreaseHeight, generate, w10, w50, w100, w150,
+                h10, h50, h100, h150);
+        widthAndHeight.getChildren().addAll(width, length, widthText, lengthText);
         
-        newMazePane.getChildren().addAll(widthAndHeight, plusMinusButtons);
+        newMazePane.getChildren().addAll(widthAndHeight, changeSizeButtons);
         
         //Setting button actions
         //newMazeScene
@@ -134,6 +192,46 @@ public class MazeUI extends Application {
             updateNewMazeScreen();
         });
         
+        w10.setOnAction((event) -> {
+            logic.setWidth(10);
+            updateNewMazeScreen();
+        });
+        
+        w50.setOnAction((event) -> {
+            logic.setWidth(50);
+            updateNewMazeScreen();
+        });
+        
+        w100.setOnAction((event) -> {
+            logic.setWidth(100);
+            updateNewMazeScreen();
+        });
+        
+        w150.setOnAction((event) -> {
+            logic.setWidth(150);
+            updateNewMazeScreen();
+        });
+        
+        h10.setOnAction((event) -> {
+            logic.setHeight(10);
+            updateNewMazeScreen();
+        });
+        
+        h50.setOnAction((event) -> {
+            logic.setHeight(50);
+            updateNewMazeScreen();
+        });
+        
+        h100.setOnAction((event) -> {
+            logic.setHeight(100);
+            updateNewMazeScreen();
+        });
+        
+        h150.setOnAction((event) -> {
+            logic.setHeight(150);
+            updateNewMazeScreen();
+        });
+        
         generate.setOnAction((event) -> {
             logic.initializeGenerator();
             logic.generateMaze();
@@ -147,9 +245,18 @@ public class MazeUI extends Application {
                     }
                 }
             }
-            viewMazePane.getChildren().add(deadEndSolve);
+            viewMazePane.getChildren().addAll(deadEndSolve, options);
             viewMazeScene = new Scene(viewMazePane);
             window.setScene(viewMazeScene);
+        });
+        
+        options.setOnAction((event) -> {
+            try {
+                newMazePane.getChildren().add(generate);
+            } catch (Exception e) {
+                
+            }
+            window.setScene(newMazeScene);
         });
         
         //solvedMazeScene
@@ -161,13 +268,18 @@ public class MazeUI extends Application {
                     if (maze[y][x] == '#') {
                         solvedMazePane.getChildren().add(new Rectangle(x * rectWidth, y * rectHeight + extraHeight, rectWidth, rectHeight));
                     }
+                    else if (maze[y][x] == 'f') {
+                        Rectangle rect = new Rectangle(x * rectWidth, y * rectHeight + extraHeight, rectWidth, rectHeight);
+                        rect.setFill(Color.GREEN);
+                        solvedMazePane.getChildren().add(rect);
+                    }
                 }
             }
-            solvedMazePane.getChildren().add(generate);
+            solvedMazePane.getChildren().addAll(generate, options);
             solvedMazeScene = new Scene(solvedMazePane);
             window.setScene(solvedMazeScene);
         });
-        
+
         window.setScene(newMazeScene);
         window.show();
     }

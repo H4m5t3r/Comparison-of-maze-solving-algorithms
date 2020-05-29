@@ -42,20 +42,20 @@ public class DeadEndFilling {
     public void fillDeadEnd(char[][] maze, int y, int x) {
         maze[y][x] = '#';
         if (maze[y - 1][x] == ' ') {
-            maze[y - 1][x] = ' ';
-            isDeadEnd(maze, y - 1, x);
+            maze[y - 1][x] = '#';
+            isDeadEnd(maze, y - 2, x);
         }
         else if (maze[y][x + 1] == ' ') {
-            maze[y][x + 1] = ' ';
-            isDeadEnd(maze, y, x + 1);
+            maze[y][x + 1] = '#';
+            isDeadEnd(maze, y, x + 2);
         }
         else if (maze[y + 1][x] == ' ') {
-            maze[y + 1][x] = ' ';
-            isDeadEnd(maze, y + 1, x);
+            maze[y + 1][x] = '#';
+            isDeadEnd(maze, y + 2, x);
         }
         else if (maze[y][x - 1] == ' ') {
-            maze[y][x - 1] = ' ';
-            isDeadEnd(maze, y, x - 1);
+            maze[y][x - 1] = '#';
+            isDeadEnd(maze, y, x - 2);
         }
     }
 }
