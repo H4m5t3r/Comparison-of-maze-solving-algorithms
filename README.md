@@ -8,6 +8,7 @@ In this project I will create a program that generates perfect mazes (mazes with
 [Week 1](https://github.com/H4m5t3r/Comparison-of-maze-solving-algorithms/blob/master/Documentation/Weekly%20reports/Week%201.md)
 
 [Week 2](https://github.com/H4m5t3r/Comparison-of-maze-solving-algorithms/blob/master/Documentation/Weekly%20reports/Week%202.md#week-2)
+[Week 3](https://github.com/H4m5t3r/Comparison-of-maze-solving-algorithms/blob/master/Documentation/Weekly%20reports/Week%203.md#week-3)
 
 ## Useful commands
 **Run these commands in the folder "MazeAlgorithmsComparison"**
