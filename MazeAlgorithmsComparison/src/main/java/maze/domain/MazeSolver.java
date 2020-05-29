@@ -7,13 +7,20 @@ package maze.domain;
  * @author taleiko
  */
 public class MazeSolver {
-    private char[][] solvedMaze;
-    private DeadEndFilling deadEndFill;
-    
+    /**
+     * The class that solves mazes using the dead-end filling method.
+     */
+    private final DeadEndFilling deadEndFill;
+    /**
+     * Initializes the maze solver.
+     */
     public MazeSolver() {
         deadEndFill = new DeadEndFilling();
     }
-    
+    /**
+     * Calls the solve method in the DeadEndFilling class.
+     * @param maze 
+     */
     public void deadEndFillSolve(char[][] maze) {
         deadEndFill.solve(maze);
     }

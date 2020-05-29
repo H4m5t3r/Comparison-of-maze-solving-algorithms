@@ -61,7 +61,9 @@ public class Stack {
     public boolean isEmpty() {
         return top == 0;
     }
-    
+    /**
+     * Prints the stack's content.
+     */
     public void show() {
         for (int i = 0; i < stack.length; i++) {
             System.out.print(stack[i]);

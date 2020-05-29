@@ -8,7 +8,7 @@ During the coming weeks I may add a checker to the UI that scales the size of th
 
 Another improvement that could be done would be to make the filled dead ends grey instead of just blacking them out so that they can still be seen. This would mean that I have to change the code since it assumes that all walls an filled corridors are marked with '#'.
 
-While I was finalizing this report I noticed that there seems to be an error in the LinkedList class' remove method. I will have to look into this.
+While I was finalizing this report I noticed that there seems to be an error in the LinkedList class' remove method. I will have to look into this. Also, sometimes the generate button disappears from the program's view. I should probably make a separate generate button for each view.
 
 | Day | Hours | What I did  |
 | :----:|:-----| :-----|

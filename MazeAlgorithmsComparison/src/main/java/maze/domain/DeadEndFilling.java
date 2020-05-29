@@ -17,7 +17,12 @@ public class DeadEndFilling {
             }
         }
     }
-
+    /**
+     * Determines whether or not the given space is a dead end.
+     * @param maze
+     * @param y
+     * @param x
+     */
     public void isDeadEnd(char[][] maze, int y, int x) {
         if (maze[y][x] == ' ') {
             if (maze[y - 1][x] == ' ' && maze[y][x + 1] == '#'
@@ -38,7 +43,13 @@ public class DeadEndFilling {
             }
         }
     }
-
+    /**
+     * Fills the first corridor it finds since this method is always called
+     * after the program knows that this is a dead-end.
+     * @param maze
+     * @param y
+     * @param x
+     */
     public void fillDeadEnd(char[][] maze, int y, int x) {
         maze[y][x] = '#';
         if (maze[y - 1][x] == ' ') {
