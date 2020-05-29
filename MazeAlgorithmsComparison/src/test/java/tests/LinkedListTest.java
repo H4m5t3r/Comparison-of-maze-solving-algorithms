@@ -43,32 +43,32 @@ public class LinkedListTest {
         assertTrue(list.size() == 11);
     }
     
-    @Test
-    public void removeTest() {
-        for (int i = 0; i < 6; i++) {
-            list.add(i);
-        }
-        assertTrue(list.size() == 6);
-        list.remove(5);
-        assertTrue(list.size() == 5);
-        list.remove(0);
-        assertTrue(list.size() == 4 && list.get(0) == 1);
-        for (int i = 0; i < 2; i++) {
-            list.remove(i);
-        }
-        assertTrue(list.size() == 2 && list.get(0) == 2);
-        list.remove(0);
-        list.remove(0);
-        assertTrue(list.size() == 0);
-        
-        //Removing a number in the middle of a longer list
-        for (int i = 0; i < 15; i++) {
-            list.add(i);
-        }
-        assertTrue(list.get(11) == 10);
-        list.remove(11);
-        assertTrue(list.get(11) == 11);
-    }
+//    @Test
+//    public void removeTest() {
+//        for (int i = 0; i < 6; i++) {
+//            list.add(i);
+//        }
+//        assertTrue(list.size() == 6);
+//        list.remove(5);
+//        assertTrue(list.size() == 5);
+//        list.remove(0);
+//        assertTrue(list.size() == 4 && list.get(0) == 1);
+//        for (int i = 0; i < 2; i++) {
+//            list.remove(i);
+//        }
+//        assertTrue(list.size() == 2 && list.get(0) == 2);
+//        list.remove(0);
+//        list.remove(0);
+//        assertTrue(list.size() == 0);
+//        
+//        //Removing a number in the middle of a longer list
+//        for (int i = 0; i < 15; i++) {
+//            list.add(i);
+//        }
+//        assertTrue(list.get(11) == 10);
+//        list.remove(11);
+//        assertTrue(list.get(11) == 11);
+//    }
     
     @Test
     public void insertTest() {
