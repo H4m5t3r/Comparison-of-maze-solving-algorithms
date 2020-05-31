@@ -36,6 +36,14 @@ public class LogicTest {
             logic.decreaseWidth();
         }
         assertTrue(logic.getWidth() == logic.getMinWidth());
+        
+        //setWidth
+        logic.setWidth(logic.getMaxWidth() - 4);
+        assertTrue(logic.getWidth() == logic.getMaxWidth() - 4);
+        logic.setWidth(-1);
+        assertTrue(logic.getWidth() == 1);
+        logic.setWidth(logic.getMaxWidth() + 1);
+        assertTrue(logic.getWidth() == logic.getMaxWidth());
     }
     
     @Test
@@ -56,6 +64,14 @@ public class LogicTest {
             logic.decreaseHeight();
         }
         assertTrue(logic.getHeight() == logic.getMinHeight());
+        
+        //setHeight
+        logic.setHeight(logic.getMaxHeight() - 4);
+        assertTrue(logic.getHeight() == logic.getMaxHeight() - 4);
+        logic.setHeight(-1);
+        assertTrue(logic.getHeight() == 1);
+        logic.setHeight(logic.getMaxHeight() + 1);
+        assertTrue(logic.getHeight() == logic.getMaxHeight());
     }
     
     @Test

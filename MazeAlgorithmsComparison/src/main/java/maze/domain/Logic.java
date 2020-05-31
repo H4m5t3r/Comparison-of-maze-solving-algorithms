@@ -65,7 +65,15 @@ public class Logic {
     }
     
     public void setWidth(int w) {
-        mazeWidth = w;
+        if (w <= maxSize ) {
+            if (w > 0) {
+                mazeWidth = w;
+            } else {
+                mazeWidth = 1;
+            }
+        } else {
+            mazeWidth = maxSize;
+        }
     }
     /**
      * Increases the generated maze's height.
@@ -85,7 +93,15 @@ public class Logic {
     }
     
     public void setHeight(int h) {
-        mazeHeight = h;
+        if (h <= maxSize ) {
+            if (h > 0) {
+                mazeHeight = h;
+            } else {
+                mazeHeight = 1;
+            }
+        } else {
+            mazeHeight = maxSize;
+        }
     }
 
     /**
@@ -104,6 +120,14 @@ public class Logic {
     
     public void deadEndSolve(char[][] maze) {
         solver.deadEndFillSolve(maze);
+        //Debugging
+//        for (int y = 0; y < maze.length; y++) {
+//            for (int x = 0; x < maze[0].length; x++) {
+//                System.out.print(maze[y][x]);
+//            }
+//            System.out.println("");
+//        }
+//        System.out.println("");
     }
 
     //Get methods

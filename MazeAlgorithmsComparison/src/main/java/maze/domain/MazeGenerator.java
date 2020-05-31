@@ -238,6 +238,14 @@ public class MazeGenerator {
                     break;
             }
         }
+        //Debugging
+//        for (int y = 0; y < maze.length; y++) {
+//            for (int x = 0; x < maze[0].length; x++) {
+//                System.out.print(maze[y][x]);
+//            }
+//            System.out.println("");
+//        }
+//        System.out.println("");
     }
     /**
      * 
