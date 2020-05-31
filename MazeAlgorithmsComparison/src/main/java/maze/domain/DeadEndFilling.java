@@ -22,26 +22,32 @@ public class DeadEndFilling {
      * @param maze
      * @param y
      * @param x
+     * @return 
      */
-    public void isDeadEnd(char[][] maze, int y, int x) {
+    public boolean isDeadEnd(char[][] maze, int y, int x) {
         if (maze[y][x] == ' ') {
             if (maze[y - 1][x] == ' ' && maze[y][x + 1] == '#'
                     && maze[y + 1][x] == '#' && maze[y][x - 1] == '#') {
                 fillDeadEnd(maze, y, x);
+                return true;
             }
             else if (maze[y - 1][x] == '#' && maze[y][x + 1] == ' '
                     && maze[y + 1][x] == '#' && maze[y][x - 1] == '#') {
                 fillDeadEnd(maze, y, x);
+                return true;
             }
             else if (maze[y - 1][x] == '#' && maze[y][x + 1] == '#'
                     && maze[y + 1][x] == ' ' && maze[y][x - 1] == '#') {
                 fillDeadEnd(maze, y, x);
+                return true;
             }
             else if (maze[y - 1][x] == '#' && maze[y][x + 1] == '#'
                     && maze[y + 1][x] == '#' && maze[y][x - 1] == ' ') {
                 fillDeadEnd(maze, y, x);
+                return true;
             }
         }
+        return false;
     }
     /**
      * Fills the first corridor it finds since this method is always called
@@ -64,7 +70,7 @@ public class DeadEndFilling {
             maze[y + 1][x] = '#';
             isDeadEnd(maze, y + 2, x);
         }
-        else if (maze[y][x - 1] == ' ') {
+        else {
             maze[y][x - 1] = '#';
             isDeadEnd(maze, y, x - 2);
         }
