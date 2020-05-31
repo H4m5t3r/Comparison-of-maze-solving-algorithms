@@ -43,32 +43,38 @@ public class LinkedListTest {
         assertTrue(list.size() == 11);
     }
     
-//    @Test
-//    public void removeTest() {
-//        for (int i = 0; i < 6; i++) {
-//            list.add(i);
-//        }
-//        assertTrue(list.size() == 6);
-//        list.remove(5);
-//        assertTrue(list.size() == 5);
-//        list.remove(0);
-//        assertTrue(list.size() == 4 && list.get(0) == 1);
-//        for (int i = 0; i < 2; i++) {
-//            list.remove(i);
-//        }
-//        assertTrue(list.size() == 2 && list.get(0) == 2);
-//        list.remove(0);
-//        list.remove(0);
-//        assertTrue(list.size() == 0);
-//        
-//        //Removing a number in the middle of a longer list
-//        for (int i = 0; i < 15; i++) {
-//            list.add(i);
-//        }
-//        assertTrue(list.get(11) == 10);
-//        list.remove(11);
-//        assertTrue(list.get(11) == 11);
-//    }
+    @Test
+    public void removeTest() {
+        for (int i = 0; i < 6; i++) {
+            list.add(i);
+        }
+        // 0, 1, 2, 3, 4, 5
+        assertTrue(list.size() == 6);
+        assertTrue(list.remove(5) == 5);
+        // 0, 1, 2, 3, 4
+        assertTrue(list.size() == 5);
+        assertTrue(list.get(list.size() - 1) == 4);
+        assertTrue(list.remove(0) == 0);
+        // 1, 2, 3, 4
+        assertTrue(list.size() == 4);
+        assertTrue(list.get(0) == 1);
+        for (int i = 1; i < 4; i++) {
+            assertTrue(list.remove(1) == i + 1);
+        }
+        // 1
+        assertTrue(list.size() == 1);
+        assertTrue(list.get(0) == 1);
+        assertTrue(list.remove(0) == 1);
+        assertTrue(list.size() == 0);
+        
+        //Creating a list and removing a value in the middle
+        for (int i = 0; i < 15; i++) {
+            list.add(i);
+        }
+        // 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14
+        assertTrue(list.remove(6) == 6);
+        assertTrue(list.get(6) == 7);
+    }
     
     @Test
     public void insertTest() {

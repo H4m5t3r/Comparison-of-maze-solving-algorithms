@@ -83,16 +83,16 @@ public class LinkedList {
      */
     public int remove(final long i) {
         int ret;
-        if (i == this.size - 1) {
+        if (i == 0) {
+            ret = this.first.getValue();
+            this.first = this.first.getNext();
+        } else if (i == this.size - 1) {
             LinkedListNode search = this.first;
             for (int j = 0; j < i - 1; j++) {
                 search = search.getNext();
             }
             ret = search.getNext().getValue();
             search.setNext(null);
-        } else if (i == 0) {
-            ret = this.first.getValue();
-            this.first = this.first.getNext();
         } else {
             LinkedListNode search = this.first;
             for (int j = 0; j < i - 1; j++) {
