@@ -19,9 +19,9 @@ public class MazeSolver {
     }
     /**
      * Calls the solve method in the DeadEndFilling class.
-     * @param maze 
+     * @param maze
      */
-    public void deadEndFillSolve(char[][] maze) {
+    public void deadEndFillSolve(final char[][] maze) {
         deadEndFill.solve(maze);
     }
 }

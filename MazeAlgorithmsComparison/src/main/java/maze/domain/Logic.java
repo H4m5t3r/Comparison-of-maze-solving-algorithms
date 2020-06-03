@@ -11,7 +11,7 @@ public class Logic {
      */
     private MazeGenerator generator;
     /**
-     * 
+     * The class that takes mazes as input and solves them.
      */
     private MazeSolver solver;
     /**
@@ -34,17 +34,22 @@ public class Logic {
      * The maze's minimum height.
      */
     private final int minHeight;
+    /**
+     * The default value for the width and height of the maze.
+     */
+    private final int defaultValue;
 
     /**
      * A constructor where the default, maximum and minimum values can be
      * adjusted.
      */
     public Logic() {
-        this.mazeWidth = 100;
-        this.mazeHeight = 100;
-        this.maxSize = 150;
-        this.minWidth = 1;
-        this.minHeight = 1;
+        defaultValue = 100;
+        mazeWidth = defaultValue;
+        mazeHeight = defaultValue;
+        maxSize = 150;
+        minWidth = 1;
+        minHeight = 1;
         solver = new MazeSolver();
     }
     /**
@@ -63,9 +68,13 @@ public class Logic {
             mazeWidth--;
         }
     }
-    
-    public void setWidth(int w) {
-        if (w <= maxSize ) {
+
+    /**
+     * Sets the width.
+     * @param w
+     */
+    public void setWidth(final int w) {
+        if (w <= maxSize) {
             if (w > 0) {
                 mazeWidth = w;
             } else {
@@ -91,9 +100,12 @@ public class Logic {
             mazeHeight--;
         }
     }
-    
-    public void setHeight(int h) {
-        if (h <= maxSize ) {
+    /**
+     * Sets the height.
+     * @param h
+     */
+    public void setHeight(final int h) {
+        if (h <= maxSize) {
             if (h > 0) {
                 mazeHeight = h;
             } else {
@@ -117,8 +129,11 @@ public class Logic {
     public void generateMaze() {
         generator.generateMaze();
     }
-    
-    public void deadEndSolve(char[][] maze) {
+    /**
+     * Solves the given maze using the dead-end sovlve method.
+     * @param maze
+     */
+    public void deadEndSolve(final char[][] maze) {
         solver.deadEndFillSolve(maze);
         //Debugging
 //        for (int y = 0; y < maze.length; y++) {

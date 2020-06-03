@@ -18,6 +18,6 @@ public class DataStructuresTesting {
         System.out.println(l.get(0));
         l.remove(1);
         System.out.println(l.get(0));
-        
+
     }
 }

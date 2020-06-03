@@ -19,7 +19,7 @@ public class Stack {
      * Creates a stack that has space for i integers.
      * @param i
      */
-    public Stack(int i) {
+    public Stack(final int i) {
         stack = new int[i];
         top = 0;
     }
@@ -27,7 +27,7 @@ public class Stack {
      * Adds an integer to the stack.
      * @param data
      */
-    public void push(int data) {
+    public void push(final int data) {
         stack[top] = data;
         top++;
     }

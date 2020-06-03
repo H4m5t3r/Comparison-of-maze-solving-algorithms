@@ -1,10 +1,6 @@
 
 package maze.domain;
 
-import java.util.ArrayDeque;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import maze.data_structures.LinkedList;
 import maze.data_structures.Stack;
 
@@ -72,7 +68,7 @@ public class MazeGenerator {
             directions[i] = i;
 //            directionsList.add(i);
         }
-        directionsStack = new Stack(mazeWidth * mazeHeight * 4);
+        directionsStack = new Stack(mazeWidth * mazeHeight * directionsToGo);
     }
 
     /**
@@ -108,8 +104,7 @@ public class MazeGenerator {
                     stackx.pop();
                     stacky.pop();
                 }
-            }
-            else if (directionsStack.peek() == 2) {
+            } else if (directionsStack.peek() == 2) {
                 stackx.push(0);
                 stacky.push(1);
                 try {
@@ -124,7 +119,7 @@ public class MazeGenerator {
             }
             directionsStack.pop();
         }
-        
+
         //Adding the entrance and exit
         //Entrance
         long out = (System.nanoTime() % visited.length) * 2 + 1;
@@ -248,7 +243,8 @@ public class MazeGenerator {
 //        System.out.println("");
     }
     /**
-     * 
+     * Adds the four directions to directionsStack in a random order using the
+     * linked list.
      */
     public void addRandomDirectionOrderToDirectionsStack() {
         for (int i = 0; i < directionsToGo; i++) {

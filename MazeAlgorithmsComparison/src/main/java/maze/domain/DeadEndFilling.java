@@ -8,9 +8,9 @@ package maze.domain;
 public class DeadEndFilling {
     /**
      * Takes an ASCII maze as input and solves it.
-     * @param maze 
+     * @param maze
      */
-    public void solve(char[][] maze) {
+    public void solve(final char[][] maze) {
         for (int y = 1; y < maze.length - 1; y += 2) {
             for (int x = 1; x < maze.length - 1; x += 2) {
                 isDeadEnd(maze, y, x);
@@ -22,26 +22,23 @@ public class DeadEndFilling {
      * @param maze
      * @param y
      * @param x
-     * @return 
+     * @return isDeadEnd
      */
-    public boolean isDeadEnd(char[][] maze, int y, int x) {
+    public boolean isDeadEnd(final char[][] maze, final int y, final int x) {
         if (maze[y][x] == ' ') {
             if (maze[y - 1][x] == ' ' && maze[y][x + 1] == '#'
                     && maze[y + 1][x] == '#' && maze[y][x - 1] == '#') {
                 fillDeadEnd(maze, y, x);
                 return true;
-            }
-            else if (maze[y - 1][x] == '#' && maze[y][x + 1] == ' '
+            } else if (maze[y - 1][x] == '#' && maze[y][x + 1] == ' '
                     && maze[y + 1][x] == '#' && maze[y][x - 1] == '#') {
                 fillDeadEnd(maze, y, x);
                 return true;
-            }
-            else if (maze[y - 1][x] == '#' && maze[y][x + 1] == '#'
+            } else if (maze[y - 1][x] == '#' && maze[y][x + 1] == '#'
                     && maze[y + 1][x] == ' ' && maze[y][x - 1] == '#') {
                 fillDeadEnd(maze, y, x);
                 return true;
-            }
-            else if (maze[y - 1][x] == '#' && maze[y][x + 1] == '#'
+            } else if (maze[y - 1][x] == '#' && maze[y][x + 1] == '#'
                     && maze[y + 1][x] == '#' && maze[y][x - 1] == ' ') {
                 fillDeadEnd(maze, y, x);
                 return true;
@@ -56,21 +53,18 @@ public class DeadEndFilling {
      * @param y
      * @param x
      */
-    public void fillDeadEnd(char[][] maze, int y, int x) {
+    public void fillDeadEnd(final char[][] maze, final int y, final int x) {
         maze[y][x] = '#';
         if (maze[y - 1][x] == ' ') {
             maze[y - 1][x] = '#';
             isDeadEnd(maze, y - 2, x);
-        }
-        else if (maze[y][x + 1] == ' ') {
+        } else if (maze[y][x + 1] == ' ') {
             maze[y][x + 1] = '#';
             isDeadEnd(maze, y, x + 2);
-        }
-        else if (maze[y + 1][x] == ' ') {
+        } else if (maze[y + 1][x] == ' ') {
             maze[y + 1][x] = '#';
             isDeadEnd(maze, y + 2, x);
-        }
-        else {
+        } else {
             maze[y][x - 1] = '#';
             isDeadEnd(maze, y, x - 2);
         }
