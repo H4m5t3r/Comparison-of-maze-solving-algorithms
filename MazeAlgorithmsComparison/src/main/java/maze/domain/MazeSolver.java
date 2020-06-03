@@ -12,6 +12,11 @@ public class MazeSolver {
      */
     private final DeadEndFilling deadEndFill;
     /**
+     * The class that solves mazes using depth-first search.
+     */
+    private DepthFirstSearch depthFirst;
+
+    /**
      * Initializes the maze solver.
      */
     public MazeSolver() {
@@ -23,5 +28,8 @@ public class MazeSolver {
      */
     public void deadEndFillSolve(final char[][] maze) {
         deadEndFill.solve(maze);
+    }
+    public void depthFirstSearch(final char[][] maze) {
+        depthFirst.solve(maze);
     }
 }

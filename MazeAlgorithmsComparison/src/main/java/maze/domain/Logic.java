@@ -130,7 +130,7 @@ public class Logic {
         generator.generateMaze();
     }
     /**
-     * Solves the given maze using the dead-end sovlve method.
+     * Solves the given maze using the dead-end solve method.
      * @param maze
      */
     public void deadEndSolve(final char[][] maze) {

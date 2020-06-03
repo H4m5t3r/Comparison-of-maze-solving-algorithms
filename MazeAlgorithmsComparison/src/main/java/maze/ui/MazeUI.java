@@ -60,8 +60,8 @@ public class MazeUI extends Application {
     @Override
     public void init() {
         this.logic = new Logic();
-        rectWidth = 4;
-        rectHeight = 4;
+        rectWidth = 20;
+        rectHeight = 20;
         extraHeight = 30;
         
         //newMazeScene
@@ -267,11 +267,6 @@ public class MazeUI extends Application {
                 for (int x = 0; x < maze[0].length; x++) {
                     if (maze[y][x] == '#') {
                         solvedMazePane.getChildren().add(new Rectangle(x * rectWidth, y * rectHeight + extraHeight, rectWidth, rectHeight));
-                    }
-                    else if (maze[y][x] == 'f') {
-                        Rectangle rect = new Rectangle(x * rectWidth, y * rectHeight + extraHeight, rectWidth, rectHeight);
-                        rect.setFill(Color.GREEN);
-                        solvedMazePane.getChildren().add(rect);
                     }
                 }
             }
