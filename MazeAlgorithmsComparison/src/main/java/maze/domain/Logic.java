@@ -144,6 +144,10 @@ public class Logic {
 //        }
 //        System.out.println("");
     }
+    
+    public void depthFirstSolve(final char[][] maze) {
+        solver.depthFirstSearch(maze);
+    }
 
     //Get methods
 

@@ -21,6 +21,7 @@ public class MazeSolver {
      */
     public MazeSolver() {
         deadEndFill = new DeadEndFilling();
+        depthFirst = new DepthFirstSearch();
     }
     /**
      * Calls the solve method in the DeadEndFilling class.

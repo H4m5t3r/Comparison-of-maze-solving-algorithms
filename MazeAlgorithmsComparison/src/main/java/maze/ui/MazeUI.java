@@ -49,6 +49,7 @@ public class MazeUI extends Application {
     private Scene viewMazeScene;
     private char[][] maze;
     private Button deadEndSolve;
+    private Button depthFirstSolve;
     
     //SolvedMazeScene
     private Scene solvedMazeScene;
@@ -60,8 +61,8 @@ public class MazeUI extends Application {
     @Override
     public void init() {
         this.logic = new Logic();
-        rectWidth = 20;
-        rectHeight = 20;
+        rectWidth = 4;
+        rectHeight = 4;
         extraHeight = 30;
         
         //newMazeScene
@@ -150,6 +151,8 @@ public class MazeUI extends Application {
         
         //viewMazeScene
         deadEndSolve = new Button("Dead-end filling");
+        depthFirstSolve = new Button("Depth-first search");
+        depthFirstSolve.setLayoutX(300);
         
         this.newMazeScene = new Scene(newMazePane, 500, 500);
     }
@@ -245,7 +248,7 @@ public class MazeUI extends Application {
                     }
                 }
             }
-            viewMazePane.getChildren().addAll(deadEndSolve, options);
+            viewMazePane.getChildren().addAll(deadEndSolve, depthFirstSolve, options);
             viewMazeScene = new Scene(viewMazePane);
             window.setScene(viewMazeScene);
         });
@@ -267,6 +270,25 @@ public class MazeUI extends Application {
                 for (int x = 0; x < maze[0].length; x++) {
                     if (maze[y][x] == '#') {
                         solvedMazePane.getChildren().add(new Rectangle(x * rectWidth, y * rectHeight + extraHeight, rectWidth, rectHeight));
+                    }
+                }
+            }
+            solvedMazePane.getChildren().addAll(generate, options);
+            solvedMazeScene = new Scene(solvedMazePane);
+            window.setScene(solvedMazeScene);
+        });
+        
+        depthFirstSolve.setOnAction((event) -> {
+            logic.depthFirstSolve(maze);
+            solvedMazePane = new Pane();
+            for (int y = 0; y < maze.length; y++) {
+                for (int x = 0; x < maze[0].length; x++) {
+                    if (maze[y][x] == '#') {
+                        solvedMazePane.getChildren().add(new Rectangle(x * rectWidth, y * rectHeight + extraHeight, rectWidth, rectHeight));
+                    } else if (maze[y][x] == 'c') {
+                        Rectangle rect = new Rectangle(x * rectWidth, y * rectHeight + extraHeight, rectWidth, rectHeight);
+                        rect.setFill(Color.GREEN);
+                        solvedMazePane.getChildren().add(rect);
                     }
                 }
             }
