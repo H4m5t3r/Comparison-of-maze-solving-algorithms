@@ -44,12 +44,13 @@ public class Logic {
      * adjusted.
      */
     public Logic() {
-        defaultValue = 100;
+        defaultValue = 200;
         mazeWidth = defaultValue;
         mazeHeight = defaultValue;
         maxSize = 150;
         minWidth = 1;
         minHeight = 1;
+        generator = new MazeGenerator();
         solver = new MazeSolver();
     }
     /**
@@ -119,15 +120,15 @@ public class Logic {
     /**
      * Initializes the maze generator.
      */
-    public void initializeGenerator() {
-        generator = new MazeGenerator(mazeWidth, mazeHeight);
+    public void initializeRecursiveBacktracker() {
+        generator.initializeRecursiveBacktracker(mazeWidth, mazeHeight);
     }
 
     /**
      * Tells the maze generator to generate a maze.
      */
-    public void generateMaze() {
-        generator.generateMaze();
+    public void generateRecursiveBacktrackerMaze() {
+        generator.generateRecursiveBacktrackerMaze();
     }
     /**
      * Solves the given maze using the dead-end solve method.
@@ -155,8 +156,8 @@ public class Logic {
      * Returns the two-dimensional character array that visualizes the maze.
      * @return char[][] maze
      */
-    public char[][] getMazeFromGenerator() {
-        return generator.getMaze();
+    public char[][] getMazeFromRecursiveBacktracker() {
+        return generator.getRecursiveBacktrackerMaze();
     }
 
     /**

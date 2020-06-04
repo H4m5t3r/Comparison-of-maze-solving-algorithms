@@ -2,7 +2,7 @@
 package tests;
 
 import maze.domain.DepthFirstSearch;
-import maze.domain.MazeGenerator;
+import maze.domain.RecursiveBacktracker;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
  */
 public class DepthFirstSearchTest {
     private DepthFirstSearch depth;
-    private MazeGenerator generator;
+    private RecursiveBacktracker generator;
     
     @Before
     public void setUp() {
@@ -74,7 +74,7 @@ public class DepthFirstSearchTest {
     
     @Test
     public void largerMazeTest() {
-        generator = new MazeGenerator(50, 50);
+        generator = new RecursiveBacktracker(50, 50);
         generator.generateMaze();
         char[][] test =  generator.getMaze();
         depth.solve(test);

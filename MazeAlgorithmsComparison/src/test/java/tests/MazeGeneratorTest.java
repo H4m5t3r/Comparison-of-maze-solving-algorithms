@@ -5,7 +5,7 @@
  */
 package tests;
 
-import maze.domain.MazeGenerator;
+import maze.domain.RecursiveBacktracker;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -15,11 +15,11 @@ import static org.junit.Assert.*;
  * @author taleiko
  */
 public class MazeGeneratorTest {
-    private MazeGenerator generator;
+    private RecursiveBacktracker generator;
     
     @Before
     public void setUp() {
-        this.generator = new MazeGenerator(10, 10);
+        this.generator = new RecursiveBacktracker(10, 10);
     }
     
     @Test

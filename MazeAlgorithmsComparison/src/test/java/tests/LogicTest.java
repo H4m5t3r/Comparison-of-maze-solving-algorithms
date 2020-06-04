@@ -82,9 +82,9 @@ public class LogicTest {
         for (int i = logic.getWidth(); i < logic.getMaxWidth(); i++) {
             logic.increaseWidth();
         }
-        logic.initializeGenerator();
-        assertTrue(logic.getMazeFromGenerator().length == logic.getHeight() * 2 + 1);
-        assertTrue(logic.getMazeFromGenerator()[0].length == logic.getWidth() * 2 + 1);
+        logic.initializeRecursiveBacktracker();
+        assertTrue(logic.getMazeFromRecursiveBacktracker().length == logic.getHeight() * 2 + 1);
+        assertTrue(logic.getMazeFromRecursiveBacktracker()[0].length == logic.getWidth() * 2 + 1);
         //ADD TESTS THAT CHECK THAT EVERY "ROOM" IS A BLANK SPACE WHEN THE
         //MAZE GENERATING METHOD IS COMPLETE
     }

@@ -56,7 +56,7 @@ public class MazeUI extends Application {
     //SolvedMazeScene
     private Scene solvedMazeScene;
     private Pane solvedMazePane;
-    private Label solveTime;
+    private Label processTime;
     
     //Program logic
     private Logic logic;
@@ -244,10 +244,10 @@ public class MazeUI extends Application {
         });
         
         generate.setOnAction((event) -> {
-            logic.initializeGenerator();
-            logic.generateMaze();
+            logic.initializeRecursiveBacktracker();
+            logic.generateRecursiveBacktrackerMaze();
             //viewMazeScene
-            maze = logic.getMazeFromGenerator();
+            maze = logic.getMazeFromRecursiveBacktracker();
             viewMazePane = new Pane();
             for (int y = 0; y < maze.length; y++) {
                 for (int x = 0; x < maze[0].length; x++) {
@@ -278,9 +278,9 @@ public class MazeUI extends Application {
                     deadEndSolved[i][j] = maze[i][j];
                 }
             }
-            long start = System.nanoTime();
+            long time = System.nanoTime();
             logic.deadEndSolve(deadEndSolved);
-            long finish = System.nanoTime();
+            time = System.nanoTime() - time;
             solvedMazePane = new Pane();
             for (int y = 0; y < deadEndSolved.length; y++) {
                 for (int x = 0; x < deadEndSolved[0].length; x++) {
