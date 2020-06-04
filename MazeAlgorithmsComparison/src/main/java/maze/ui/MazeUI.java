@@ -48,12 +48,15 @@ public class MazeUI extends Application {
     private Pane viewMazePane;
     private Scene viewMazeScene;
     private char[][] maze;
+    private char[][] deadEndSolved;
+    private char[][] depthFirstSolved;
     private Button deadEndSolve;
     private Button depthFirstSolve;
     
     //SolvedMazeScene
     private Scene solvedMazeScene;
     private Pane solvedMazePane;
+    private Label solveTime;
     
     //Program logic
     private Logic logic;
@@ -162,6 +165,11 @@ public class MazeUI extends Application {
         width.setText("" + logic.getWidth());
         length.setText("" + logic.getHeight());
         newMazePane.getChildren().addAll(widthAndHeight, changeSizeButtons);
+        try {
+            newMazePane.getChildren().add(generate);
+        } catch (Exception e) {
+            
+        }
     }
     
     @Override
@@ -264,12 +272,24 @@ public class MazeUI extends Application {
         
         //solvedMazeScene
         deadEndSolve.setOnAction((event) -> {
-            logic.deadEndSolve(maze);
+            deadEndSolved = new char[maze.length][maze[0].length];
+            for (int i = 0; i < maze.length; i++) {
+                for (int j = 0; j < maze[0].length; j++) {
+                    deadEndSolved[i][j] = maze[i][j];
+                }
+            }
+            long start = System.nanoTime();
+            logic.deadEndSolve(deadEndSolved);
+            long finish = System.nanoTime();
             solvedMazePane = new Pane();
-            for (int y = 0; y < maze.length; y++) {
-                for (int x = 0; x < maze[0].length; x++) {
-                    if (maze[y][x] == '#') {
+            for (int y = 0; y < deadEndSolved.length; y++) {
+                for (int x = 0; x < deadEndSolved[0].length; x++) {
+                    if (deadEndSolved[y][x] == '#' && maze[y][x] == '#') {
                         solvedMazePane.getChildren().add(new Rectangle(x * rectWidth, y * rectHeight + extraHeight, rectWidth, rectHeight));
+                    } else if (deadEndSolved[y][x] == ' ' && maze[y][x] == ' ') {
+                        Rectangle rect = new Rectangle(x * rectWidth, y * rectHeight + extraHeight, rectWidth, rectHeight);
+                        rect.setFill(Color.GREEN);
+                        solvedMazePane.getChildren().add(rect);
                     }
                 }
             }
@@ -279,13 +299,21 @@ public class MazeUI extends Application {
         });
         
         depthFirstSolve.setOnAction((event) -> {
-            logic.depthFirstSolve(maze);
+            //Copying the unsolved maze
+            depthFirstSolved = new char[maze.length][maze[0].length];
+            for (int i = 0; i < maze.length; i++) {
+                for (int j = 0; j < maze[0].length; j++) {
+                    depthFirstSolved[i][j] = maze[i][j];
+                }
+            }
+            //Solving and visualizing
+            logic.depthFirstSolve(depthFirstSolved);
             solvedMazePane = new Pane();
             for (int y = 0; y < maze.length; y++) {
                 for (int x = 0; x < maze[0].length; x++) {
-                    if (maze[y][x] == '#') {
+                    if (depthFirstSolved[y][x] == '#') {
                         solvedMazePane.getChildren().add(new Rectangle(x * rectWidth, y * rectHeight + extraHeight, rectWidth, rectHeight));
-                    } else if (maze[y][x] == 'c') {
+                    } else if (depthFirstSolved[y][x] == 'c') {
                         Rectangle rect = new Rectangle(x * rectWidth, y * rectHeight + extraHeight, rectWidth, rectHeight);
                         rect.setFill(Color.GREEN);
                         solvedMazePane.getChildren().add(rect);
