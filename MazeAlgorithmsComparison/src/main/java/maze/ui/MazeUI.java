@@ -245,7 +245,9 @@ public class MazeUI extends Application {
         
         generate.setOnAction((event) -> {
             logic.initializeRecursiveBacktracker();
+            long time = System.nanoTime();
             logic.generateRecursiveBacktrackerMaze();
+            time = System.nanoTime() - time;
             //viewMazeScene
             maze = logic.getMazeFromRecursiveBacktracker();
             viewMazePane = new Pane();
@@ -256,7 +258,9 @@ public class MazeUI extends Application {
                     }
                 }
             }
-            viewMazePane.getChildren().addAll(deadEndSolve, depthFirstSolve, options);
+            processTime = new Label(time / 1000 + " μs");
+            processTime.setLayoutX(200);
+            viewMazePane.getChildren().addAll(deadEndSolve, depthFirstSolve, options, processTime);
             viewMazeScene = new Scene(viewMazePane);
             window.setScene(viewMazeScene);
         });
@@ -293,7 +297,9 @@ public class MazeUI extends Application {
                     }
                 }
             }
-            solvedMazePane.getChildren().addAll(generate, options);
+            processTime = new Label(time / 1000 + " μs");
+            processTime.setLayoutX(200);
+            solvedMazePane.getChildren().addAll(generate, options, processTime);
             solvedMazeScene = new Scene(solvedMazePane);
             window.setScene(solvedMazeScene);
         });
@@ -307,7 +313,9 @@ public class MazeUI extends Application {
                 }
             }
             //Solving and visualizing
+            long time = System.nanoTime();
             logic.depthFirstSolve(depthFirstSolved);
+            time = System.nanoTime() - time;
             solvedMazePane = new Pane();
             for (int y = 0; y < maze.length; y++) {
                 for (int x = 0; x < maze[0].length; x++) {
@@ -320,7 +328,9 @@ public class MazeUI extends Application {
                     }
                 }
             }
-            solvedMazePane.getChildren().addAll(generate, options);
+            processTime = new Label(time / 1000 + " μs");
+            processTime.setLayoutX(200);
+            solvedMazePane.getChildren().addAll(generate, options, processTime);
             solvedMazeScene = new Scene(solvedMazePane);
             window.setScene(solvedMazeScene);
         });

@@ -44,7 +44,7 @@ public class Logic {
      * adjusted.
      */
     public Logic() {
-        defaultValue = 200;
+        defaultValue = 100;
         mazeWidth = defaultValue;
         mazeHeight = defaultValue;
         maxSize = 150;
