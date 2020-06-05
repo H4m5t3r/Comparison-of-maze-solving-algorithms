@@ -10,7 +10,7 @@
                 <goal>org.codehaus.mojo:exec-maven-plugin:1.5.0:exec</goal>
             </goals>
             <properties>
-                <exec.args>-Xss1000m -Xmx2000m -classpath %classpath maze.main.Main</exec.args>
+                <exec.args>-Xss200m -Xmx600m -classpath %classpath maze.main.Main</exec.args>
                 <exec.executable>java</exec.executable>
             </properties>
         </action>
@@ -24,7 +24,7 @@
                 <goal>org.codehaus.mojo:exec-maven-plugin:1.5.0:exec</goal>
             </goals>
             <properties>
-                <exec.args>-agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address} -Xss1000m -Xmx2000m -classpath %classpath maze.main.Main</exec.args>
+                <exec.args>-agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address} -Xss200m -Xmx600m -classpath %classpath maze.main.Main</exec.args>
                 <exec.executable>java</exec.executable>
                 <jpda.listen>true</jpda.listen>
             </properties>
@@ -39,7 +39,7 @@
                 <goal>org.codehaus.mojo:exec-maven-plugin:1.5.0:exec</goal>
             </goals>
             <properties>
-                <exec.args>-Xss1000m -Xmx2000m -classpath %classpath maze.main.Main</exec.args>
+                <exec.args>-Xss200m -Xmx600m -classpath %classpath maze.main.Main</exec.args>
                 <exec.executable>java</exec.executable>
             </properties>
         </action>
