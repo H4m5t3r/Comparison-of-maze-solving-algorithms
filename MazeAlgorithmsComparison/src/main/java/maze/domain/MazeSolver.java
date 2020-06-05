@@ -30,6 +30,10 @@ public class MazeSolver {
     public void deadEndFillSolve(final char[][] maze) {
         deadEndFill.solve(maze);
     }
+    /**
+     * Calls the solve method in the DeptFirstSearch class.
+     * @param maze 
+     */
     public void depthFirstSearch(final char[][] maze) {
         depthFirst.solve(maze);
     }

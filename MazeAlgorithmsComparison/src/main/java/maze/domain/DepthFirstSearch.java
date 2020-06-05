@@ -7,7 +7,10 @@ package maze.domain;
  */
 public class DepthFirstSearch {
     private boolean exitFound;
-    
+    /**
+     * A method that locates the exit and entrance and calls search method.
+     * @param maze 
+     */
     public void solve(final char[][] maze) {
         exitFound = false;
         
@@ -28,7 +31,13 @@ public class DepthFirstSearch {
             }
         }
     }
-
+    /**
+     * Gets the coordinate below the entrance as input and starts looking for a
+     * way to the exit.
+     * @param maze
+     * @param y
+     * @param x 
+     */
     private void search(final char[][] maze, final int y, final int x) {
         maze[y][x] = 'c';
         

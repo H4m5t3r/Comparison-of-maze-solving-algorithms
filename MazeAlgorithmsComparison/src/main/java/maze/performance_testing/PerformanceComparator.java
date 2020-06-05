@@ -19,13 +19,18 @@ public class PerformanceComparator {
     private long recTime;
     private long deadEndTime;
     private long depthTime;
-    
+    /**
+     * Calls the performance test methods.
+     */
     public void runAllTests() {
         recursiveBacktrackerTest();
         deadEndSolveTest();
         depthFirstSearchTest();
     }
-
+    /**
+     * Gathers data on long it takes for the recursive backtracker method to
+     * generate a maze.
+     */
     public void recursiveBacktrackerTest() {
         recTime = 0;
         for (int i = 0; i < 10; i++) {
@@ -37,7 +42,10 @@ public class PerformanceComparator {
         }
         recTime /= 10;
     }
-    
+    /**
+     * Gathers data on long it takes for the dead-end solve method to solve
+     * a maze.
+     */
     public void deadEndSolveTest() {
         deadEndTime = 0;
         temp = generator.getRecursiveBacktrackerMaze();
@@ -56,7 +64,10 @@ public class PerformanceComparator {
         }
         deadEndTime /= 10;
     }
-    
+    /**
+     * Gathers data on long it takes for the depth-first search method to solve
+     * a maze.
+     */
     public void depthFirstSearchTest() {
         depth = new DepthFirstSearch();
         temp = generator.getRecursiveBacktrackerMaze();
@@ -70,15 +81,24 @@ public class PerformanceComparator {
         depth.solve(maze);
         depthTime = System.nanoTime() - depthTime;
     }
-    
+    /**
+     * Returns the recursive backtracker method's performance time.
+     * @return recursiveTime
+     */
     public long getRecTime() {
         return recTime;
     }
-    
+    /**
+     * Returns the dead-end filling method's performance time.
+     * @return deadEndTime
+     */
     public long getDeadEndTime() {
         return deadEndTime;
     }
-    
+    /**
+     * Returns the depth-first search method's performance time.
+     * @return depthFirstTime
+     */
     public long getDepthTime() {
         return depthTime;
     }
