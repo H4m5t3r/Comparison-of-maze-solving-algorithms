@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -60,10 +61,24 @@ public class MazeUI extends Application {
     
     //Performance test scene
     private Scene performanceScene;
+    private Scene loadingScene;
     private Pane performancePane;
+    private Pane loadingPane;
     private Button goToPerformanceTest;
     private Button startTest;
     private Label testInfo;
+    private Label loadingLabel;
+    
+    //Performance results scene
+    private Scene performanceResults;
+    private Pane results;
+    private Label resultsLabel;
+    private Label recLabel;
+    private Label deadEndLabel;
+    private Label depthLabel;
+    private Label recRes;
+    private Label deadEndRes;
+    private Label depthRes;
     
     //Program logic
     private Logic logic;
@@ -185,6 +200,13 @@ public class MazeUI extends Application {
         testInfo.setLayoutX(5);
         performancePane.getChildren().addAll(testInfo, startTest, menu);
         performanceScene = new Scene(performancePane, 500, 500);
+        //Loading screen
+        loadingLabel = new Label("Performing tests...");
+        loadingLabel.setLayoutX(190);
+        loadingLabel.setLayoutY(230);
+        loadingPane = new Pane();
+        loadingPane.getChildren().add(loadingLabel);
+        loadingScene = new Scene(loadingPane, 500, 500);
     }
     
     private void updateNewMazeScreen() {
@@ -279,6 +301,40 @@ public class MazeUI extends Application {
                 
             }
             window.setScene(performanceScene);
+        });
+        
+        startTest.setOnAction((event) -> {
+            window.setScene(loadingScene);
+            GridPane pane = new GridPane();
+            logic.performanceTest();
+            results = new Pane();
+            resultsLabel = new Label("Results");
+            recLabel = new Label("Recursive backtracker:");
+            deadEndLabel = new Label("Dead-end filling:");
+            depthLabel = new Label("Depth-first search:");
+            recRes = new Label(logic.getRecursiveResultFromTest() / 1000000 + " ms");
+            deadEndRes = new Label(logic.getDeadEndResultFromTest() / 1000000 + " ms");
+            depthRes = new Label(logic.getDepthFirstResultFromTest() / 1000000 + " ms");
+            
+            resultsLabel.setLayoutX(200);
+            resultsLabel.setLayoutY(100);
+            recLabel.setLayoutX(70);
+            recLabel.setLayoutY(140);
+            deadEndLabel.setLayoutX(70);
+            deadEndLabel.setLayoutY(180);
+            depthLabel.setLayoutX(70);
+            depthLabel.setLayoutY(220);
+            recRes.setLayoutX(250);
+            recRes.setLayoutY(140);
+            deadEndRes.setLayoutX(250);
+            deadEndRes.setLayoutY(180);
+            depthRes.setLayoutX(250);
+            depthRes.setLayoutY(220);
+            
+            results.getChildren().addAll(resultsLabel, recLabel, deadEndLabel,
+                    depthLabel, recRes, deadEndRes, depthRes, menu);
+            performanceResults = new Scene(results, 500, 500);
+            window.setScene(performanceResults);
         });
         
         generate.setOnAction((event) -> {

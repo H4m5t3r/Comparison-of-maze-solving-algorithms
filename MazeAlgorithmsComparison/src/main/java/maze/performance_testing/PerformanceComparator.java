@@ -19,13 +19,19 @@ public class PerformanceComparator {
     private long recTime;
     private long deadEndTime;
     private long depthTime;
+    
+    public void runAllTests() {
+        recursiveBacktrackerTest();
+        deadEndSolveTest();
+        depthFirstSearchTest();
+    }
 
     public void recursiveBacktrackerTest() {
         recTime = 0;
         for (int i = 0; i < 10; i++) {
             start = System.nanoTime();
             generator = new MazeGenerator();
-            generator.initializeRecursiveBacktracker(1000, 1000);
+            generator.initializeRecursiveBacktracker(3000, 3000);
             generator.generateRecursiveBacktrackerMaze();
             recTime += System.nanoTime() - start;
         }

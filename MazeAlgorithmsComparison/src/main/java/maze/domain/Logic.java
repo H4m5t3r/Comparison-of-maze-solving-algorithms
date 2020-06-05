@@ -1,6 +1,8 @@
 
 package maze.domain;
 
+import maze.performance_testing.PerformanceComparator;
+
 /**
  * Used by the UI to communicate with the program.
  * @author taleiko
@@ -14,6 +16,10 @@ public class Logic {
      * The class that takes mazes as input and solves them.
      */
     private MazeSolver solver;
+    /**
+     * Used for running performance tests.
+     */
+    private PerformanceComparator performance;
     /**
      * The maze's width.
      */
@@ -52,6 +58,7 @@ public class Logic {
         minHeight = 1;
         generator = new MazeGenerator();
         solver = new MazeSolver();
+        performance = new PerformanceComparator();
     }
     /**
      * Increases the generated maze's width.
@@ -149,6 +156,10 @@ public class Logic {
     public void depthFirstSolve(final char[][] maze) {
         solver.depthFirstSearch(maze);
     }
+    
+    public void performanceTest() {
+        performance.runAllTests();
+    }
 
     //Get methods
 
@@ -201,5 +212,17 @@ public class Logic {
      */
     public int getMinHeight() {
         return this.minHeight;
+    }
+    
+    public long getRecursiveResultFromTest() {
+        return performance.getRecTime();
+    }
+    
+    public long getDeadEndResultFromTest() {
+        return performance.getDeadEndTime();
+    }
+    
+    public long getDepthFirstResultFromTest() {
+        return performance.getDepthTime();
     }
 }
