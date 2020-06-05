@@ -11,7 +11,9 @@ Some of the algorithms use data structures like stacks and linked lists. These h
 **Sources used in this project:**
 
 Maze solving algorithm, Wikipedia 2020, viewed 15.5.2020
+
 https://en.wikipedia.org/wiki/Maze_solving_algorithm
 
 Think Labyrinth: Daedalus
+
 http://www.astrolog.org/labyrnth/daedalus.htm
