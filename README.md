@@ -7,7 +7,7 @@ In this project I will create a program that generates perfect mazes (mazes with
 
 [Implementation document](https://github.com/H4m5t3r/Comparison-of-maze-solving-algorithms/blob/master/Documentation/Implementation%20document.md#implementation-document)
 
-[Testing document][https://github.com/H4m5t3r/Comparison-of-maze-solving-algorithms/blob/master/Documentation/Testing%20document.md#testing-document]
+[Testing document](https://github.com/H4m5t3r/Comparison-of-maze-solving-algorithms/blob/master/Documentation/Testing%20document.md#testing-document)
 
 #### Weekly reports
 [Week 1](https://github.com/H4m5t3r/Comparison-of-maze-solving-algorithms/blob/master/Documentation/Weekly%20reports/Week%201.md)
