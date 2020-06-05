@@ -8,11 +8,11 @@ package maze.domain;
 public class MazeGenerator {
     private RecursiveBacktracker recursiveBacktracker;
 
-    void initializeRecursiveBacktracker(int mazeWidth, int mazeHeight) {
+    public void initializeRecursiveBacktracker(int mazeWidth, int mazeHeight) {
         recursiveBacktracker = new RecursiveBacktracker(mazeWidth, mazeHeight);
     }
 
-    void generateRecursiveBacktrackerMaze() {
+    public void generateRecursiveBacktrackerMaze() {
         recursiveBacktracker.generateMaze();
     }
 
