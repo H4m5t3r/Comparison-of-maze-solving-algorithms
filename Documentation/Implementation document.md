@@ -4,7 +4,9 @@ The different algorithms used in this program are all implemented in their own J
 
 *insert class diagram*
 
-The some of the algorithms use data structures like stacks and linked lists. These have been implemented in the package called "maze.data_structures".
+The mazes that are generated and solved are two-dimensional character arrays with corridors and walls. This means that when the width is x and the height is y it actually means that the size of the two-dimensional array is (2x + 1) * (2y + 1) because there are walls between the corridors and on each side of the maze.
+
+Some of the algorithms use data structures like stacks and linked lists. These have been implemented in the package called "maze.data_structures".
 
 **Sources used in this project:**
 
