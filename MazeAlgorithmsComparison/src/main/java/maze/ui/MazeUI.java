@@ -42,7 +42,7 @@ public class MazeUI extends Application {
     private Label widthText;
     private Label lengthText;
     private Button generate;
-    private Button options;
+    private Button menu;
     
     //View maze scene
     private Pane viewMazePane;
@@ -53,10 +53,17 @@ public class MazeUI extends Application {
     private Button deadEndSolve;
     private Button depthFirstSolve;
     
-    //SolvedMazeScene
+    //Solved maze scene
     private Scene solvedMazeScene;
     private Pane solvedMazePane;
     private Label processTime;
+    
+    //Performance test scene
+    private Scene performanceScene;
+    private Pane performancePane;
+    private Button goToPerformanceTest;
+    private Button startTest;
+    private Label testInfo;
     
     //Program logic
     private Logic logic;
@@ -64,8 +71,8 @@ public class MazeUI extends Application {
     @Override
     public void init() {
         this.logic = new Logic();
-        rectWidth = 4;
-        rectHeight = 4;
+        rectWidth = 3;
+        rectHeight = 3;
         extraHeight = 30;
         
         //newMazeScene
@@ -92,6 +99,8 @@ public class MazeUI extends Application {
         lengthText = new Label("Maze height:");
         lengthText.setLayoutX(60);
         lengthText.setLayoutY(175);
+        
+        goToPerformanceTest = new Button("Performance tests");
         
         //Setting the x and y coordinates for the buttons.
         increaseWidth.setLayoutX(115);
@@ -148,16 +157,34 @@ public class MazeUI extends Application {
         generate.setLayoutX(0);
         generate.setLayoutY(0);
         
-        options = new Button("Options");
-        options.setLayoutX(130);
-        options.setLayoutY(0);
+        menu = new Button("Menu");
+        menu.setLayoutX(342);
+        menu.setLayoutY(0);
         
         //viewMazeScene
         deadEndSolve = new Button("Dead-end filling");
+        deadEndSolve.setLayoutX(80);
         depthFirstSolve = new Button("Depth-first search");
-        depthFirstSolve.setLayoutX(300);
+        depthFirstSolve.setLayoutX(204);
         
         this.newMazeScene = new Scene(newMazePane, 500, 500);
+        
+        //Performance test scene
+        goToPerformanceTest.setLayoutX(100);
+        performancePane = new Pane();
+        startTest = new Button("Start the tests");
+        startTest.setLayoutX(185);
+        startTest.setLayoutY(260);
+        testInfo = new Label("The performance test will generate a maze and "
+                + "solve it using the methods\nused in this program. Each "
+                + "process will be executed 11 times and an\naverage result "
+                + "will be calculated.The first test result will be excluded to"
+                + " \navoid inaccurate results caused by Java's Just In Time "
+                + "compilation.");
+        testInfo.setLayoutY(100);
+        testInfo.setLayoutX(5);
+        performancePane.getChildren().addAll(testInfo, startTest, menu);
+        performanceScene = new Scene(performancePane, 500, 500);
     }
     
     private void updateNewMazeScreen() {
@@ -166,7 +193,7 @@ public class MazeUI extends Application {
         length.setText("" + logic.getHeight());
         newMazePane.getChildren().addAll(widthAndHeight, changeSizeButtons);
         try {
-            newMazePane.getChildren().add(generate);
+            newMazePane.getChildren().addAll(generate, goToPerformanceTest);
         } catch (Exception e) {
             
         }
@@ -177,9 +204,11 @@ public class MazeUI extends Application {
         changeSizeButtons.getChildren().addAll(increaseWidth, decreaseWidth, 
                 increaseHeight, decreaseHeight, generate, w10, w50, w100, w150,
                 h10, h50, h100, h150);
-        widthAndHeight.getChildren().addAll(width, length, widthText, lengthText);
+        widthAndHeight.getChildren().addAll(width, length, widthText,
+                lengthText);
         
-        newMazePane.getChildren().addAll(widthAndHeight, changeSizeButtons);
+        newMazePane.getChildren().addAll(widthAndHeight, changeSizeButtons,
+                goToPerformanceTest);
         
         //Setting button actions
         //newMazeScene
@@ -243,6 +272,15 @@ public class MazeUI extends Application {
             updateNewMazeScreen();
         });
         
+        goToPerformanceTest.setOnAction((event) -> {
+            try {
+                performancePane.getChildren().add(menu);
+            } catch (Exception e) {
+                
+            }
+            window.setScene(performanceScene);
+        });
+        
         generate.setOnAction((event) -> {
             logic.initializeRecursiveBacktracker();
             long time = System.nanoTime();
@@ -259,13 +297,13 @@ public class MazeUI extends Application {
                 }
             }
             processTime = new Label(time / 1000 + " μs");
-            processTime.setLayoutX(200);
-            viewMazePane.getChildren().addAll(deadEndSolve, depthFirstSolve, options, processTime);
+            processTime.setLayoutX(415);
+            viewMazePane.getChildren().addAll(deadEndSolve, depthFirstSolve, menu, processTime);
             viewMazeScene = new Scene(viewMazePane);
             window.setScene(viewMazeScene);
         });
         
-        options.setOnAction((event) -> {
+        menu.setOnAction((event) -> {
             try {
                 newMazePane.getChildren().add(generate);
             } catch (Exception e) {
@@ -298,8 +336,9 @@ public class MazeUI extends Application {
                 }
             }
             processTime = new Label(time / 1000 + " μs");
-            processTime.setLayoutX(200);
-            solvedMazePane.getChildren().addAll(generate, options, processTime);
+            processTime.setLayoutX(415);
+            solvedMazePane.getChildren().addAll(generate, menu, processTime,
+                    depthFirstSolve);
             solvedMazeScene = new Scene(solvedMazePane);
             window.setScene(solvedMazeScene);
         });
@@ -320,17 +359,22 @@ public class MazeUI extends Application {
             for (int y = 0; y < maze.length; y++) {
                 for (int x = 0; x < maze[0].length; x++) {
                     if (depthFirstSolved[y][x] == '#') {
-                        solvedMazePane.getChildren().add(new Rectangle(x * rectWidth, y * rectHeight + extraHeight, rectWidth, rectHeight));
+                        solvedMazePane.getChildren().add(new Rectangle(x *
+                                rectWidth, y * rectHeight + extraHeight,
+                                rectWidth, rectHeight));
                     } else if (depthFirstSolved[y][x] == 'c') {
-                        Rectangle rect = new Rectangle(x * rectWidth, y * rectHeight + extraHeight, rectWidth, rectHeight);
+                        Rectangle rect = new Rectangle(x * rectWidth, y *
+                                rectHeight + extraHeight, rectWidth,
+                                rectHeight);
                         rect.setFill(Color.GREEN);
                         solvedMazePane.getChildren().add(rect);
                     }
                 }
             }
             processTime = new Label(time / 1000 + " μs");
-            processTime.setLayoutX(200);
-            solvedMazePane.getChildren().addAll(generate, options, processTime);
+            processTime.setLayoutX(415);
+            solvedMazePane.getChildren().addAll(generate, menu, processTime,
+                    deadEndSolve);
             solvedMazeScene = new Scene(solvedMazePane);
             window.setScene(solvedMazeScene);
         });
