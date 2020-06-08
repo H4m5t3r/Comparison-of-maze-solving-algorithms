@@ -6,11 +6,14 @@ package maze.data_structures;
  * @author taleiko
  */
 public class UnionFind {
+    private final int size;
     private final int[] id;
-    private int[] componentSize;
+    private final int[] componentSize;
     
     public UnionFind(int size) {
+        this.size = size;
         id = new int[size];
+        componentSize = new int[size];
         //Linking each component to itself
         for (int i = 0; i < size; i++) {
             id[i] = i;
@@ -50,5 +53,9 @@ public class UnionFind {
             componentSize[root1] += componentSize[root2];
             id[root2] = root1;
         }
+    }
+    
+    public int size() {
+        return size;
     }
 }
