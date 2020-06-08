@@ -13,14 +13,16 @@ import maze.performance_testing.PerformanceComparator;
  */
 public class DomainTesting {
     public static void main(String[] args) {
-        PerformanceComparator per = new PerformanceComparator();
-        per.recursiveBacktrackerTest();
-        System.out.println(per.getRecTime() / 1000000 + " ms");
-        
-        per.deadEndSolveTest();
-        System.out.println(per.getDeadEndTime() / 1000000 + " ms");
-        
-        per.depthFirstSearchTest();
-        System.out.println(per.getDepthTime() / 1000000 + " ms");
+//        KruskalMaze k = new KruskalMaze(3, 3);
+//        k.generateKruskalMaze();
+        FisherYatesShuffle s = new FisherYatesShuffle();
+        int[] l = new int[10];
+        for (int i = 0; i < l.length; i++) {
+            l[i] = i + 1;
+        }
+        s.shuffleIntegerArray(l);
+        for (int i = 0; i < l.length; i++) {
+            System.out.print(l[i] + ", ");
+        }
     }
 }
