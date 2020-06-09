@@ -5,24 +5,25 @@
  */
 package maze.domain;
 
-import maze.performance_testing.PerformanceComparator;
-
 /**
  *
  * @author taleiko
  */
 public class DomainTesting {
     public static void main(String[] args) {
-//        KruskalMaze k = new KruskalMaze(3, 3);
-//        k.generateKruskalMaze();
-        FisherYatesShuffle s = new FisherYatesShuffle();
-        int[] l = new int[10];
-        for (int i = 0; i < l.length; i++) {
-            l[i] = i + 1;
-        }
-        s.shuffleIntegerArray(l);
-        for (int i = 0; i < l.length; i++) {
-            System.out.print(l[i] + ", ");
-        }
+        int h = 4;
+        int b = 3;
+        int k = 11;
+        
+        System.out.println(h*(k/(h*2-1)) + (k %(h*2-1) + 1));
+        
+        //Was turned the wrong way
+        //h*(k/(h*2-1)) + (k % (h*2-1) + (h-2))
+        
+        //Finds the first one in the left in each column
+        //h*(k/(h*2-1))
+        
+        
+        //h*(k/(h*2-1))-(k/(h*2-1))
     }
 }
