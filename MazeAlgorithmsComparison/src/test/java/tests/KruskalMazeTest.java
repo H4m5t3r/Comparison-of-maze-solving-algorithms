@@ -81,66 +81,66 @@ public class KruskalMazeTest {
     @Test
     public void getRoomOnTheLeftTest() {
         //Height: 2
-        assertTrue(kruskal.getRoomOnTheLeft(1, 2) == 0);
-        assertTrue(kruskal.getRoomOnTheLeft(2, 2) == 1);
-        assertTrue(kruskal.getRoomOnTheLeft(4, 2) == 2);
-        assertTrue(kruskal.getRoomOnTheLeft(5, 2) == 3);
-        assertTrue(kruskal.getRoomOnTheLeft(7, 2) == 4);
-        assertTrue(kruskal.getRoomOnTheLeft(8, 2) == 5);
+        assertTrue(kruskal.getLeftRoom(1, 2) == 0);
+        assertTrue(kruskal.getLeftRoom(2, 2) == 1);
+        assertTrue(kruskal.getLeftRoom(4, 2) == 2);
+        assertTrue(kruskal.getLeftRoom(5, 2) == 3);
+        assertTrue(kruskal.getLeftRoom(7, 2) == 4);
+        assertTrue(kruskal.getLeftRoom(8, 2) == 5);
         //Height: 3
-        assertTrue(kruskal.getRoomOnTheLeft(2, 3) == 0);
-        assertTrue(kruskal.getRoomOnTheLeft(3, 3) == 1);
-        assertTrue(kruskal.getRoomOnTheLeft(4, 3) == 2);
-        assertTrue(kruskal.getRoomOnTheLeft(7, 3) == 3);
-        assertTrue(kruskal.getRoomOnTheLeft(8, 3) == 4);
-        assertTrue(kruskal.getRoomOnTheLeft(9, 3) == 5);
-        assertTrue(kruskal.getRoomOnTheLeft(12, 3) == 6);
-        assertTrue(kruskal.getRoomOnTheLeft(13, 3) == 7);
-        assertTrue(kruskal.getRoomOnTheLeft(14, 3) == 8);
-        assertTrue(kruskal.getRoomOnTheLeft(17, 3) == 9);
-        assertTrue(kruskal.getRoomOnTheLeft(18, 3) == 10);
-        assertTrue(kruskal.getRoomOnTheLeft(19, 3) == 11);
+        assertTrue(kruskal.getLeftRoom(2, 3) == 0);
+        assertTrue(kruskal.getLeftRoom(3, 3) == 1);
+        assertTrue(kruskal.getLeftRoom(4, 3) == 2);
+        assertTrue(kruskal.getLeftRoom(7, 3) == 3);
+        assertTrue(kruskal.getLeftRoom(8, 3) == 4);
+        assertTrue(kruskal.getLeftRoom(9, 3) == 5);
+        assertTrue(kruskal.getLeftRoom(12, 3) == 6);
+        assertTrue(kruskal.getLeftRoom(13, 3) == 7);
+        assertTrue(kruskal.getLeftRoom(14, 3) == 8);
+        assertTrue(kruskal.getLeftRoom(17, 3) == 9);
+        assertTrue(kruskal.getLeftRoom(18, 3) == 10);
+        assertTrue(kruskal.getLeftRoom(19, 3) == 11);
         //Height: 4
-        assertTrue(kruskal.getRoomOnTheLeft(3, 4) == 0);
-        assertTrue(kruskal.getRoomOnTheLeft(4, 4) == 1);
-        assertTrue(kruskal.getRoomOnTheLeft(5, 4) == 2);
-        assertTrue(kruskal.getRoomOnTheLeft(6, 4) == 3);
-        assertTrue(kruskal.getRoomOnTheLeft(10, 4) == 4);
-        assertTrue(kruskal.getRoomOnTheLeft(11, 4) == 5);
-        assertTrue(kruskal.getRoomOnTheLeft(12, 4) == 6);
-        assertTrue(kruskal.getRoomOnTheLeft(13, 4) == 7);
+        assertTrue(kruskal.getLeftRoom(3, 4) == 0);
+        assertTrue(kruskal.getLeftRoom(4, 4) == 1);
+        assertTrue(kruskal.getLeftRoom(5, 4) == 2);
+        assertTrue(kruskal.getLeftRoom(6, 4) == 3);
+        assertTrue(kruskal.getLeftRoom(10, 4) == 4);
+        assertTrue(kruskal.getLeftRoom(11, 4) == 5);
+        assertTrue(kruskal.getLeftRoom(12, 4) == 6);
+        assertTrue(kruskal.getLeftRoom(13, 4) == 7);
     }
     
     @Test
     public void getRoomOnTheRightTest() {
         //Height: 2
-        assertTrue(kruskal.getRoomOnTheRight(1, 2) == 2);
-        assertTrue(kruskal.getRoomOnTheRight(2, 2) == 3);
-        assertTrue(kruskal.getRoomOnTheRight(4, 2) == 4);
-        assertTrue(kruskal.getRoomOnTheRight(5, 2) == 5);
-        assertTrue(kruskal.getRoomOnTheRight(7, 2) == 6);
-        assertTrue(kruskal.getRoomOnTheRight(8, 2) == 7);
+        assertTrue(kruskal.getRightRoom(1, 2) == 2);
+        assertTrue(kruskal.getRightRoom(2, 2) == 3);
+        assertTrue(kruskal.getRightRoom(4, 2) == 4);
+        assertTrue(kruskal.getRightRoom(5, 2) == 5);
+        assertTrue(kruskal.getRightRoom(7, 2) == 6);
+        assertTrue(kruskal.getRightRoom(8, 2) == 7);
         //Height: 3
-        assertTrue(kruskal.getRoomOnTheRight(2, 3) == 3);
-        assertTrue(kruskal.getRoomOnTheRight(3, 3) == 4);
-        assertTrue(kruskal.getRoomOnTheRight(4, 3) == 5);
-        assertTrue(kruskal.getRoomOnTheRight(7, 3) == 6);
-        assertTrue(kruskal.getRoomOnTheRight(8, 3) == 7);
-        assertTrue(kruskal.getRoomOnTheRight(9, 3) == 8);
-        assertTrue(kruskal.getRoomOnTheRight(12, 3) == 9);
-        assertTrue(kruskal.getRoomOnTheRight(13, 3) == 10);
-        assertTrue(kruskal.getRoomOnTheRight(14, 3) == 11);
-        assertTrue(kruskal.getRoomOnTheRight(17, 3) == 12);
-        assertTrue(kruskal.getRoomOnTheRight(18, 3) == 13);
-        assertTrue(kruskal.getRoomOnTheRight(19, 3) == 14);
+        assertTrue(kruskal.getRightRoom(2, 3) == 3);
+        assertTrue(kruskal.getRightRoom(3, 3) == 4);
+        assertTrue(kruskal.getRightRoom(4, 3) == 5);
+        assertTrue(kruskal.getRightRoom(7, 3) == 6);
+        assertTrue(kruskal.getRightRoom(8, 3) == 7);
+        assertTrue(kruskal.getRightRoom(9, 3) == 8);
+        assertTrue(kruskal.getRightRoom(12, 3) == 9);
+        assertTrue(kruskal.getRightRoom(13, 3) == 10);
+        assertTrue(kruskal.getRightRoom(14, 3) == 11);
+        assertTrue(kruskal.getRightRoom(17, 3) == 12);
+        assertTrue(kruskal.getRightRoom(18, 3) == 13);
+        assertTrue(kruskal.getRightRoom(19, 3) == 14);
         //Height: 4
-        assertTrue(kruskal.getRoomOnTheRight(3, 4) == 4);
-        assertTrue(kruskal.getRoomOnTheRight(4, 4) == 5);
-        assertTrue(kruskal.getRoomOnTheRight(5, 4) == 6);
-        assertTrue(kruskal.getRoomOnTheRight(6, 4) == 7);
-        assertTrue(kruskal.getRoomOnTheRight(10, 4) == 8);
-        assertTrue(kruskal.getRoomOnTheRight(11, 4) == 9);
-        assertTrue(kruskal.getRoomOnTheRight(12, 4) == 10);
-        assertTrue(kruskal.getRoomOnTheRight(13, 4) == 11);
+        assertTrue(kruskal.getRightRoom(3, 4) == 4);
+        assertTrue(kruskal.getRightRoom(4, 4) == 5);
+        assertTrue(kruskal.getRightRoom(5, 4) == 6);
+        assertTrue(kruskal.getRightRoom(6, 4) == 7);
+        assertTrue(kruskal.getRightRoom(10, 4) == 8);
+        assertTrue(kruskal.getRightRoom(11, 4) == 9);
+        assertTrue(kruskal.getRightRoom(12, 4) == 10);
+        assertTrue(kruskal.getRightRoom(13, 4) == 11);
     }
 }

@@ -45,14 +45,28 @@ public class KruskalMaze {
         //for each potential corridor
         for (int i = 0; i < corridors.length; i++) {
             if (corridors[i] % (maze.length - 2) < maze.length / 2) {
-                //Vertical corridor
-//                if ((maze[corridors[i] % (maze.length - 2)) * 2]
-//                [corridor[i] / (maze.length - 2) * 2 + 1]) {
-                    
+                //Vertical corridor, checks if the room above and below are
+                //connected. If not, it connects them.
+                if (!u.connected(
+                        getRoomAbove(corridors[i], (maze.length - 1) / 2),
+                        getRoomBelow(corridors[i], (maze.length - 1) / 2))) {
+                    u.unify(getRoomAbove(corridors[i], (maze.length - 1) / 2),
+                            getRoomBelow(corridors[i], (maze.length - 1) / 2));
+                    //REMOVE THE '#' BETWEEN THEM IN maze
+                    removeCorridor(corridors[i]);
                 }
-//            } else {
-//                //Horizontal corridor
-//            }
+            } else {
+                //Horizontal corridor, checks if the room to the left and to the
+                //right are connected. If not, it connects them.
+                if (!u.connected(
+                        getLeftRoom(corridors[i], (maze.length - 1) / 2),
+                        getRightRoom(corridors[i], (maze.length - 1) / 2))) {
+                    u.unify(getLeftRoom(corridors[i], (maze.length - 1) / 2),
+                            getRightRoom(corridors[i], (maze.length - 1) / 2));
+                    //REMOVE THE '#' BETWEEN THEM IN maze
+                    removeCorridor(corridors[i]);
+                }
+            }
         }
     }
     
@@ -64,13 +78,25 @@ public class KruskalMaze {
         return corridor - (corridor / (height * 2 - 1) * (height - 1) - 1);
     }
     
-    public int getRoomOnTheLeft(final int corridor, final int height) {
+    public int getLeftRoom(final int corridor, final int height) {
         return height * (corridor / (height * 2 - 1)) +
                 (corridor % (height * 2 - 1) - (height - 1));
     }
     
-    public int getRoomOnTheRight(final int corridor, final int height) {
+    public int getRightRoom(final int corridor, final int height) {
         return height * (corridor / (height * 2 - 1)) +
                 (corridor % (height * 2 - 1) + 1);
+    }
+    /**
+     * Calculates the corridor's coordinates in the maze and replaces '#' with
+     * ' ' (connects the two rooms).
+     * @param corridor
+     */
+    public void removeCorridor(int corridor) {
+        //Y: modulo, kollar om den är mindre än modulo hälften, koordinat i 2 fall
+        //X: kollar hur många höjder som gått, sen modulo för att veta om man
+        //ska lägga till en extra
+        maze[1][2] = ' ';
+        
     }
 }
