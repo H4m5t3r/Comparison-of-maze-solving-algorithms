@@ -50,14 +50,41 @@ public class Logic {
      * adjusted.
      */
     public Logic() {
+        /**
+         * The default value for the maze's width and height.
+         */
         defaultValue = 100;
+        /**
+         * The maze's width.
+         */
         mazeWidth = defaultValue;
+        /**
+         * The maze's height.
+         */
         mazeHeight = defaultValue;
+        /**
+         * The maximum allowed width and height.
+         */
         maxSize = 150;
+        /**
+         * The minimum width.
+         */
         minWidth = 1;
+        /**
+         * The minimum height.
+         */
         minHeight = 1;
+        /**
+         * The maze generating class.
+         */
         generator = new MazeGenerator();
+        /**
+         * The class that solves mazes.
+         */
         solver = new MazeSolver();
+        /**
+         * The class that runs the performance tests.
+         */
         performance = new PerformanceComparator();
     }
     /**
@@ -93,7 +120,7 @@ public class Logic {
         }
     }
     /**
-     * Increases the generated maze's height.
+     * Increases the generated maze's height by one.
      */
     public void increaseHeight() {
         if (mazeHeight < maxSize) {
@@ -101,7 +128,7 @@ public class Logic {
         }
     }
     /**
-     * Decreases the generated maze's height.
+     * Decreases the generated maze's height by one.
      */
     public void decreaseHeight() {
         if (mazeHeight > 1) {
@@ -130,7 +157,6 @@ public class Logic {
     public void initializeRecursiveBacktracker() {
         generator.initializeRecursiveBacktracker(mazeWidth, mazeHeight);
     }
-
     /**
      * Tells the maze generator to generate a maze using the recursive
      * backtracker method.
@@ -138,13 +164,13 @@ public class Logic {
     public void generateRecursiveBacktrackerMaze() {
         generator.generateRecursiveBacktrackerMaze();
     }
+    
     /**
      * Initializes the Kruskal maze generator.
      */
     public void initializeKruskal() {
         generator.initializeKruskal(mazeWidth, mazeHeight);
     }
-
     /**
      * Tells the maze generator to generate a maze using the Kruskal method.
      */
@@ -157,20 +183,17 @@ public class Logic {
      */
     public void deadEndSolve(final char[][] maze) {
         solver.deadEndFillSolve(maze);
-        //Debugging
-//        for (int y = 0; y < maze.length; y++) {
-//            for (int x = 0; x < maze[0].length; x++) {
-//                System.out.print(maze[y][x]);
-//            }
-//            System.out.println("");
-//        }
-//        System.out.println("");
     }
-    
+    /**
+     * Solves the given maze using depth-first search.
+     * @param maze
+     */
     public void depthFirstSolve(final char[][] maze) {
         solver.depthFirstSearch(maze);
     }
-    
+    /**
+     * Tells the performance comparison class to run the performance tests.
+     */
     public void performanceTest() {
         performance.runAllTests();
     }
@@ -234,15 +257,24 @@ public class Logic {
     public int getMinHeight() {
         return this.minHeight;
     }
-    
+    /**
+     * Returns the recursive backtracker method's performance time.
+     * @return performanceTime
+     */
     public long getRecursiveResultFromTest() {
         return performance.getRecTime();
     }
-    
+    /**
+     * Returns the dead-end solve method's performance time.
+     * @return performanceTime
+     */
     public long getDeadEndResultFromTest() {
         return performance.getDeadEndTime();
     }
-    
+    /**
+     * Returns the depth-first search method's performance time.
+     * @return performanceTime
+     */
     public long getDepthFirstResultFromTest() {
         return performance.getDepthTime();
     }

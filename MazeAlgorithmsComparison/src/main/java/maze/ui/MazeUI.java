@@ -300,6 +300,7 @@ public class MazeUI extends Application {
         });
         
         goToPerformanceTest.setOnAction((event) -> {
+            menu.setLayoutX(0);
             try {
                 performancePane.getChildren().add(menu);
             } catch (Exception e) {
@@ -387,6 +388,7 @@ public class MazeUI extends Application {
         });
         
         menu.setOnAction((event) -> {
+            menu.setLayoutX(590);
             try {
                 newMazePane.getChildren().addAll(recursiveBacktr, kruskal);
             } catch (Exception e) {

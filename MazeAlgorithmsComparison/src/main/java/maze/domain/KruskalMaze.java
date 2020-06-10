@@ -4,7 +4,7 @@ package maze.domain;
 import maze.data_structures.UnionFind;
 
 /**
- * Generates a maze labyrinth by creating a minimum spanning tree.
+ * A class that generates mazes by creating a minimum spanning tree.
  * @author taleiko
  */
 public class KruskalMaze {
@@ -12,7 +12,11 @@ public class KruskalMaze {
     private final int[] corridors;
     private final FisherYatesShuffle shuffle;
     private final UnionFind u;
-    
+    /**
+     * A constructor that takes the maze's width and height as input.
+     * @param mazeWidth
+     * @param mazeHeight
+     */
     public KruskalMaze(int mazeWidth, int mazeHeight) {
         maze = new char[mazeHeight * 2 + 1][mazeWidth * 2 + 1];
         corridors = new int[(mazeHeight - 1) * mazeWidth + (mazeWidth - 1) *
@@ -20,9 +24,12 @@ public class KruskalMaze {
         shuffle = new FisherYatesShuffle();
         u = new UnionFind(mazeWidth * mazeHeight);
     }
-    
+    /**
+     * Generates a maze by creating a minimum spanning tree.
+     */
     public void generateMaze() {
-        //Generating the base for the maze with rooms but no corridors.
+        //Generating the base for the maze with rooms but no corridors between
+        //them.
         for (int i = 0; i < maze.length; i++) {
             if (i % 2 == 0) {
                 for (int j = 0; j < maze[0].length; j++) {
@@ -98,20 +105,44 @@ public class KruskalMaze {
         outint = out.intValue();
         maze[maze.length - 1][outint * 2 + 1] = ' ';
     }
-    
+    /**
+     * Takes the number of a corridor as input and calculates the number of the
+     * room above it.
+     * @param corridor
+     * @param height
+     * @return roomAbove
+     */
     public int getRoomAbove(final int corridor, final int height) {
         return corridor - corridor / (height * 2 - 1) * (height - 1);
     }
-    
+    /**
+     * Takes the number a corridor as input and calculates the number of the
+     * room below it.
+     * @param corridor
+     * @param height
+     * @return roomBelow
+     */
     public int getRoomBelow(final int corridor, final int height) {
         return corridor - (corridor / (height * 2 - 1) * (height - 1) - 1);
     }
-    
+    /**
+     * Takes the number of a corridor as input and calculates the number of the
+     * room to the left of it
+     * @param corridor
+     * @param height
+     * @return roomToTheLeft
+     */
     public int getLeftRoom(final int corridor, final int height) {
         return height * (corridor / (height * 2 - 1)) +
                 (corridor % (height * 2 - 1) - (height - 1));
     }
-    
+    /**
+     * Takes the number of a corridor as input and calculates the number of the
+     * room to the right of it.
+     * @param corridor
+     * @param height
+     * @return roomToTheRight
+     */
     public int getRightRoom(final int corridor, final int height) {
         return height * (corridor / (height * 2 - 1)) +
                 (corridor % (height * 2 - 1) + 1);
@@ -122,22 +153,22 @@ public class KruskalMaze {
      * @param corridor
      */
     public void removeCorridor(int corridor) {
-        //Y: modulo, kollar om den är mindre än modulo hälften, koordinat i 2 fall
-        //X: kollar hur många höjder som gått, sen modulo för att veta om man
-        //ska lägga till en extra
         if (corridor % (maze.length - 2) < (maze.length - 2) / 2) {
-            //Jämn
+            //Even column
 //            System.out.println("Jämn");
             maze[2 + (corridor % (maze.length - 2)) * 2]
                     [1 + (corridor / (maze.length - 2)) * 2] = ' ';
         } else {
-            //Udda
+            //Odd column
 //            System.out.println("Udda");
             maze[1 + ((corridor % (maze.length - 2)) - ((maze.length - 2) / 2)) * 2]
                     [2 + (corridor / (maze.length - 2)) * 2] = ' ';
         }
     }
-    
+    /**
+     * Returns the generated maze.
+     * @return 
+     */
     public char[][] getMaze() {
         return this.maze;
     }

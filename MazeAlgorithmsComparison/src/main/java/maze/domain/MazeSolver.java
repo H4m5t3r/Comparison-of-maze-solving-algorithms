@@ -14,7 +14,7 @@ public class MazeSolver {
     /**
      * The class that solves mazes using depth-first search.
      */
-    private DepthFirstSearch depthFirst;
+    private final DepthFirstSearch depthFirst;
 
     /**
      * Initializes the maze solver.
