@@ -125,17 +125,31 @@ public class Logic {
     }
 
     /**
-     * Initializes the maze generator.
+     * Initializes the recursive backtracker maze generator.
      */
     public void initializeRecursiveBacktracker() {
         generator.initializeRecursiveBacktracker(mazeWidth, mazeHeight);
     }
 
     /**
-     * Tells the maze generator to generate a maze.
+     * Tells the maze generator to generate a maze using the recursive
+     * backtracker method.
      */
     public void generateRecursiveBacktrackerMaze() {
         generator.generateRecursiveBacktrackerMaze();
+    }
+    /**
+     * Initializes the Kruskal maze generator.
+     */
+    public void initializeKruskal() {
+        generator.initializeKruskal(mazeWidth, mazeHeight);
+    }
+
+    /**
+     * Tells the maze generator to generate a maze using the Kruskal method.
+     */
+    public void generateKruskalMaze() {
+        generator.generateKruskalMaze();
     }
     /**
      * Solves the given maze using the dead-end solve method.
@@ -169,6 +183,13 @@ public class Logic {
      */
     public char[][] getMazeFromRecursiveBacktracker() {
         return generator.getRecursiveBacktrackerMaze();
+    }
+    /**
+     * Returns the two-dimensional character array that visualizes the maze.
+     * @return char[][] maze
+     */
+    public char[][] getMazeFromKruskal() {
+        return generator.getKruskalMaze();
     }
 
     /**

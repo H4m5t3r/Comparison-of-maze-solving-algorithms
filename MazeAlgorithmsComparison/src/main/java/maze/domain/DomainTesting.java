@@ -12,7 +12,7 @@ package maze.domain;
 public class DomainTesting {
     public static void main(String[] args) {
         KruskalMaze k = new KruskalMaze(19, 10);
-        k.generateKruskalMaze();
+        k.generateMaze();
         char[][] test = k.getMaze();
         for (int i = 0; i < test.length; i++) {
             for (int j = 0; j < test[0].length; j++) {
