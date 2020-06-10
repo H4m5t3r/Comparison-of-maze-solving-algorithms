@@ -11,7 +11,15 @@ package maze.domain;
  */
 public class DomainTesting {
     public static void main(String[] args) {
-        KruskalMaze k = new KruskalMaze(4, 3);
-        k.removeCorridor(3);
+        KruskalMaze k = new KruskalMaze(19, 10);
+        k.generateKruskalMaze();
+        char[][] test = k.getMaze();
+        for (int i = 0; i < test.length; i++) {
+            for (int j = 0; j < test[0].length; j++) {
+                System.out.print(test[i][j]);
+            }
+            System.out.println("");
+        }
+//        System.out.println(2 < 5 / 2);
     }
 }

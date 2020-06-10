@@ -13,7 +13,7 @@ public class KruskalMaze {
     private final FisherYatesShuffle shuffle;
     private final UnionFind u;
     
-    public KruskalMaze(int mazeHeight, int mazeWidth) {
+    public KruskalMaze(int mazeWidth, int mazeHeight) {
         maze = new char[mazeHeight * 2 + 1][mazeWidth * 2 + 1];
         corridors = new int[(mazeHeight - 1) * mazeWidth + (mazeWidth - 1) *
                 mazeHeight];
@@ -29,8 +29,12 @@ public class KruskalMaze {
                     maze[i][j] = '#';
                 }
             } else {
-                for (int j = 0; j < maze[0].length; j += 2) {
-                    maze[i][j] = '#';
+                for (int j = 0; j < maze[0].length; j++) {
+                    if (j % 2 == 0) {
+                        maze[i][j] = '#';
+                    } else {
+                        maze[i][j] = ' ';
+                    }
                 }
             }
         }
@@ -44,25 +48,41 @@ public class KruskalMaze {
         
         //for each potential corridor
         for (int i = 0; i < corridors.length; i++) {
-            if (corridors[i] % (maze.length - 2) < maze.length / 2) {
+            //Debugging
+            for (int j = 0; j < maze.length; j++) {
+                for (int k = 0; k < maze[0].length; k++) {
+                    System.out.print(maze[j][k]);
+                }
+                System.out.println("");
+            }
+            System.out.println("");
+            System.out.println("Next: " + corridors[i]);
+            
+            if (corridors[i] % (maze.length - 2) < (maze.length - 2) / 2) {
                 //Vertical corridor, checks if the room above and below are
                 //connected. If not, it connects them.
+                System.out.println("Above: " + getRoomAbove(corridors[i], (maze.length - 1) / 2));
+                System.out.println("Below: " + getRoomBelow(corridors[i], (maze.length - 1) / 2));
                 if (!u.connected(
                         getRoomAbove(corridors[i], (maze.length - 1) / 2),
                         getRoomBelow(corridors[i], (maze.length - 1) / 2))) {
                     u.unify(getRoomAbove(corridors[i], (maze.length - 1) / 2),
                             getRoomBelow(corridors[i], (maze.length - 1) / 2));
+                    System.out.println("Unified: " + corridors[i]);
                     //REMOVE THE '#' BETWEEN THEM IN maze
                     removeCorridor(corridors[i]);
                 }
             } else {
                 //Horizontal corridor, checks if the room to the left and to the
                 //right are connected. If not, it connects them.
+                System.out.println("Left: " + getLeftRoom(corridors[i], (maze.length - 1) / 2));
+                System.out.println("Right: " + getRightRoom(corridors[i], (maze.length - 1) / 2));
                 if (!u.connected(
                         getLeftRoom(corridors[i], (maze.length - 1) / 2),
                         getRightRoom(corridors[i], (maze.length - 1) / 2))) {
                     u.unify(getLeftRoom(corridors[i], (maze.length - 1) / 2),
                             getRightRoom(corridors[i], (maze.length - 1) / 2));
+                    System.out.println("Unified: " + corridors[i]);
                     //REMOVE THE '#' BETWEEN THEM IN maze
                     removeCorridor(corridors[i]);
                 }
@@ -96,7 +116,20 @@ public class KruskalMaze {
         //Y: modulo, kollar om den är mindre än modulo hälften, koordinat i 2 fall
         //X: kollar hur många höjder som gått, sen modulo för att veta om man
         //ska lägga till en extra
-        maze[1][2] = ' ';
-        
+        if (corridor % (maze.length - 2) < (maze.length - 2) / 2) {
+            //Jämn
+            System.out.println("Jämn");
+            maze[2 + (corridor % (maze.length - 2)) * 2]
+                    [1 + (corridor / (maze.length - 2)) * 2] = ' ';
+        } else {
+            //Udda
+            System.out.println("Udda");
+            maze[1 + ((corridor % (maze.length - 2)) - ((maze.length - 2) / 2)) * 2]
+                    [2 + (corridor / (maze.length - 2)) * 2] = ' ';
+        }
+    }
+    
+    public char[][] getMaze() {
+        return this.maze;
     }
 }
