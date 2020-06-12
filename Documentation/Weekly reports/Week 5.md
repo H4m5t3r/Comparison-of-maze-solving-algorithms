@@ -11,6 +11,6 @@ Next week I will work on the performance tests and the documentation. It seems l
 |8.6|5| I started implementing the maze generating algorithm that is based on creating a minimum spanning tree using Kruskal's algorithm and created the needed data structures. |
 |9.6|4| I worked on the calculation methods in the KruskalMaze class. |
 |10.6|4| I completed the Kruskal maze algorithm and added it to the GUI. |
-|12.6|3| I updated the documentation and did a peer review. |
+|12.6|4| I updated the documentation and did a peer review. |
 
-Total number of hours this week: 16
+Total number of hours this week: 17
