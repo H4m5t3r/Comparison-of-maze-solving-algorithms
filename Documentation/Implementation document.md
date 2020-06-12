@@ -8,10 +8,12 @@ The mazes that are generated and solved are two-dimensional character arrays wit
 
 Some of the algorithms use data structures like stacks and linked lists. These have been implemented in the package called "maze.data_structures".
 
+## *Insert explanation of the rest of the algorithms*
+
 ## Kruskal's algorithm
 This maze generation method is based on creating a minimum spanning tree by connecting random nodes as long as it does not create a loop. In my implementation there are two things that the program keeps track of: rooms (nodes, marked as pink numbers) and potential corridors (edges, marked with blue circles around them).
 
-![Kruskal implementation](https://github.com/H4m5t3r/Comparison-of-maze-solving-algorithms/blob/master/Documentation/Pictures/Kruskal%20example.png)
+![Kruskal implementation](https://raw.githubusercontent.com/H4m5t3r/Comparison-of-maze-solving-algorithms/master/Documentation/Pictures/Kruskal%20example.jpg)
 
 When the algorithm starts it creates a two-dimensional character array that matches the size that the user has entered. All rooms (pink numbers) are marked with " " since the maze should cover the whole area and the rest are marked as walls with "#". After that a union-find structure with the same number of elements as the number of rooms (width * height) and an array with the same number of spaces as the number of potential corridors (blue circles) is created. The corridor array is shuffled so that the algorithm checks the corridors in a random order. When the program goes through the corridor array it checks if the rooms are above and below or to the left and right of it. After that it calculates the rooms' number and checks if they are already connected in the union-find structure. If not it connects them and replaces the wall ("#") in the two-dimensional character array with a blank space (" "). After all corridor spaces have been checked the entrance and exit is added to a random odd space on the first and last row.
 
