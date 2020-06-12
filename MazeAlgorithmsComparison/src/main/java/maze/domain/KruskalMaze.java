@@ -45,7 +45,7 @@ public class KruskalMaze {
                 }
             }
         }
-        
+
         //The random generation begins
         //Creating an array with all potential corridors and shuffling it
         for (int i = 0; i < corridors.length; i++) {
@@ -55,42 +55,24 @@ public class KruskalMaze {
         
         //for each potential corridor
         for (int i = 0; i < corridors.length; i++) {
-            //Debugging
-//            for (int j = 0; j < maze.length; j++) {
-//                for (int k = 0; k < maze[0].length; k++) {
-//                    System.out.print(maze[j][k]);
-//                }
-//                System.out.println("");
-//            }
-//            System.out.println("");
-//            System.out.println("Next: " + corridors[i]);
-            
             if (corridors[i] % (maze.length - 2) < (maze.length - 2) / 2) {
                 //Vertical corridor, checks if the room above and below are
                 //connected. If not, it connects them.
-//                System.out.println("Above: " + getRoomAbove(corridors[i], (maze.length - 1) / 2));
-//                System.out.println("Below: " + getRoomBelow(corridors[i], (maze.length - 1) / 2));
                 if (!u.connected(
                         getRoomAbove(corridors[i], (maze.length - 1) / 2),
                         getRoomBelow(corridors[i], (maze.length - 1) / 2))) {
                     u.unify(getRoomAbove(corridors[i], (maze.length - 1) / 2),
                             getRoomBelow(corridors[i], (maze.length - 1) / 2));
-//                    System.out.println("Unified: " + corridors[i]);
-                    //REMOVE THE '#' BETWEEN THEM IN maze
                     removeCorridor(corridors[i]);
                 }
             } else {
                 //Horizontal corridor, checks if the room to the left and to the
                 //right are connected. If not, it connects them.
-//                System.out.println("Left: " + getLeftRoom(corridors[i], (maze.length - 1) / 2));
-//                System.out.println("Right: " + getRightRoom(corridors[i], (maze.length - 1) / 2));
                 if (!u.connected(
                         getLeftRoom(corridors[i], (maze.length - 1) / 2),
                         getRightRoom(corridors[i], (maze.length - 1) / 2))) {
                     u.unify(getLeftRoom(corridors[i], (maze.length - 1) / 2),
                             getRightRoom(corridors[i], (maze.length - 1) / 2));
-//                    System.out.println("Unified: " + corridors[i]);
-                    //REMOVE THE '#' BETWEEN THEM IN maze
                     removeCorridor(corridors[i]);
                 }
             }
@@ -155,12 +137,10 @@ public class KruskalMaze {
     public void removeCorridor(int corridor) {
         if (corridor % (maze.length - 2) < (maze.length - 2) / 2) {
             //Even column
-//            System.out.println("Jämn");
             maze[2 + (corridor % (maze.length - 2)) * 2]
                     [1 + (corridor / (maze.length - 2)) * 2] = ' ';
         } else {
             //Odd column
-//            System.out.println("Udda");
             maze[1 + ((corridor % (maze.length - 2)) - ((maze.length - 2) / 2)) * 2]
                     [2 + (corridor / (maze.length - 2)) * 2] = ' ';
         }

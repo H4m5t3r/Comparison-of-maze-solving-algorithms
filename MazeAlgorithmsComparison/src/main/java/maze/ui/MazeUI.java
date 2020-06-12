@@ -390,7 +390,12 @@ public class MazeUI extends Application {
         menu.setOnAction((event) -> {
             menu.setLayoutX(590);
             try {
-                newMazePane.getChildren().addAll(recursiveBacktr, kruskal);
+                newMazePane.getChildren().add(recursiveBacktr);
+            } catch (Exception e) {
+                
+            }
+            try {
+                newMazePane.getChildren().add(kruskal);
             } catch (Exception e) {
                 
             }
