@@ -143,4 +143,22 @@ public class KruskalMazeTest {
         assertTrue(kruskal.getRightRoom(12, 4) == 10);
         assertTrue(kruskal.getRightRoom(13, 4) == 11);
     }
+    
+    @Test
+    public void removeCorridorTest() {
+        kruskal = new KruskalMaze(100, 100);
+        kruskal.generateMaze();
+        int numberOfBlankSpaces = 0;
+        char[][] maze = kruskal.getMaze();
+        for (int i = 0; i < maze.length; i++) {
+            for (int j = 0; j < maze[0].length; j++) {
+                if (maze[i][j] == ' ') {
+                    numberOfBlankSpaces++;
+                }
+            }
+        }
+        //There should be width * height - 1 connections between the rooms plus
+        //an entrance and an exit
+        assertTrue(numberOfBlankSpaces == 100 * 100 * 2 + 1);
+    }
 }
