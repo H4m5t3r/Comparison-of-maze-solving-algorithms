@@ -25,39 +25,28 @@ public class DeadEndFilling {
      * @param maze
      * @param y
      * @param x
-     * @return isDeadEnd
      */
-    public void isDeadEnd(final char[][] maze, final int y, final int x) {
-//        this.corridorCounter = 0;
-//        if (maze[y - 1][x] == ' ') {
-//            corridorCounter++;
-//        }
-//        if (maze[y][x + 1] == ' ') {
-//            corridorCounter++;
-//        }
-//        if (maze[y + 1][x] == ' ') {
-//            corridorCounter++;
-//        }
-//        if (maze[y][x - 1] == ' ') {
-//            corridorCounter++;
-//        }
-//        if (corridorCounter == 1) {
-//            fillDeadEnd(maze, y, x);
-//        }
-        //The old implementation
-        if (maze[y - 1][x] == ' ' && maze[y][x + 1] == '#'
-                && maze[y + 1][x] == '#' && maze[y][x - 1] == '#') {
-            fillDeadEnd(maze, y, x);
-        } else if (maze[y - 1][x] == '#' && maze[y][x + 1] == ' '
-                && maze[y + 1][x] == '#' && maze[y][x - 1] == '#') {
-            fillDeadEnd(maze, y, x);
-        } else if (maze[y - 1][x] == '#' && maze[y][x + 1] == '#'
-                && maze[y + 1][x] == ' ' && maze[y][x - 1] == '#') {
-            fillDeadEnd(maze, y, x);
-        } else if (maze[y - 1][x] == '#' && maze[y][x + 1] == '#'
-                && maze[y + 1][x] == '#' && maze[y][x - 1] == ' ') {
-            fillDeadEnd(maze, y, x);
+    public boolean isDeadEnd(final char[][] maze, final int y, final int x) {
+        if (maze[y][x] == ' ') {
+            if (maze[y - 1][x] == ' ' && maze[y][x + 1] == '#'
+                    && maze[y + 1][x] == '#' && maze[y][x - 1] == '#') {
+                fillDeadEnd(maze, y, x);
+                return true;
+            } else if (maze[y - 1][x] == '#' && maze[y][x + 1] == ' '
+                    && maze[y + 1][x] == '#' && maze[y][x - 1] == '#') {
+                fillDeadEnd(maze, y, x);
+                return true;
+            } else if (maze[y - 1][x] == '#' && maze[y][x + 1] == '#'
+                    && maze[y + 1][x] == ' ' && maze[y][x - 1] == '#') {
+                fillDeadEnd(maze, y, x);
+                return true;
+            } else if (maze[y - 1][x] == '#' && maze[y][x + 1] == '#'
+                    && maze[y + 1][x] == '#' && maze[y][x - 1] == ' ') {
+                fillDeadEnd(maze, y, x);
+                return true;
+            }
         }
+        return false;
     }
     /**
      * Fills the first corridor it finds since this method is always called

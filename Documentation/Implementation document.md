@@ -4,7 +4,7 @@ The different algorithms used in this program are all implemented in their own J
 
 *insert class diagram*
 
-The mazes that are generated and solved are two-dimensional character arrays with corridors and walls. This means that when the width is x and the height is y it actually means that the size of the two-dimensional array is (2x + 1) * (2y + 1) because there are walls between the corridors and on each side of the maze.
+The mazes that are generated and solved are two-dimensional character arrays with corridors and walls. This means that when the width is w and the height is h it actually means that the size of the two-dimensional array is (2w + 1) * (2h + 1) because there are walls between the corridors and on each side of the maze. In this document w always stands for the maze's width and h for its height.
 
 Some of the algorithms use data structures like stacks and linked lists. These have been implemented in the package called "maze.data_structures".
 
@@ -20,7 +20,7 @@ This maze generation method is based on creating a minimum spanning tree by conn
 
 When the algorithm starts it creates a two-dimensional character array that matches the size that the user has entered. All rooms (pink numbers) are marked with " " since the maze should cover the whole area and the rest are marked as walls with "#". After that a union-find structure with the same number of elements as the number of rooms (width * height) and an array with the same number of spaces as the number of potential corridors (blue circles) is created. The corridor array is shuffled so that the algorithm checks the corridors in a random order. When the program goes through the corridor array it checks if the rooms are above and below or to the left and right of it. After that it calculates the rooms' number and checks if they are already connected in the union-find structure. If not it connects them and replaces the wall ("#") in the two-dimensional character array with a blank space (" "). After all corridor spaces have been checked the entrance and exit is added to a random odd space on the first and last row.
 
-The most complicated part in this process is the calculation of the adjacent rooms' id number. At first glance it may seem pretty confusing but there is always a relation between them and the number can be calculated as long as you know the height of the maze.
+The most complicated part in this process is the calculation of the adjacent rooms' id number. At first glance it may seem pretty confusing but there is always a relation between them and the number can be calculated as long as you know the height of the maze. The algorithm results in a time complexity of O((2h-1) * (2w - 1) +  2 * ((w - 1) * (2h - 1) + (h - 1))). The first two parentheses come from the generation of the base for the maze where all rooms are marked with ' ' and the rest of the spaces in the two-dimensional character array with '#'. After that the room list is shuffled (one shuffle for each corridor) and after that all the corridors are gone through once. (w - 1) * (2h - 1) + (h - 1) is the number of corridors.
 
 # Maze solving algorithms
 
