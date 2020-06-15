@@ -6,6 +6,7 @@ package maze.domain;
  * @author taleiko
  */
 public class DeadEndFilling {
+    private int corridorCounter;
     /**
      * Takes an ASCII maze as input and solves it.
      * @param maze
@@ -13,7 +14,9 @@ public class DeadEndFilling {
     public void solve(final char[][] maze) {
         for (int y = 1; y < maze.length - 1; y += 2) {
             for (int x = 1; x < maze.length - 1; x += 2) {
-                isDeadEnd(maze, y, x);
+                if (maze[y][x] == ' ') {
+                    isDeadEnd(maze, y, x);
+                }
             }
         }
     }
@@ -24,27 +27,37 @@ public class DeadEndFilling {
      * @param x
      * @return isDeadEnd
      */
-    public boolean isDeadEnd(final char[][] maze, final int y, final int x) {
-        if (maze[y][x] == ' ') {
-            if (maze[y - 1][x] == ' ' && maze[y][x + 1] == '#'
-                    && maze[y + 1][x] == '#' && maze[y][x - 1] == '#') {
-                fillDeadEnd(maze, y, x);
-                return true;
-            } else if (maze[y - 1][x] == '#' && maze[y][x + 1] == ' '
-                    && maze[y + 1][x] == '#' && maze[y][x - 1] == '#') {
-                fillDeadEnd(maze, y, x);
-                return true;
-            } else if (maze[y - 1][x] == '#' && maze[y][x + 1] == '#'
-                    && maze[y + 1][x] == ' ' && maze[y][x - 1] == '#') {
-                fillDeadEnd(maze, y, x);
-                return true;
-            } else if (maze[y - 1][x] == '#' && maze[y][x + 1] == '#'
-                    && maze[y + 1][x] == '#' && maze[y][x - 1] == ' ') {
-                fillDeadEnd(maze, y, x);
-                return true;
-            }
+    public void isDeadEnd(final char[][] maze, final int y, final int x) {
+//        this.corridorCounter = 0;
+//        if (maze[y - 1][x] == ' ') {
+//            corridorCounter++;
+//        }
+//        if (maze[y][x + 1] == ' ') {
+//            corridorCounter++;
+//        }
+//        if (maze[y + 1][x] == ' ') {
+//            corridorCounter++;
+//        }
+//        if (maze[y][x - 1] == ' ') {
+//            corridorCounter++;
+//        }
+//        if (corridorCounter == 1) {
+//            fillDeadEnd(maze, y, x);
+//        }
+        //The old implementation
+        if (maze[y - 1][x] == ' ' && maze[y][x + 1] == '#'
+                && maze[y + 1][x] == '#' && maze[y][x - 1] == '#') {
+            fillDeadEnd(maze, y, x);
+        } else if (maze[y - 1][x] == '#' && maze[y][x + 1] == ' '
+                && maze[y + 1][x] == '#' && maze[y][x - 1] == '#') {
+            fillDeadEnd(maze, y, x);
+        } else if (maze[y - 1][x] == '#' && maze[y][x + 1] == '#'
+                && maze[y + 1][x] == ' ' && maze[y][x - 1] == '#') {
+            fillDeadEnd(maze, y, x);
+        } else if (maze[y - 1][x] == '#' && maze[y][x + 1] == '#'
+                && maze[y + 1][x] == '#' && maze[y][x - 1] == ' ') {
+            fillDeadEnd(maze, y, x);
         }
-        return false;
     }
     /**
      * Fills the first corridor it finds since this method is always called
