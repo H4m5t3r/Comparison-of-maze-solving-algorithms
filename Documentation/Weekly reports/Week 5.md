@@ -4,7 +4,7 @@ This week I implemented the Kruskal maze generator. This class generates perfect
 
 ![Kruskal implementation](https://raw.githubusercontent.com/H4m5t3r/Comparison-of-maze-solving-algorithms/master/Documentation/Pictures/Kruskal%20example.jpg)
 
-Next week I will work on the performance tests and the documentation. It seems like I won't have enough time to implements more algorithms so from now on I will focus on finishing what I've got.
+Next week I will work on the performance tests and the documentation. It seems like I won't have enough time to implement more algorithms so from now on I will focus on finishing what I've got.
 
 | Day | Hours | What I did  |
 | :----:|:-----| :-----|
