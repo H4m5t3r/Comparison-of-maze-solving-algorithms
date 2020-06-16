@@ -6,10 +6,13 @@ package maze.domain;
  * @author taleiko
  */
 public class DepthFirstSearch {
+    /**
+     * Used for knowing if the exit has been found.
+     */
     private boolean exitFound;
     /**
      * A method that locates the exit and entrance and calls the search method.
-     * @param maze 
+     * @param maze
      */
     public void solve(final char[][] maze) {
         exitFound = false;
@@ -34,12 +37,13 @@ public class DepthFirstSearch {
      * way to the exit.
      * @param maze
      * @param y
-     * @param x 
+     * @param x
      */
     private void search(final char[][] maze, final int y, final int x) {
         maze[y][x] = 'c';
         //Checking all four directions
-        if ((maze[y + 1][x] == ' ' || maze[y+1][x] == 'e') && exitFound == false) {
+        if ((maze[y + 1][x] == ' ' || maze[y + 1][x] == 'e')
+                && exitFound == false) {
             if (maze[y + 1][x] == 'e') {
                 maze[y + 1][x] = 'c';
                 exitFound = true;

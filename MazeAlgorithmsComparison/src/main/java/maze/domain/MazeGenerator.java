@@ -6,15 +6,23 @@ package maze.domain;
  * @author taleiko
  */
 public class MazeGenerator {
+    /**
+     * The class that generates mazes using the recursive backtracker method.
+     */
     private RecursiveBacktracker recursiveBacktracker;
+    /**
+     * The class that generates mazes using an implementation of Kruskal's
+     * algorithm.
+     */
     private KruskalMaze kruskal;
 
     /**
      * Initializes the recursive backtracker class with its width and height.
      * @param mazeWidth
-     * @param mazeHeight 
+     * @param mazeHeight
      */
-    public void initializeRecursiveBacktracker(int mazeWidth, int mazeHeight) {
+    public void initializeRecursiveBacktracker(final int mazeWidth,
+            final int mazeHeight) {
         recursiveBacktracker = new RecursiveBacktracker(mazeWidth, mazeHeight);
     }
     /**
@@ -22,7 +30,7 @@ public class MazeGenerator {
      * @param mazeWidth
      * @param mazeHeight
      */
-    public void initializeKruskal(int mazeWidth, int mazeHeight) {
+    public void initializeKruskal(final int mazeWidth, final int mazeHeight) {
         kruskal = new KruskalMaze(mazeWidth, mazeHeight);
     }
     /**

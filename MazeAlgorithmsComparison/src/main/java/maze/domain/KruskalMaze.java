@@ -8,19 +8,31 @@ import maze.data_structures.UnionFind;
  * @author taleiko
  */
 public class KruskalMaze {
+    /**
+     * The two-dimensional character array that stores the labyrinth.
+     */
     private final char[][] maze;
+    /**
+     * The array that stores the corridors.
+     */
     private final int[] corridors;
+    /**
+     * A class that shuffles the corridor array.
+     */
     private final FisherYatesShuffle shuffle;
+    /**
+     * A union-find structure that keeps track of what rooms are connected.
+     */
     private final UnionFind u;
     /**
      * A constructor that takes the maze's width and height as input.
      * @param mazeWidth
      * @param mazeHeight
      */
-    public KruskalMaze(int mazeWidth, int mazeHeight) {
+    public KruskalMaze(final int mazeWidth, final int mazeHeight) {
         maze = new char[mazeHeight * 2 + 1][mazeWidth * 2 + 1];
-        corridors = new int[(mazeHeight - 1) * mazeWidth + (mazeWidth - 1) *
-                mazeHeight];
+        corridors = new int[(mazeHeight - 1) * mazeWidth + (mazeWidth - 1)
+                * mazeHeight];
         shuffle = new FisherYatesShuffle();
         u = new UnionFind(mazeWidth * mazeHeight);
     }
@@ -52,7 +64,7 @@ public class KruskalMaze {
             corridors[i] = i;
         }
         shuffle.shuffleIntegerArray(corridors);
-        
+
         //for each potential corridor
         for (int i = 0; i < corridors.length; i++) {
             if (corridors[i] % (maze.length - 2) < (maze.length - 2) / 2) {
@@ -109,14 +121,14 @@ public class KruskalMaze {
     }
     /**
      * Takes the number of a corridor as input and calculates the number of the
-     * room to the left of it
+     * room to the left of it.
      * @param corridor
      * @param height
      * @return roomToTheLeft
      */
     public int getLeftRoom(final int corridor, final int height) {
-        return height * (corridor / (height * 2 - 1)) +
-                (corridor % (height * 2 - 1) - (height - 1));
+        return height * (corridor / (height * 2 - 1))
+                + (corridor % (height * 2 - 1) - (height - 1));
     }
     /**
      * Takes the number of a corridor as input and calculates the number of the
@@ -126,28 +138,29 @@ public class KruskalMaze {
      * @return roomToTheRight
      */
     public int getRightRoom(final int corridor, final int height) {
-        return height * (corridor / (height * 2 - 1)) +
-                (corridor % (height * 2 - 1) + 1);
+        return height * (corridor / (height * 2 - 1))
+                + (corridor % (height * 2 - 1) + 1);
     }
     /**
      * Calculates the corridor's coordinates in the maze and replaces '#' with
      * ' ' (connects the two rooms).
      * @param corridor
      */
-    public void removeCorridor(int corridor) {
+    public void removeCorridor(final int corridor) {
         if (corridor % (maze.length - 2) < (maze.length - 2) / 2) {
             //Even column
             maze[2 + (corridor % (maze.length - 2)) * 2]
                     [1 + (corridor / (maze.length - 2)) * 2] = ' ';
         } else {
             //Odd column
-            maze[1 + ((corridor % (maze.length - 2)) - ((maze.length - 2) / 2)) * 2]
+            maze[1 + ((corridor % (maze.length - 2))
+                    - ((maze.length - 2) / 2)) * 2]
                     [2 + (corridor / (maze.length - 2)) * 2] = ' ';
         }
     }
     /**
      * Returns the generated maze.
-     * @return 
+     * @return maze
      */
     public char[][] getMaze() {
         return this.maze;

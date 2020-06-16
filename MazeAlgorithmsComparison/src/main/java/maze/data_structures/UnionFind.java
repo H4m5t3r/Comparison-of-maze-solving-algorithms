@@ -21,14 +21,14 @@ public class UnionFind {
     /**
      * A constructor that takes the predetermined size (number of nodes) as
      * input.
-     * @param size
+     * @param givenSize
      */
-    public UnionFind(int size) {
-        this.size = size;
-        id = new int[size];
-        componentSize = new int[size];
+    public UnionFind(final int givenSize) {
+        this.size = givenSize;
+        id = new int[givenSize];
+        componentSize = new int[givenSize];
         //Linking each component to itself
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < givenSize; i++) {
             id[i] = i;
             componentSize[i] = 1;
         }
@@ -57,7 +57,7 @@ public class UnionFind {
      * @param b
      * @return areConnected
      */
-    public boolean connected(int a, int b) {
+    public boolean connected(final int a, final int b) {
         return find(a) == find(b);
     }
     /**
@@ -65,7 +65,7 @@ public class UnionFind {
      * @param a
      * @param b
      */
-    public void unify(int a, int b) {
+    public void unify(final int a, final int b) {
         int root1 = find(a);
         int root2 = find(b);
         if (root1 == root2) {

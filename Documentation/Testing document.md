@@ -5,6 +5,8 @@ This program is tested using two kinds of tests: JUnit tests and performance tes
 # Junit tests
 The JUnit tests are located in the package called "tests". They can be run using the command `mvn test` in the folder called "MazeAlgorithmsComparison". These tests have been created to make sure that every part of the program works correctly by testing it in smaller parts. An example of this is the DeadEndFilling class. In this case there are two important methods: isDeadEnd() and fillDeadEnd(). The isDeadEnd method is tested by creating two-dimensional character arrays that contain all the possible scenarios it could come across and checking that it returns the correct boolean answer. The classes used in the program have all been tested in similar ways.
 
+## *INSERT IMAGE OF TEST COVERAGE*
+
 ## Algorithms
 
 ### RecursiveBacktrackerTest

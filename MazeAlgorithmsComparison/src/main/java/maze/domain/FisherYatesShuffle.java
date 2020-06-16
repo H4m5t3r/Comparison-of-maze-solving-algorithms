@@ -7,16 +7,25 @@ package maze.domain;
  * @author taleiko
  */
 public class FisherYatesShuffle {
+    /**
+     * Used for getting a random index to swap with by converting it to an
+     * integer.
+     */
     private Long random;
-    private int randomInt;
+    /**
+     * The integer used for storing the swapped integer temporarily.
+     */
     private int temp;
-    
-    public void shuffleIntegerArray(int[] list) {
+
+    /**
+     * Shuffles a given integer array that contains integers.
+     * @param list
+     */
+    public void shuffleIntegerArray(final int[] list) {
         for (int i = list.length - 1; i > 0; i--) {
             random = System.nanoTime() % i;
-            randomInt = random.intValue();
-            temp = list[randomInt];
-            list[randomInt] = list[i];
+            temp = list[random.intValue()];
+            list[random.intValue()] = list[i];
             list[i] = temp;
         }
     }

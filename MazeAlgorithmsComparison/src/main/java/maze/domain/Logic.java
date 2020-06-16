@@ -50,41 +50,14 @@ public class Logic {
      * adjusted.
      */
     public Logic() {
-        /**
-         * The default value for the maze's width and height.
-         */
         defaultValue = 100;
-        /**
-         * The maze's width.
-         */
         mazeWidth = defaultValue;
-        /**
-         * The maze's height.
-         */
         mazeHeight = defaultValue;
-        /**
-         * The maximum allowed width and height.
-         */
         maxSize = 150;
-        /**
-         * The minimum width.
-         */
         minWidth = 1;
-        /**
-         * The minimum height.
-         */
         minHeight = 1;
-        /**
-         * The maze generating class.
-         */
         generator = new MazeGenerator();
-        /**
-         * The class that solves mazes.
-         */
         solver = new MazeSolver();
-        /**
-         * The class that runs the performance tests.
-         */
         performance = new PerformanceComparator();
     }
     /**
@@ -164,7 +137,7 @@ public class Logic {
     public void generateRecursiveBacktrackerMaze() {
         generator.generateRecursiveBacktrackerMaze();
     }
-    
+
     /**
      * Initializes the Kruskal maze generator.
      */

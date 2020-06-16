@@ -147,7 +147,7 @@ public class RecursiveBacktracker {
                             recursion();
                         }
                     } catch (Exception e) {
-                        
+
                     }
                     directionsStack.pop();
                     stackx.pop();
@@ -162,7 +162,7 @@ public class RecursiveBacktracker {
                             recursion();
                         }
                     } catch (Exception e) {
-                        
+
                     }
                     directionsStack.pop();
                     stackx.pop();
@@ -177,7 +177,7 @@ public class RecursiveBacktracker {
                             recursion();
                         }
                     } catch (Exception e) {
-                        
+
                     }
                     directionsStack.pop();
                     stackx.pop();
@@ -192,7 +192,7 @@ public class RecursiveBacktracker {
                             recursion();
                         }
                     } catch (Exception e) {
-                        
+
                     }
                     directionsStack.pop();
                     stackx.pop();

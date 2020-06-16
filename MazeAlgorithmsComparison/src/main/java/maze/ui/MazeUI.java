@@ -360,7 +360,7 @@ public class MazeUI extends Application {
             }
             processTime = new Label(time / 1000 + " μs");
             processTime.setLayoutX(500);
-            viewMazePane.getChildren().addAll(kruskal, deadEndSolve, depthFirstSolve, menu, processTime);
+            viewMazePane.getChildren().addAll(recursiveBacktr, kruskal, deadEndSolve, depthFirstSolve, menu, processTime);
             viewMazeScene = new Scene(viewMazePane);
             window.setScene(viewMazeScene);
         });
@@ -382,7 +382,7 @@ public class MazeUI extends Application {
             }
             processTime = new Label(time / 1000 + " μs");
             processTime.setLayoutX(500);
-            viewMazePane.getChildren().addAll(recursiveBacktr, deadEndSolve, depthFirstSolve, menu, processTime);
+            viewMazePane.getChildren().addAll(recursiveBacktr, kruskal, deadEndSolve, depthFirstSolve, menu, processTime);
             viewMazeScene = new Scene(viewMazePane);
             window.setScene(viewMazeScene);
         });

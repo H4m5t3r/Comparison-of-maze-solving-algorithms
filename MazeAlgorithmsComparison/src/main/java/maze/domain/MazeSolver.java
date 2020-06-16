@@ -32,7 +32,7 @@ public class MazeSolver {
     }
     /**
      * Calls the solve method in the DeptFirstSearch class.
-     * @param maze 
+     * @param maze
      */
     public void depthFirstSearch(final char[][] maze) {
         depthFirst.solve(maze);
