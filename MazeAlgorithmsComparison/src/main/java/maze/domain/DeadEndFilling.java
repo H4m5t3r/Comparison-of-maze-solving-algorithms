@@ -6,7 +6,6 @@ package maze.domain;
  * @author taleiko
  */
 public class DeadEndFilling {
-    private int corridorCounter;
     /**
      * Takes an ASCII maze as input and solves it.
      * @param maze
@@ -25,26 +24,25 @@ public class DeadEndFilling {
      * @param maze
      * @param y
      * @param x
+     * @return isDeadEnd
      */
     public boolean isDeadEnd(final char[][] maze, final int y, final int x) {
-        if (maze[y][x] == ' ') {
-            if (maze[y - 1][x] == ' ' && maze[y][x + 1] == '#'
-                    && maze[y + 1][x] == '#' && maze[y][x - 1] == '#') {
-                fillDeadEnd(maze, y, x);
-                return true;
-            } else if (maze[y - 1][x] == '#' && maze[y][x + 1] == ' '
-                    && maze[y + 1][x] == '#' && maze[y][x - 1] == '#') {
-                fillDeadEnd(maze, y, x);
-                return true;
-            } else if (maze[y - 1][x] == '#' && maze[y][x + 1] == '#'
-                    && maze[y + 1][x] == ' ' && maze[y][x - 1] == '#') {
-                fillDeadEnd(maze, y, x);
-                return true;
-            } else if (maze[y - 1][x] == '#' && maze[y][x + 1] == '#'
-                    && maze[y + 1][x] == '#' && maze[y][x - 1] == ' ') {
-                fillDeadEnd(maze, y, x);
-                return true;
-            }
+        if (maze[y - 1][x] == ' ' && maze[y][x + 1] == '#'
+                && maze[y + 1][x] == '#' && maze[y][x - 1] == '#') {
+            fillDeadEnd(maze, y, x);
+            return true;
+        } else if (maze[y - 1][x] == '#' && maze[y][x + 1] == ' '
+                && maze[y + 1][x] == '#' && maze[y][x - 1] == '#') {
+            fillDeadEnd(maze, y, x);
+            return true;
+        } else if (maze[y - 1][x] == '#' && maze[y][x + 1] == '#'
+                && maze[y + 1][x] == ' ' && maze[y][x - 1] == '#') {
+            fillDeadEnd(maze, y, x);
+            return true;
+        } else if (maze[y - 1][x] == '#' && maze[y][x + 1] == '#'
+                && maze[y + 1][x] == '#' && maze[y][x - 1] == ' ') {
+            fillDeadEnd(maze, y, x);
+            return true;
         }
         return false;
     }
