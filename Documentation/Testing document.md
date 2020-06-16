@@ -82,6 +82,35 @@ char[][] solution = {
 
 ### DepthFirstSearchTest
 There are 3 tests in this class. entranceAndExitFoundTest checks that the entrance and exit are found and that the algorithm starts below the entrance. pathFindTest tests if a test maze is solved correctly by checking that all rooms on the correct path and the corridors between them are marked with "c". largerMazeTest checks if the exit has been found when a larger maze is generated.
+```
+char[][] test = {
+    {'#', '#', '#', '#', '#', '#', '#', ' ', '#', '#', '#'},
+    {'#', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#'},
+    {'#', ' ', '#', '#', '#', '#', '#', ' ', '#', ' ', '#'},
+    {'#', ' ', '#', ' ', ' ', ' ', ' ', ' ', '#', ' ', '#'},
+    {'#', ' ', '#', ' ', '#', '#', '#', '#', '#', ' ', '#'},
+    {'#', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', '#'},
+    {'#', '#', '#', '#', '#', ' ', '#', '#', '#', '#', '#'},
+    {'#', ' ', ' ', ' ', '#', ' ', '#', ' ', ' ', ' ', '#'},
+    {'#', ' ', '#', ' ', '#', ' ', '#', '#', '#', ' ', '#'},
+    {'#', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#'},
+    {'#', '#', '#', ' ', '#', '#', '#', '#', '#', '#', '#'}
+};
+
+char[][] solution = {
+    {'#', '#', '#', '#', '#', '#', '#', 'c', '#', '#', '#'},
+    {'#', ' ', '#', ' ', ' ', ' ', ' ', 'c', 'c', 'c', '#'},
+    {'#', ' ', '#', '#', '#', '#', '#', ' ', '#', 'c', '#'},
+    {'#', ' ', '#', ' ', ' ', ' ', ' ', ' ', '#', 'c', '#'},
+    {'#', ' ', '#', ' ', '#', '#', '#', '#', '#', 'c', '#'},
+    {'#', ' ', ' ', ' ', '#', 'c', 'c', 'c', 'c', 'c', '#'},
+    {'#', '#', '#', '#', '#', 'c', '#', '#', '#', '#', '#'},
+    {'#', ' ', ' ', ' ', '#', 'c', '#', ' ', ' ', ' ', '#'},
+    {'#', ' ', '#', ' ', '#', 'c', '#', '#', '#', ' ', '#'},
+    {'#', ' ', '#', 'c', 'c', 'c', ' ', ' ', ' ', ' ', '#'},
+    {'#', '#', '#', 'c', '#', '#', '#', '#', '#', '#', '#'}
+};
+```
 
 ### FisherYatesShuffleTest
 This class contains one test. It checks that all the numbers that were on the list before it was shuffled is still present after it has been shuffled.
@@ -98,4 +127,6 @@ The union-find data structure is tested by checking if different nodes are conne
 
 
 # Performance tests
+### *Update needed*
+
 The performance tests are part of the program and can be run by the user. When the program is started there is a button that says "Performance tests". When this button is pressed the user is taken to a view where they can start the tests. The performance test is run in the class called "PerformanceComparator". It makes the different algorithms perform their task multiple times and displays the results after the test is done. At the moment there is no loading screen so after the button that starts the performance test is pressed the user has to wait for about 40 seconds.
