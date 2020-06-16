@@ -21,7 +21,7 @@ public class StackTest {
     }
 
     @Test
-    public void StackTest() {
+    public void stackTest() {
         assertTrue(s.isEmpty() == true);
         for (int i = 0; i < length; i++) {
             s.push(i);

@@ -15,7 +15,7 @@ public class RecursiveBacktrackerTest {
     
     @Before
     public void setUp() {
-        this.recBacktracker = new RecursiveBacktracker(10, 10);
+        this.recBacktracker = new RecursiveBacktracker(50, 50);
     }
     
     @Test
@@ -48,5 +48,20 @@ public class RecursiveBacktrackerTest {
                 assertTrue(testMaze[i][j] == ' ');
             }
         }
+    }
+    
+    @Test
+    public void numberOfBlankSpacesCorrect() {
+        recBacktracker.generateMaze();
+        char[][] maze = recBacktracker.getMaze();
+        int numberOfBlankSpaces = 0;
+        for (int i = 0; i < maze.length; i++) {
+            for (int j = 0; j < maze[0].length; j++) {
+                if (maze[i][j] == ' ') {
+                    numberOfBlankSpaces++;
+                }
+            }
+        }
+        assertTrue(numberOfBlankSpaces == 50 * 50 * 2 + 1);
     }
 }
