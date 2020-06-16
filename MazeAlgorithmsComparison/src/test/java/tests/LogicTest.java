@@ -85,7 +85,5 @@ public class LogicTest {
         logic.initializeRecursiveBacktracker();
         assertTrue(logic.getMazeFromRecursiveBacktracker().length == logic.getHeight() * 2 + 1);
         assertTrue(logic.getMazeFromRecursiveBacktracker()[0].length == logic.getWidth() * 2 + 1);
-        //ADD TESTS THAT CHECK THAT EVERY "ROOM" IS A BLANK SPACE WHEN THE
-        //MAZE GENERATING METHOD IS COMPLETE
     }
 }
