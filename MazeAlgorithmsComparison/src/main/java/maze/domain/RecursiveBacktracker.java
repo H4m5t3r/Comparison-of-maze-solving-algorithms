@@ -27,11 +27,6 @@ public class RecursiveBacktracker {
      */
     private Stack stacky;
     /**
-     * A temporary array which will be removed if I find a better way to
-     * randomize the directions.
-     */
-    private Integer[] directions;
-    /**
      * A list that is shuffled when the order of the directions is chosen.
      */
     private LinkedList directionsList;
@@ -62,12 +57,7 @@ public class RecursiveBacktracker {
         visited = new boolean[mazeWidth][mazeHeight];
         stackx = new Stack(mazeWidth * mazeHeight);
         stacky = new Stack(mazeWidth * mazeHeight);
-        directions = new Integer[directionsToGo];
         directionsList = new LinkedList();
-        for (int i = 0; i < directions.length; i++) {
-            directions[i] = i;
-//            directionsList.add(i);
-        }
         directionsStack = new Stack(mazeWidth * mazeHeight * directionsToGo);
     }
 
@@ -86,11 +76,11 @@ public class RecursiveBacktracker {
         addRandomDirectionOrderToDirectionsStack();
         visited[0][0] = true;
         removeWall(2 * 0 + 1, 2 * 0 + 1);
-//        Collections.shuffle(directionsList);
         for (int i = 0; i < directionsToGo; i++) {
             directionsStack.push(directionsList.get(i));
         }
         //Recursion begins
+        //Starts from the upper left corner, can only go right or down
         for (int i = 0; i < directionsToGo; i++) {
             if (directionsStack.peek() == 1) {
                 stackx.push(1);
@@ -143,14 +133,6 @@ public class RecursiveBacktracker {
     public void recursion() {
         visited[stacky.peek()][stackx.peek()] = true;
         removeWall(2 * stacky.peek() + 1, 2 * stackx.peek() + 1);
-        //Debugging
-//        for (int y = 0; y < maze.length; y++) {
-//            for (int x = 0; x < maze[0].length; x++) {
-//                System.out.print(maze[y][x]);
-//            }
-//            System.out.println("");
-//        }
-//        System.out.println("");
         //Going in all possible directions
         addRandomDirectionOrderToDirectionsStack();
         for (int i = 0; i < directionsToGo; i++) {
@@ -161,14 +143,11 @@ public class RecursiveBacktracker {
                         stackx.push(stackx.peek());
                         stacky.push(stacky.peek() - 1);
                         if (!visited[stacky.peek()][stackx.peek()]) {
-//                            System.out.println("Going UP");
                             removeWallBetweenRooms(directionsStack.peek());
                             recursion();
                         }
                     } catch (Exception e) {
-//                        System.out.println("ErrorUP");
-//                        System.out.println("x: " + stackx.peek());
-//                        System.out.println("y: " + stacky.peek());
+                        
                     }
                     directionsStack.pop();
                     stackx.pop();
@@ -179,14 +158,11 @@ public class RecursiveBacktracker {
                         stackx.push(stackx.peek() + 1);
                         stacky.push(stacky.peek());
                         if (!visited[stacky.peek()][stackx.peek()]) {
-//                            System.out.println("Going RIGHT");
                             removeWallBetweenRooms(directionsStack.peek());
                             recursion();
                         }
                     } catch (Exception e) {
-//                        System.out.println("ErrorRIGHT");
-//                        System.out.println("x: " + stackx.peek());
-//                        System.out.println("y: " + stacky.peek());
+                        
                     }
                     directionsStack.pop();
                     stackx.pop();
@@ -197,14 +173,11 @@ public class RecursiveBacktracker {
                         stackx.push(stackx.peek());
                         stacky.push(stacky.peek() + 1);
                         if (!visited[stacky.peek()][stackx.peek()]) {
-//                            System.out.println("Going DOWN");
                             removeWallBetweenRooms(directionsStack.peek());
                             recursion();
                         }
                     } catch (Exception e) {
-//                        System.out.println("ErrorDOWN");
-//                        System.out.println("x: " + stackx.peek());
-//                        System.out.println("y: " + stacky.peek());
+                        
                     }
                     directionsStack.pop();
                     stackx.pop();
@@ -215,14 +188,11 @@ public class RecursiveBacktracker {
                         stackx.push(stackx.peek() - 1);
                         stacky.push(stacky.peek());
                         if (!visited[stacky.peek()][stackx.peek()]) {
-//                            System.out.println("Going LEFT");
                             removeWallBetweenRooms(directionsStack.peek());
                             recursion();
                         }
                     } catch (Exception e) {
-//                        System.out.println("ErrorLEFT");
-//                        System.out.println("x: " + stackx.peek());
-//                        System.out.println("y: " + stacky.peek());
+                        
                     }
                     directionsStack.pop();
                     stackx.pop();
@@ -232,14 +202,6 @@ public class RecursiveBacktracker {
                     break;
             }
         }
-        //Debugging
-//        for (int y = 0; y < maze.length; y++) {
-//            for (int x = 0; x < maze[0].length; x++) {
-//                System.out.print(maze[y][x]);
-//            }
-//            System.out.println("");
-//        }
-//        System.out.println("");
     }
     /**
      * Adds the four directions to directionsStack in a random order using the
