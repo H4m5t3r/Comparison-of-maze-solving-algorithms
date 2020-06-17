@@ -68,7 +68,7 @@ public class PerformanceComparator {
         deadEndTime = 0;
         rec = new RecursiveBacktracker(3000, 3000);
         rec.generateMaze();
-        testMaze = generator.getRecursiveBacktrackerMaze();
+//        testMaze = generator.getRecursiveBacktrackerMaze();
         maze = new char[testMaze.length][testMaze[0].length];
         //Copying the maze
         for (int i = 0; i < maze.length; i++) {
@@ -90,7 +90,7 @@ public class PerformanceComparator {
      */
     public void depthFirstSearchTest() {
         depth = new DepthFirstSearch();
-        testMaze = generator.getRecursiveBacktrackerMaze();
+//        testMaze = generator.getRecursiveBacktrackerMaze();
         maze = new char[testMaze.length][testMaze[0].length];
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[0].length; j++) {
