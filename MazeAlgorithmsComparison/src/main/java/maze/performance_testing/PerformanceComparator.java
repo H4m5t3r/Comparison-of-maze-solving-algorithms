@@ -3,20 +3,23 @@ package maze.performance_testing;
 
 import maze.domain.DeadEndFilling;
 import maze.domain.DepthFirstSearch;
-import maze.domain.MazeGenerator;
+import maze.domain.KruskalMaze;
+import maze.domain.RecursiveBacktracker;
 
 /**
  * A class used for running and comparing different algorithms.
  * @author taleiko
  */
 public class PerformanceComparator {
-    private MazeGenerator generator;
+    private RecursiveBacktracker rec;
+    private KruskalMaze k;
     private DeadEndFilling deadEnd;
     private DepthFirstSearch depth;
-    private char[][] temp;
+    private char[][] testMaze;
     private char[][] maze;
     private long start;
     private long recTime;
+    private long kruskalTime;
     private long deadEndTime;
     private long depthTime;
     /**
@@ -33,14 +36,29 @@ public class PerformanceComparator {
      */
     public void recursiveBacktrackerTest() {
         recTime = 0;
+        rec = new RecursiveBacktracker(3000, 3000);
+        rec.generateMaze();
         for (int i = 0; i < 10; i++) {
             start = System.nanoTime();
-            generator = new MazeGenerator();
-            generator.initializeRecursiveBacktracker(3000, 3000);
-            generator.generateRecursiveBacktrackerMaze();
+            rec.generateMaze();
             recTime += System.nanoTime() - start;
         }
         recTime /= 10;
+    }
+    /**
+     * Gathers data on long it takes for the recursive kruskal class to generate
+     * a maze.
+     */
+    public void kruskalTest() {
+        kruskalTime = 0;
+        k = new KruskalMaze(3000, 3000);
+        k.generateMaze();
+        for (int i = 0; i < 10; i++) {
+            start = System.nanoTime();
+            k.generateMaze();
+            kruskalTime += System.nanoTime() - start;
+        }
+        kruskalTime /= 10;
     }
     /**
      * Gathers data on long it takes for the dead-end solve method to solve
@@ -48,12 +66,14 @@ public class PerformanceComparator {
      */
     public void deadEndSolveTest() {
         deadEndTime = 0;
-        temp = generator.getRecursiveBacktrackerMaze();
-        maze = new char[temp.length][temp[0].length];
+        rec = new RecursiveBacktracker(3000, 3000);
+        rec.generateMaze();
+        testMaze = generator.getRecursiveBacktrackerMaze();
+        maze = new char[testMaze.length][testMaze[0].length];
         //Copying the maze
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[0].length; j++) {
-                maze[i][j] = temp[i][j];
+                maze[i][j] = testMaze[i][j];
             }
         }
         for (int i = 0; i < 10; i++) {
@@ -70,11 +90,11 @@ public class PerformanceComparator {
      */
     public void depthFirstSearchTest() {
         depth = new DepthFirstSearch();
-        temp = generator.getRecursiveBacktrackerMaze();
-        maze = new char[temp.length][temp[0].length];
+        testMaze = generator.getRecursiveBacktrackerMaze();
+        maze = new char[testMaze.length][testMaze[0].length];
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[0].length; j++) {
-                maze[i][j] = temp[i][j];
+                maze[i][j] = testMaze[i][j];
             }
         }
         depthTime = System.nanoTime();
@@ -87,6 +107,13 @@ public class PerformanceComparator {
      */
     public long getRecTime() {
         return recTime;
+    }
+    /**
+     * Returns the Kruskal generator's performance time.
+     * @return kruskalTime
+     */
+    public long getKruskalTime() {
+        return this.kruskalTime;
     }
     /**
      * Returns the dead-end filling method's performance time.
