@@ -30,7 +30,7 @@ public class PerformanceComparator {
     public PerformanceComparator() {
         deadEnd = new DeadEndFilling();
         depth = new DepthFirstSearch();
-        this.mazeSize = 1000;
+        this.mazeSize = 5;
         this.maze = new char[mazeSize * 2 + 1][mazeSize * 2 + 1];
         this.recDead = new long[5];
         this.krusDead = new long[5];
@@ -56,6 +56,7 @@ public class PerformanceComparator {
         rec.generateMaze();
         for (int i = 0; i < 10; i++) {
             start = System.nanoTime();
+            rec = new RecursiveBacktracker(mazeSize, mazeSize);
             rec.generateMaze();
             recTime += System.nanoTime() - start;
         }
@@ -70,6 +71,7 @@ public class PerformanceComparator {
         k.generateMaze();
         for (int i = 0; i < 10; i++) {
             start = System.nanoTime();
+            k = new KruskalMaze(mazeSize, mazeSize);
             k.generateMaze();
             kruskalTime += System.nanoTime() - start;
         }
@@ -101,6 +103,7 @@ public class PerformanceComparator {
         //5 tests for both of the solvers
         for (int i = 0; i < 5; i++) {
             //Dead-end filling
+            rec = new RecursiveBacktracker(mazeSize, mazeSize);
             rec.generateMaze();
             for (int y = 0; y < rec.getMaze().length; y++) {
                 for (int x = 0; x < rec.getMaze()[0].length; x++) {
@@ -111,7 +114,6 @@ public class PerformanceComparator {
             deadEnd.solve(maze);
             recDead[i] = System.nanoTime() - start;
             //Depth-first search
-            rec.generateMaze();
             for (int y = 0; y < rec.getMaze().length; y++) {
                 for (int x = 0; x < rec.getMaze()[0].length; x++) {
                     maze[y][x] = rec.getMaze()[y][x];
@@ -155,7 +157,6 @@ public class PerformanceComparator {
             deadEnd.solve(maze);
             krusDead[i] = System.nanoTime() - start;
             //Depth-first search
-            k.generateMaze();
             for (int y = 0; y < k.getMaze().length; y++) {
                 for (int x = 0; x < k.getMaze()[0].length; x++) {
                     maze[y][x] = k.getMaze()[y][x];
