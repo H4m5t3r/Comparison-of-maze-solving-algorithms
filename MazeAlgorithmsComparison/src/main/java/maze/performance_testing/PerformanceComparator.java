@@ -22,37 +22,29 @@ public class PerformanceComparator {
     private long kruskalTime;
     private final int mazeSize;
     
-    private long recDead1;
-    private long recDead2;
-    private long recDead3;
-    private long recDead4;
-    private long recDead5;
-    private long krusDead1;
-    private long krusDead2;
-    private long krusDead3;
-    private long krusDead4;
-    private long krusDead5;
-    
-    private long recDepth1;
-    private long recDepth2;
-    private long recDepth3;
-    private long recDepth4;
-    private long recDepth5;
-    private long krusDepth1;
-    private long krusDepth2;
-    private long krusDepth3;
-    private long krusDepth4;
-    private long krusDepth5;
+    private final long[] recDead;
+    private final long[] krusDead;
+    private final long[] recDepth;
+    private final long[] krusDepth;
 
     public PerformanceComparator() {
-        this.mazeSize = 3000;
+        deadEnd = new DeadEndFilling();
+        depth = new DepthFirstSearch();
+        this.mazeSize = 1000;
+        this.maze = new char[mazeSize * 2 + 1][mazeSize * 2 + 1];
+        this.recDead = new long[5];
+        this.krusDead = new long[5];
+        this.recDepth = new long[5];
+        this.krusDepth = new long[5];
     }
     /**
      * Calls the performance test methods.
      */
     public void runAllTests() {
         recursiveBacktrackerTest();
+        kruskalTest();
         recBackSolvingTest();
+        kruskalSolvingTest();
     }
     /**
      * Gathers data on long it takes for the recursive backtracker method to
@@ -88,77 +80,91 @@ public class PerformanceComparator {
      * a maze.
      */
     public void recBackSolvingTest() {
-        deadEnd = new DeadEndFilling();
-        depth = new DepthFirstSearch();
+        //Pre-running the methods to avoid extra compilation time later on.
         rec = new RecursiveBacktracker(mazeSize, mazeSize);
         rec.generateMaze();
-        deadEnd.solve(rec.getMaze());
-        depth.solve(rec.getMaze());
+        //Copying the maze
+        for (int y = 0; y < rec.getMaze().length; y++) {
+            for (int x = 0; x < rec.getMaze()[0].length; x++) {
+                maze[y][x] = rec.getMaze()[y][x];
+            }
+        }
+        deadEnd.solve(maze);
+        //Copying the maze again
+        for (int y = 0; y < rec.getMaze().length; y++) {
+            for (int x = 0; x < rec.getMaze()[0].length; x++) {
+                maze[y][x] = rec.getMaze()[y][x];
+            }
+        }
+        depth.solve(maze);
         
         //5 tests for both of the solvers
-        //1
-        rec.generateMaze();
-        start = System.nanoTime();
-        deadEnd.solve(rec.getMaze());
-        recDead1 = System.nanoTime() - start;
-        start = System.nanoTime();
-        depth.solve(rec.getMaze());
-        recDepth1 = System.nanoTime() - start;
-        
-        //2
-        rec.generateMaze();
-        start = System.nanoTime();
-        deadEnd.solve(rec.getMaze());
-        recDead2 = System.nanoTime() - start;
-        start = System.nanoTime();
-        depth.solve(rec.getMaze());
-        recDepth2 = System.nanoTime() - start;
-        
-        //3
-        rec.generateMaze();
-        start = System.nanoTime();
-        deadEnd.solve(rec.getMaze());
-        recDead3 = System.nanoTime() - start;
-        start = System.nanoTime();
-        depth.solve(rec.getMaze());
-        recDepth3 = System.nanoTime() - start;
-        
-        //4
-        rec.generateMaze();
-        start = System.nanoTime();
-        deadEnd.solve(rec.getMaze());
-        recDead4 = System.nanoTime() - start;
-        start = System.nanoTime();
-        depth.solve(rec.getMaze());
-        recDepth4 = System.nanoTime() - start;
-        
-        //5
-        rec.generateMaze();
-        start = System.nanoTime();
-        deadEnd.solve(rec.getMaze());
-        recDead5 = System.nanoTime() - start;
-        start = System.nanoTime();
-        depth.solve(rec.getMaze());
-        recDepth5 = System.nanoTime() - start;
+        for (int i = 0; i < 5; i++) {
+            //Dead-end filling
+            rec.generateMaze();
+            for (int y = 0; y < rec.getMaze().length; y++) {
+                for (int x = 0; x < rec.getMaze()[0].length; x++) {
+                    maze[y][x] = rec.getMaze()[y][x];
+                }
+            }
+            start = System.nanoTime();
+            deadEnd.solve(maze);
+            recDead[i] = System.nanoTime() - start;
+            //Depth-first search
+            rec.generateMaze();
+            for (int y = 0; y < rec.getMaze().length; y++) {
+                for (int x = 0; x < rec.getMaze()[0].length; x++) {
+                    maze[y][x] = rec.getMaze()[y][x];
+                }
+            }
+            start = System.nanoTime();
+            depth.solve(maze);
+            recDepth[i] = System.nanoTime() - start;
+        }
     }
     
     public void kruskalSolvingTest() {
-        deadEnd = new DeadEndFilling();
-        depth = new DepthFirstSearch();
+        //Pre-running the methods to avoid extra compilation time later on.
         k = new KruskalMaze(mazeSize, mazeSize);
         k.generateMaze();
-        deadEnd.solve(k.getMaze());
-        depth.solve(k.getMaze());
-        
+        //Copying the maze
+        for (int y = 0; y < k.getMaze().length; y++) {
+            for (int x = 0; x < k.getMaze()[0].length; x++) {
+                maze[y][x] = k.getMaze()[y][x];
+            }
+        }
+        deadEnd.solve(maze);
+        //Copying the maze again
+        for (int y = 0; y < k.getMaze().length; y++) {
+            for (int x = 0; x < k.getMaze()[0].length; x++) {
+                maze[y][x] = k.getMaze()[y][x];
+            }
+        }
+        depth.solve(maze);
         //5 tests for both of the solvers
-        //1
-        k.generateMaze();
-        start = System.nanoTime();
-        deadEnd.solve(k.getMaze());
-        recDead1 = System.nanoTime() - start;
-        start = System.nanoTime();
-        depth.solve(k.getMaze());
-        recDepth1 = System.nanoTime() - start;
+        for (int i = 0; i < 5; i++) {
+            //Dead-end filling
+            k = new KruskalMaze(mazeSize, mazeSize);
+            k.generateMaze();
+            for (int y = 0; y < k.getMaze().length; y++) {
+                for (int x = 0; x < k.getMaze()[0].length; x++) {
+                    maze[y][x] = k.getMaze()[y][x];
+                }
+            }
+            start = System.nanoTime();
+            deadEnd.solve(maze);
+            krusDead[i] = System.nanoTime() - start;
+            //Depth-first search
+            k.generateMaze();
+            for (int y = 0; y < k.getMaze().length; y++) {
+                for (int x = 0; x < k.getMaze()[0].length; x++) {
+                    maze[y][x] = k.getMaze()[y][x];
+                }
+            }
+            start = System.nanoTime();
+            depth.solve(maze);
+            krusDepth[i] = System.nanoTime() - start;
+        }
     }
     
     //Get methods
@@ -177,44 +183,19 @@ public class PerformanceComparator {
         return this.kruskalTime;
     }
     
-    public long getRecDead1() {
-        return recDead1;
+    public long[] getRecDead() {
+        return this.recDead;
     }
     
-    public long getRecDead2() {
-        return recDead2;
+    public long[] getRecDepth() {
+        return this.recDepth;
     }
     
-    public long getRecDead3() {
-        return recDead3;
+    public long[] getKrusDead() {
+        return this.krusDead;
     }
     
-    public long getRecDead4() {
-        return recDead4;
+    public long[] getKrusDepth() {
+        return this.krusDepth;
     }
-    
-    public long getRecDead5() {
-        return recDead5;
-    }
-    
-    public long getRecDepth1() {
-        return recDepth1;
-    }
-    
-    public long getRecDepth2() {
-        return recDepth2;
-    }
-    
-    public long getRecDepth3() {
-        return recDepth3;
-    }
-    
-    public long getRecDepth4() {
-        return recDepth4;
-    }
-    
-    public long getRecDepth5() {
-        return recDepth5;
-    }
-    
 }

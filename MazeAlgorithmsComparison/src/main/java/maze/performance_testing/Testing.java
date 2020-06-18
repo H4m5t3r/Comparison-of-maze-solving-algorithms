@@ -11,7 +11,7 @@ public class Testing {
         PerformanceComparator p = new PerformanceComparator();
 //        p.recursiveBacktrackerTest();
 //        System.out.println(p.getRecTime());
-        p.kruskalTest();
-        System.out.println(p.getKruskalTime());
+        p.runAllTests();
+        System.out.println("Done");
     }
 }
