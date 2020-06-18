@@ -2,7 +2,7 @@
 
 In this project I will create a program that generates perfect mazes (mazes with only one solution and no loops) and compares dead-end filling and a recursive algorithm as maze solving methods by analyzing their execution times.
 
-**Note: When the program is run from the terminal it will not automatically give the JVM extra memory. Because of this the performance test for the recursive backtracker generator will not be able to run because it will run out of memory and cause an error. Occasionally the generator may run out of memory if the size of the maze is somewhere around 150 * 150.**
+**Note: The performance tests are being worked on so at the moment they will only cause errors.**
 
 ## Useful links
 [Specifications](https://github.com/H4m5t3r/Comparison-of-maze-solving-algorithms/blob/master/Documentation/Specifications.md)
