@@ -71,15 +71,73 @@ public class MazeUI extends Application {
     private Label loadingLabel;
     
     //Performance results scene
-    private Scene performanceResults;
-    private Pane results;
-    private Label resultsLabel;
-    private Label recLabel;
-    private Label deadEndLabel;
-    private Label depthLabel;
-    private Label recRes;
-    private Label deadEndRes;
-    private Label depthRes;
+    private Scene performanceResultsScene;
+    private Pane performanceResultsPane;
+    private GridPane recResultsGrid;
+    private GridPane krusResultsGrid;
+    
+    //Section 1
+    //Titles
+    private Label resultsTitle;
+    private Label mazeGenerationTitle;
+    //Results
+    private Label recBAvg;
+    private Label kruskalAvg;
+    
+    //Section 2
+    //Titles
+    private Label recBSolvingTitle;
+    private Label recCol1;
+    private Label recCol2;
+    private Label recCol3;
+    private Label recCol4;
+    private Label recCol5;
+    private Label recAvgCol;
+    //Results
+    private Label recDead1;
+    private Label recDead2;
+    private Label recDead3;
+    private Label recDead4;
+    private Label recDead5;
+    private Label recAvg;
+    private Label recDepth1;
+    private Label recDepth2;
+    private Label recDepth3;
+    private Label recDepth4;
+    private Label recDepth5;
+    private Label recDepthAvg;
+    
+    //Section 3
+    //Titles
+    private Label kruskalSolvingTitle;
+    private Label krusCol1;
+    private Label krusCol2;
+    private Label krusCol3;
+    private Label krusCol4;
+    private Label krusCol5;
+    private Label krusAvgCol;
+    //Results
+    private Label krusDead1;
+    private Label krusDead2;
+    private Label krusDead3;
+    private Label krusDead4;
+    private Label krusDead5;
+    private Label krusDeadAvg;
+    private Label krusDepth1;
+    private Label krusDepth2;
+    private Label krusDepth3;
+    private Label krusDepth4;
+    private Label krusDepth5;
+    private Label krusDepthAvg;
+    
+    //OLD, can be deleted once the new scene has been created
+//    private Label resultsLabel;
+//    private Label recLabel;
+//    private Label deadEndLabel;
+//    private Label depthLabel;
+//    private Label recRes;
+//    private Label deadEndRes;
+//    private Label depthRes;
     
     //Program logic
     private Logic logic;
@@ -311,36 +369,19 @@ public class MazeUI extends Application {
         
         startTest.setOnAction((event) -> {
             window.setScene(loadingScene);
-            GridPane pane = new GridPane();
-            logic.performanceTest();
-            results = new Pane();
-            resultsLabel = new Label("Results");
-            recLabel = new Label("Recursive backtracker:");
-            deadEndLabel = new Label("Dead-end filling:");
-            depthLabel = new Label("Depth-first search:");
-            recRes = new Label(logic.getRecursiveResultFromTest() / 1000000 + " ms");
-            deadEndRes = new Label(logic.getDeadEndResultFromTest() / 1000000 + " ms");
-            depthRes = new Label(logic.getDepthFirstResultFromTest() / 1000000 + " ms");
+//            logic.performanceTest();
+            performanceResultsPane = new Pane();
+            recResultsGrid = new GridPane();
+            krusResultsGrid = new GridPane();
             
-            resultsLabel.setLayoutX(200);
-            resultsLabel.setLayoutY(100);
-            recLabel.setLayoutX(70);
-            recLabel.setLayoutY(140);
-            deadEndLabel.setLayoutX(70);
-            deadEndLabel.setLayoutY(180);
-            depthLabel.setLayoutX(70);
-            depthLabel.setLayoutY(220);
-            recRes.setLayoutX(250);
-            recRes.setLayoutY(140);
-            deadEndRes.setLayoutX(250);
-            deadEndRes.setLayoutY(180);
-            depthRes.setLayoutX(250);
-            depthRes.setLayoutY(220);
+            resultsTitle = new Label("Results");
+            recResultsGrid.add(resultsTitle, 0, 0);
+            performanceResultsPane.getChildren().add(recResultsGrid);
             
-            results.getChildren().addAll(resultsLabel, recLabel, deadEndLabel,
-                    depthLabel, recRes, deadEndRes, depthRes, menu);
-            performanceResults = new Scene(results, 500, 500);
-            window.setScene(performanceResults);
+            
+            performanceResultsPane.getChildren().addAll(recResultsGrid, krusResultsGrid);
+            performanceResultsScene = new Scene(performanceResultsPane, 500, 500);
+            window.setScene(performanceResultsScene);
         });
         
         recursiveBacktr.setOnAction((event) -> {

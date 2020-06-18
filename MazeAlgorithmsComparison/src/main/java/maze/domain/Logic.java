@@ -237,18 +237,4 @@ public class Logic {
     public long getRecursiveResultFromTest() {
         return performance.getRecTime();
     }
-    /**
-     * Returns the dead-end solve method's performance time.
-     * @return performanceTime
-     */
-    public long getDeadEndResultFromTest() {
-        return performance.getDeadEndTime();
-    }
-    /**
-     * Returns the depth-first search method's performance time.
-     * @return performanceTime
-     */
-    public long getDepthFirstResultFromTest() {
-        return performance.getDepthTime();
-    }
 }
