@@ -29,7 +29,7 @@ public class PerformanceComparator {
     public PerformanceComparator() {
         deadEnd = new DeadEndFilling();
         depth = new DepthFirstSearch();
-        this.mazeSize = 50;
+        this.mazeSize = 3000;
         this.maze = new char[mazeSize * 2 + 1][mazeSize * 2 + 1];
         this.recDead = new long[5];
         this.krusDead = new long[5];
