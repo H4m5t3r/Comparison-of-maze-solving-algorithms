@@ -73,6 +73,7 @@ public class MazeUI extends Application {
     //Performance results scene
     private Scene performanceResultsScene;
     private Pane performanceResultsPane;
+    private GridPane generationResultsGrid;
     private GridPane recResultsGrid;
     private GridPane krusResultsGrid;
     
@@ -81,8 +82,10 @@ public class MazeUI extends Application {
     private Label resultsTitle;
     private Label mazeGenerationTitle;
     //Results
-    private Label recBAvg;
-    private Label kruskalAvg;
+    private Label recBAvgTitle;
+    private Label kruskalAvgTitle;
+    private Label recBAvgResult;
+    private Label kruskalAvgResult;
     
     //Section 2
     //Titles
@@ -93,13 +96,15 @@ public class MazeUI extends Application {
     private Label recCol4;
     private Label recCol5;
     private Label recAvgCol;
+    private Label deadEndRow1;
+    private Label depthRow1;
     //Results
     private Label recDead1;
     private Label recDead2;
     private Label recDead3;
     private Label recDead4;
     private Label recDead5;
-    private Label recAvg;
+    private Label recDeadAvg;
     private Label recDepth1;
     private Label recDepth2;
     private Label recDepth3;
@@ -116,6 +121,8 @@ public class MazeUI extends Application {
     private Label krusCol4;
     private Label krusCol5;
     private Label krusAvgCol;
+    private Label deadEndRow2;
+    private Label depthRow2;
     //Results
     private Label krusDead1;
     private Label krusDead2;
@@ -369,17 +376,101 @@ public class MazeUI extends Application {
         
         startTest.setOnAction((event) -> {
             window.setScene(loadingScene);
-//            logic.performanceTest();
+            logic.performanceTest();
             performanceResultsPane = new Pane();
+            generationResultsGrid = new GridPane();
             recResultsGrid = new GridPane();
             krusResultsGrid = new GridPane();
             
             resultsTitle = new Label("Results");
-            recResultsGrid.add(resultsTitle, 0, 0);
-            performanceResultsPane.getChildren().add(recResultsGrid);
+            //Section 1
+            mazeGenerationTitle = new Label("Maze generation");
+            recBAvgTitle = new Label("Recursive backtracker average:");
+            kruskalAvgTitle = new Label("Kruskal average:");
+            recBAvgResult = new Label("" + logic.getRecTime());
+            kruskalAvgResult = new Label("" + logic.getKruskalTime());
+            generationResultsGrid.add(recBAvgTitle, 0, 0);
+            generationResultsGrid.add(kruskalAvgTitle, 0, 1);
+            generationResultsGrid.add(recBAvgResult, 1, 0);
+            generationResultsGrid.add(kruskalAvgResult, 1, 1);
+            
+            //Section 2
+            recBSolvingTitle = new Label("Recursive backtracker maze solving");
+            //Columns
+            recCol1 = new Label("1  ");
+            recCol2 = new Label("2  ");
+            recCol3 = new Label("3  ");
+            recCol4 = new Label("4  ");
+            recCol5 = new Label("5  ");
+            recAvgCol = new Label("Avg ");
+            //Rows
+            deadEndRow1 = new Label("Dead-end filling ");
+            depthRow1 = new Label("Depth-first search ");
+            //Results
+            //Dead-end filling
+            long[] recDeadResults1 = logic.getRecDead();
+            recDead1 = new Label(recDeadResults1[0] + " ns  ");
+            recDead2 = new Label(recDeadResults1[1] + " ns  ");
+            recDead3 = new Label(recDeadResults1[2] + " ns  ");
+            recDead4 = new Label(recDeadResults1[3] + " ns  ");
+            recDead5 = new Label(recDeadResults1[4] + " ns  ");
+            long average = 0;
+            for (int i = 0; i < recDeadResults1.length; i++) {
+                average += recDeadResults1[i];
+            }
+            average /= recDeadResults1.length;
+            recDeadAvg = new Label(average + " ns  ");
+            //Depth-first search
+            long[] recDepthResults1 = logic.getRecDepth();
+            recDepth1 = new Label(recDepthResults1[0] + " ns  ");
+            recDepth2 = new Label(recDepthResults1[1] + " ns  ");
+            recDepth3 = new Label(recDepthResults1[2] + " ns  ");
+            recDepth4 = new Label(recDepthResults1[3] + " ns  ");
+            recDepth5 = new Label(recDepthResults1[4] + " ns  ");
+            average = 0;
+            for (int i = 0; i < recDepthResults1.length; i++) {
+                average += recDepthResults1[i];
+            }
+            average /= recDepthResults1.length;
+            recDepthAvg = new Label(average + " ns  ");
+            //Placing the values in the table
+            //Text
+            recResultsGrid.add(recCol1, 0, 1);
+            recResultsGrid.add(recCol2, 0, 2);
+            recResultsGrid.add(recCol3, 0, 3);
+            recResultsGrid.add(recCol4, 0, 4);
+            recResultsGrid.add(recCol5, 0, 5);
+            recResultsGrid.add(recAvgCol, 0, 6);
+            recResultsGrid.add(deadEndRow1, 1, 0);
+            recResultsGrid.add(depthRow1, 2, 0);
+            //Dead-end filling data
+            recResultsGrid.add(recDead1, 1, 1);
+            recResultsGrid.add(recDead2, 1, 2);
+            recResultsGrid.add(recDead3, 1, 3);
+            recResultsGrid.add(recDead4, 1, 4);
+            recResultsGrid.add(recDead5, 1, 5);
+            recResultsGrid.add(recDeadAvg, 1, 6);
+            //Depth-first search data
+            recResultsGrid.add(recDepth1, 2, 1);
+            recResultsGrid.add(recDepth2, 2, 2);
+            recResultsGrid.add(recDepth3, 2, 3);
+            recResultsGrid.add(recDepth4, 2, 4);
+            recResultsGrid.add(recDepth5, 2, 5);
+            recResultsGrid.add(recDepthAvg, 2, 6);
+            
+            //Section 3
             
             
-            performanceResultsPane.getChildren().addAll(recResultsGrid, krusResultsGrid);
+            //Setting coordinates
+            generationResultsGrid.setLayoutX(200);
+            generationResultsGrid.setLayoutY(50);
+            recResultsGrid.setLayoutX(0);
+            recResultsGrid.setLayoutY(100);
+            
+            performanceResultsPane.getChildren().addAll(resultsTitle,
+                    generationResultsGrid, recBSolvingTitle, recResultsGrid);
+            
+            
             performanceResultsScene = new Scene(performanceResultsPane, 500, 500);
             window.setScene(performanceResultsScene);
         });

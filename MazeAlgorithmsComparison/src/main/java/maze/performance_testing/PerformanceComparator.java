@@ -15,13 +15,12 @@ public class PerformanceComparator {
     private KruskalMaze k;
     private DeadEndFilling deadEnd;
     private DepthFirstSearch depth;
-    private char[][] testMaze;
     private char[][] maze;
     private long start;
-    private long recTime;
-    private long kruskalTime;
     private final int mazeSize;
     
+    private long recTime;
+    private long kruskalTime;
     private final long[] recDead;
     private final long[] krusDead;
     private final long[] recDepth;
@@ -30,7 +29,7 @@ public class PerformanceComparator {
     public PerformanceComparator() {
         deadEnd = new DeadEndFilling();
         depth = new DepthFirstSearch();
-        this.mazeSize = 2000;
+        this.mazeSize = 50;
         this.maze = new char[mazeSize * 2 + 1][mazeSize * 2 + 1];
         this.recDead = new long[5];
         this.krusDead = new long[5];
@@ -174,7 +173,7 @@ public class PerformanceComparator {
      * @return recursiveTime
      */
     public long getRecTime() {
-        return recTime;
+        return this.recTime;
     }
     /**
      * Returns the Kruskal generator's performance time.

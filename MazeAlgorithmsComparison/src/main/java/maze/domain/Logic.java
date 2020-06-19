@@ -234,7 +234,30 @@ public class Logic {
      * Returns the recursive backtracker method's performance time.
      * @return performanceTime
      */
-    public long getRecursiveResultFromTest() {
+    public long getRecTime() {
         return performance.getRecTime();
+    }
+    /**
+     * Returns the Kruskal generator's performance time.
+     * @return kruskalTime
+     */
+    public long getKruskalTime() {
+        return performance.getKruskalTime();
+    }
+    
+    public long[] getRecDead() {
+        return performance.getRecDead();
+    }
+    
+    public long[] getRecDepth() {
+        return performance.getRecDepth();
+    }
+    
+    public long[] getKrusDead() {
+        return performance.getKrusDead();
+    }
+    
+    public long[] getKrusDepth() {
+        return performance.getKrusDepth();
     }
 }
