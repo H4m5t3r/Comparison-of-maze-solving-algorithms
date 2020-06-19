@@ -1,3 +1,5 @@
+# Week 6
+
 This week I created new performance tests and visualized them in the GUI. The size of the mazes that are generated can be changed by modifying the variable called "mazeSize" in the PerformanceComparator class. Right now it is set to 3000 (creates a 3000 * 3000 maze). There are three sections:
 
 ### Maze generation tests
