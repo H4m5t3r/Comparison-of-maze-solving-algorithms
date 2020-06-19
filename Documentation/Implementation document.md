@@ -98,7 +98,7 @@ Since the worst case scenario is when the entrance and exit both are in the righ
 
 # Flaws
 * repetetive code in som of the algorithms, RECURSIVE BACKTRACKER
-* recursive backtracker always starts from the upper right corner
+* recursive backtracker always starts from the upper left corner
 * could carve out the rooms and only check the dorridors
 * repetetive code in the UI test results
 
