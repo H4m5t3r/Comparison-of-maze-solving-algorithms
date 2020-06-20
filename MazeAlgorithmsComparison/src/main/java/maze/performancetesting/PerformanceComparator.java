@@ -213,17 +213,11 @@ public class PerformanceComparator {
     }
     
     //Get methods
-    /**
-     * Returns the recursive backtracker method's performance time.
-     * @return recursiveTime
-     */
+    
     public long getRecTime() {
         return this.recTime;
     }
-    /**
-     * Returns the Kruskal generator's performance time.
-     * @return kruskalTime
-     */
+    
     public long getKruskalTime() {
         return this.kruskalTime;
     }

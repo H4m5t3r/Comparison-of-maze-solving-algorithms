@@ -2,7 +2,7 @@
 package maze.domain;
 
 /**
- * A class that uses the dead end filling method to solve perfect mazes.
+ * A class that uses the dead-end filling method to solve perfect mazes.
  * @author taleiko
  */
 public class DeadEndFilling {
