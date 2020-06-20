@@ -1,4 +1,4 @@
-package maze.data_structures;
+package maze.datastructures;
 
 /**
  * The nodes used by the LinkedList class.

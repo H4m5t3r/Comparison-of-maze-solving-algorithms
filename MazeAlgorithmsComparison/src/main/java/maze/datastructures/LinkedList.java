@@ -1,4 +1,4 @@
-package maze.data_structures;
+package maze.datastructures;
 
 /**
  * A linked list data structure that uses the class LinkedListNode as nodes.

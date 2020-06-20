@@ -1,7 +1,7 @@
 
 package tests;
 
-import maze.data_structures.Stack;
+import maze.datastructures.Stack;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;

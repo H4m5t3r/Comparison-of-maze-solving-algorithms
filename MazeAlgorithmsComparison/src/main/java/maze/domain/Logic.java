@@ -1,7 +1,7 @@
 
 package maze.domain;
 
-import maze.performance_testing.PerformanceComparator;
+import maze.performancetesting.PerformanceComparator;
 
 /**
  * Used by the UI to communicate with the program.

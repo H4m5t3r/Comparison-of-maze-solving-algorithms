@@ -1,8 +1,8 @@
 
 package maze.domain;
 
-import maze.data_structures.LinkedList;
-import maze.data_structures.Stack;
+import maze.datastructures.LinkedList;
+import maze.datastructures.Stack;
 
 /**
  * This class generates a random maze.

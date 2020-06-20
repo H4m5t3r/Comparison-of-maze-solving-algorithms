@@ -1,5 +1,5 @@
 
-package maze.data_structures;
+package maze.datastructures;
 
 /**
  * A class that implements a stack data structure where the size of the stack

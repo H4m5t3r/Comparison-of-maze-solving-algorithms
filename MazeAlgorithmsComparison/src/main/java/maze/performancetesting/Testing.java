@@ -1,5 +1,5 @@
 
-package maze.performance_testing;
+package maze.performancetesting;
 
 /**
  *

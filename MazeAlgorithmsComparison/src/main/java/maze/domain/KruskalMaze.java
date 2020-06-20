@@ -1,7 +1,7 @@
 
 package maze.domain;
 
-import maze.data_structures.UnionFind;
+import maze.datastructures.UnionFind;
 
 /**
  * A class that generates mazes by creating a minimum spanning tree.

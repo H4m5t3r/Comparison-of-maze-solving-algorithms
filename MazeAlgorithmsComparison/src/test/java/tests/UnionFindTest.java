@@ -1,7 +1,7 @@
 
 package tests;
 
-import maze.data_structures.UnionFind;
+import maze.datastructures.UnionFind;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
