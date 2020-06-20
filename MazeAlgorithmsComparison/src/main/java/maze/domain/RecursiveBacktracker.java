@@ -136,7 +136,6 @@ public class RecursiveBacktracker {
         //Going in all possible directions
         addRandomDirectionOrderToDirectionsStack();
         for (int i = 0; i < directionsToGo; i++) {
-            //REPLACE REPETETIVE CODE WITH ONE METHOD?
             switch (directionsStack.peek()) {
                 case 0:
                     try {
