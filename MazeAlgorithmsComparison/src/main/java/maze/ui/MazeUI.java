@@ -251,14 +251,11 @@ public class MazeUI extends Application {
         startTest = new Button("Start the tests");
         startTest.setLayoutX(185);
         startTest.setLayoutY(260);
-        testInfo = new Label("The performance test will generate a maze and "
-                + "solve it using the methods\nused in this program. Each "
-                + "process will be executed 11 times and an\naverage result "
-                + "will be calculated.The first test result will be excluded to"
-                + " \navoid inaccurate results caused by Java's Just In Time "
-                + "compilation.");
-        testInfo.setLayoutY(100);
-        testInfo.setLayoutX(5);
+        testInfo = new Label("Here you can run the performance tests. It may "
+                + "take\nseveral minutes for them to complete depending\non the "
+                + "environment.");
+        testInfo.setLayoutY(140);
+        testInfo.setLayoutX(90);
         performancePane.getChildren().addAll(testInfo, startTest, menu);
         performanceScene = new Scene(performancePane, 500, 500);
         //Loading screen
