@@ -62,13 +62,13 @@ public class MazeUI extends Application {
     
     //Performance test scene
     private Scene performanceScene;
-    private Scene loadingScene;
+    private Scene errorScene;
     private Pane performancePane;
-    private Pane loadingPane;
+    private Pane errorPane;
     private Button goToPerformanceTest;
     private Button startTest;
     private Label testInfo;
-    private Label loadingLabel;
+    private Label errorLabel;
     
     //Performance results scene
     private Scene performanceResultsScene;
@@ -136,15 +136,6 @@ public class MazeUI extends Application {
     private Label krusDepth4;
     private Label krusDepth5;
     private Label krusDepthAvg;
-    
-    //OLD, can be deleted once the new scene has been created
-//    private Label resultsLabel;
-//    private Label recLabel;
-//    private Label deadEndLabel;
-//    private Label depthLabel;
-//    private Label recRes;
-//    private Label deadEndRes;
-//    private Label depthRes;
     
     //Program logic
     private Logic logic;
@@ -271,12 +262,13 @@ public class MazeUI extends Application {
         performancePane.getChildren().addAll(testInfo, startTest, menu);
         performanceScene = new Scene(performancePane, 500, 500);
         //Loading screen
-        loadingLabel = new Label("Performing tests...");
-        loadingLabel.setLayoutX(190);
-        loadingLabel.setLayoutY(230);
-        loadingPane = new Pane();
-        loadingPane.getChildren().add(loadingLabel);
-        loadingScene = new Scene(loadingPane, 500, 500);
+        errorLabel = new Label("Unkown error. Please cmake sure that enough"
+                + "memory has been allocated\nfor the JVM stack and heap.");
+        errorLabel.setLayoutX(190);
+        errorLabel.setLayoutY(230);
+        errorPane = new Pane();
+        errorPane.getChildren().add(errorLabel);
+        errorScene = new Scene(errorPane, 500, 500);
     }
     
     private void updateNewMazeScreen() {
@@ -375,7 +367,7 @@ public class MazeUI extends Application {
         });
         
         startTest.setOnAction((event) -> {
-            window.setScene(loadingScene);
+            window.setScene(errorScene);
             logic.performanceTest();
             performanceResultsPane = new Pane();
             generationResultsGrid = new GridPane();
