@@ -11,6 +11,8 @@ In this project I will create a program that generates perfect mazes (mazes with
 
 [Testing document](https://github.com/H4m5t3r/Comparison-of-maze-solving-algorithms/blob/master/Documentation/Testing%20document.md#testing-document)
 
+[User manual](https://github.com/H4m5t3r/Comparison-of-maze-solving-algorithms/blob/master/Documentation/Manual.md)
+
 #### Weekly reports
 [Week 1](https://github.com/H4m5t3r/Comparison-of-maze-solving-algorithms/blob/master/Documentation/Weekly%20reports/Week%201.md)
 

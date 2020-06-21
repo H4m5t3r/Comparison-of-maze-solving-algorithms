@@ -262,9 +262,9 @@ public class MazeUI extends Application {
         performancePane.getChildren().addAll(testInfo, startTest, menu);
         performanceScene = new Scene(performancePane, 500, 500);
         //Loading screen
-        errorLabel = new Label("Unkown error. Please cmake sure that enough"
+        errorLabel = new Label("Unkown error. Please make sure that enough "
                 + "memory has been allocated\nfor the JVM stack and heap.");
-        errorLabel.setLayoutX(190);
+        errorLabel.setLayoutX(5);
         errorLabel.setLayoutY(230);
         errorPane = new Pane();
         errorPane.getChildren().add(errorLabel);
