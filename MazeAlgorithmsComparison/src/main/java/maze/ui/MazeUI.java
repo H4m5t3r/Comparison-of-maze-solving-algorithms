@@ -533,7 +533,7 @@ public class MazeUI extends Application {
             krusResultsGrid.setLayoutX(100);
             krusResultsGrid.setLayoutY(320);
             
-            performanceResultsPane.getChildren().addAll(resultsTitle,
+            performanceResultsPane.getChildren().addAll(menu, resultsTitle,
                     mazeGenerationTitle, generationResultsGrid,
                     recBSolvingTitle, recResultsGrid, kruskalSolvingTitle,
                     krusResultsGrid);
