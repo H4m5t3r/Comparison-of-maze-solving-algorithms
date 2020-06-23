@@ -13,6 +13,8 @@ In this project I will create a program that generates perfect mazes (mazes with
 
 [User manual](https://github.com/H4m5t3r/Comparison-of-maze-solving-algorithms/blob/master/Documentation/Manual.md)
 
+[The latest release](https://github.com/H4m5t3r/Comparison-of-maze-solving-algorithms/releases/tag/mazealgorithms)
+
 #### Weekly reports
 [Week 1](https://github.com/H4m5t3r/Comparison-of-maze-solving-algorithms/blob/master/Documentation/Weekly%20reports/Week%201.md)
 
@@ -53,4 +55,9 @@ mvn test
 Generate a Javadoc that can be found in */target/site/apidocs*
 ```
 mvn javadoc:javadoc
+```
+
+Create a jar file that can be found in *target* directory
+```
+mvn package
 ```

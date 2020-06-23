@@ -1,11 +1,11 @@
 # Manual
 
-Start with downloading the latest version of the program [here](ADD LINK TO RELEASE). It uses Java version 11, so make sure you have Java installed.
+Start with downloading the latest version of the program [here](https://github.com/H4m5t3r/Comparison-of-maze-solving-algorithms/releases/tag/mazealgorithms). It uses Java version 11, so make sure you have Java installed.
 
 ## Starting the program
 Once you have downloaded the jar file you can run it with the following command (make sure you run it in the directory where the file is saved):
 ```
-java -jar -----------.jar
+java -jar MazeAlgorithmsComparison-1.0.jar
 ```
 
 ## The menu
