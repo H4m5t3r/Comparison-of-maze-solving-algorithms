@@ -2,7 +2,7 @@
 
 The different algorithms used in this program are all implemented in their own Java classes. These are controlled by the class called "Logic". The graphical user interface uses a Logic class to call different methods from the classes when the user clicks different buttons.
 
-*insert class diagram*
+![class diagram](https://raw.githubusercontent.com/H4m5t3r/Comparison-of-maze-solving-algorithms/master/Documentation/Pictures/class_diagram.jpg)
 
 The mazes that are generated and solved are two-dimensional character arrays with corridors and walls. This means that when the width is w and the height is h it actually means that the size of the two-dimensional array is (2w + 1) * (2h + 1) because there are walls between the corridors and on each side of the maze. In this document w always stands for the maze's width and h for its height.
 
@@ -97,10 +97,8 @@ for allFourDirections
 Since the worst case scenario is when the entrance and exit both are in the rightmost spaces (the search starts from the left side) and when the algorithm visits every single room in the maze the time complexity is O(2w + w * h). The space complexity is O(1) since the only thing stored is the boolean exitFound.
 
 # Flaws
-* repetetive code in som of the algorithms, RECURSIVE BACKTRACKER
-* recursive backtracker always starts from the upper left corner
-* could carve out the rooms and only check the dorridors
-* repetetive code in the UI test results
+* There are some parts where the program's code get really repetetive. An example of this is the recursive backtracker class and the part of the GUI where the performance test results are displayed. I was still a bit unsure of how I would do these parts when I wrote them, which resulted in the code quality suffering a bit.
+* The recursive backtracker algorithm always starts from the upper left corner. It's not really a problem but this results in that this corner is always a dead-end.
 
 ### Sources used in this project:
 
@@ -111,3 +109,11 @@ https://en.wikipedia.org/wiki/Maze_solving_algorithm
 Think Labyrinth: Daedalus
 
 http://www.astrolog.org/labyrnth/daedalus.htm
+
+Video: Maze Generation Algorithm - Recursive Backtracker, Easy Learn Tutorial (recursive backtracker implementation)
+
+https://youtu.be/elMXlO28Q1U
+
+William Fiset: Algorithms and data structures project (union-find data structure)
+
+https://github.com/williamfiset/Algorithms
