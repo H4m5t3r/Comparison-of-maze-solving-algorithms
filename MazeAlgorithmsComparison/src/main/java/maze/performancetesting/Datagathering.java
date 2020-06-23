@@ -11,7 +11,8 @@ import maze.domain.KruskalMaze;
 import maze.domain.RecursiveBacktracker;
 
 /**
- * 
+ * Creates text files containing test data. The tests are the same as in
+ * PerformanceComparator, but here they are run 100 times each.
  * @author taleiko
  */
 public class Datagathering {
@@ -72,9 +73,9 @@ public class Datagathering {
         
         
         //Data gathering
-        for (int i = 0; i < 10; i++) {
-            for (int percent = 0; percent < 10; percent++) {
-                System.out.println(i * 10 + "%");
+        for (int percent = 0; percent < 10; percent++) {
+            for (int i = 0; i < 10; i++) {
+                System.out.println(percent * 10 + "%");
                 
                 start = System.nanoTime();
                 recb = new RecursiveBacktracker(3000, 3000);

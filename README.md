@@ -2,7 +2,7 @@
 
 In this project I will create a program that generates perfect mazes (mazes with only one solution and no loops) and compares dead-end filling and a recursive algorithm as maze solving methods by analyzing their execution times.
 
-**Note: The performance tests are being worked on so at the moment they will only cause errors.**
+**Note: Additional space needs to be allocated for the JVM stack and heap. Otherwise the performance tests will run out of memory.**
 
 ## Useful links
 [Specifications](https://github.com/H4m5t3r/Comparison-of-maze-solving-algorithms/blob/master/Documentation/Specifications.md)
