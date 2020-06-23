@@ -376,8 +376,8 @@ public class MazeUI extends Application {
             mazeGenerationTitle = new Label("Maze generation");
             recBAvgTitle = new Label("Recursive backtracker average:");
             kruskalAvgTitle = new Label("Kruskal average:");
-            recBAvgResult = new Label(logic.getRecTime() + " ns");
-            kruskalAvgResult = new Label(logic.getKruskalTime() + " ns");
+            recBAvgResult = new Label(logic.getRecTime() / 1000000 + " ms");
+            kruskalAvgResult = new Label(logic.getKruskalTime() / 1000000 + " ms");
             generationResultsGrid.add(recBAvgTitle, 0, 0);
             generationResultsGrid.add(kruskalAvgTitle, 0, 1);
             generationResultsGrid.add(recBAvgResult, 1, 0);
@@ -398,30 +398,30 @@ public class MazeUI extends Application {
             //Results
             //Dead-end filling
             long[] recDeadResults = logic.getRecDead();
-            recDead1 = new Label(recDeadResults[0] + " ns  ");
-            recDead2 = new Label(recDeadResults[1] + " ns  ");
-            recDead3 = new Label(recDeadResults[2] + " ns  ");
-            recDead4 = new Label(recDeadResults[3] + " ns  ");
-            recDead5 = new Label(recDeadResults[4] + " ns  ");
+            recDead1 = new Label(recDeadResults[0] / 1000000 + " ms  ");
+            recDead2 = new Label(recDeadResults[1] / 1000000 + " ms  ");
+            recDead3 = new Label(recDeadResults[2] / 1000000 + " ms  ");
+            recDead4 = new Label(recDeadResults[3] / 1000000 + " ms  ");
+            recDead5 = new Label(recDeadResults[4] / 1000000 + " ms  ");
             long average = 0;
             for (int i = 0; i < recDeadResults.length; i++) {
                 average += recDeadResults[i];
             }
             average /= recDeadResults.length;
-            recDeadAvg = new Label(average + " ns  ");
+            recDeadAvg = new Label(average / 1000000 + " ms  ");
             //Depth-first search
             long[] recDepthResults = logic.getRecDepth();
-            recDepth1 = new Label(recDepthResults[0] + " ns  ");
-            recDepth2 = new Label(recDepthResults[1] + " ns  ");
-            recDepth3 = new Label(recDepthResults[2] + " ns  ");
-            recDepth4 = new Label(recDepthResults[3] + " ns  ");
-            recDepth5 = new Label(recDepthResults[4] + " ns  ");
+            recDepth1 = new Label(recDepthResults[0] / 1000000 + " ms  ");
+            recDepth2 = new Label(recDepthResults[1] / 1000000 + " ms  ");
+            recDepth3 = new Label(recDepthResults[2] / 1000000 + " ms  ");
+            recDepth4 = new Label(recDepthResults[3] / 1000000 + " ms  ");
+            recDepth5 = new Label(recDepthResults[4] / 1000000 + " ms  ");
             average = 0;
             for (int i = 0; i < recDepthResults.length; i++) {
                 average += recDepthResults[i];
             }
             average /= recDepthResults.length;
-            recDepthAvg = new Label(average + " ns  ");
+            recDepthAvg = new Label(average / 1000000 + " ms  ");
             //Placing the values in the table
             //Text
             recResultsGrid.add(recCol1, 0, 1);
@@ -462,30 +462,30 @@ public class MazeUI extends Application {
             //Results
             //Dead-end filling
             long[] krusDeadResults = logic.getKrusDead();
-            krusDead1 = new Label(krusDeadResults[0] + " ns  ");
-            krusDead2 = new Label(krusDeadResults[1] + " ns  ");
-            krusDead3 = new Label(krusDeadResults[2] + " ns  ");
-            krusDead4 = new Label(krusDeadResults[3] + " ns  ");
-            krusDead5 = new Label(krusDeadResults[4] + " ns  ");
+            krusDead1 = new Label(krusDeadResults[0] / 1000000 + " ms  ");
+            krusDead2 = new Label(krusDeadResults[1] / 1000000 + " ms  ");
+            krusDead3 = new Label(krusDeadResults[2] / 1000000 + " ms  ");
+            krusDead4 = new Label(krusDeadResults[3] / 1000000 + " ms  ");
+            krusDead5 = new Label(krusDeadResults[4] / 1000000 + " ms  ");
             average = 0;
             for (int i = 0; i < krusDeadResults.length; i++) {
                 average += krusDeadResults[i];
             }
             average /= krusDeadResults.length;
-            krusDeadAvg = new Label(average + " ns  ");
+            krusDeadAvg = new Label(average / 1000000 + " ms  ");
             //Depth-first search
             long[] krusDepthResults = logic.getKrusDepth();
-            krusDepth1 = new Label(krusDepthResults[0] + " ns  ");
-            krusDepth2 = new Label(krusDepthResults[1] + " ns  ");
-            krusDepth3 = new Label(krusDepthResults[2] + " ns  ");
-            krusDepth4 = new Label(krusDepthResults[3] + " ns  ");
-            krusDepth5 = new Label(krusDepthResults[4] + " ns  ");
+            krusDepth1 = new Label(krusDepthResults[0] / 1000000 + " ms  ");
+            krusDepth2 = new Label(krusDepthResults[1] / 1000000 + " ms  ");
+            krusDepth3 = new Label(krusDepthResults[2] / 1000000 + " ms  ");
+            krusDepth4 = new Label(krusDepthResults[3] / 1000000 + " ms  ");
+            krusDepth5 = new Label(krusDepthResults[4] / 1000000 + " ms  ");
             average = 0;
             for (int i = 0; i < krusDepthResults.length; i++) {
                 average += krusDepthResults[i];
             }
             average /= krusDepthResults.length;
-            krusDepthAvg = new Label(average + " ns  ");
+            krusDepthAvg = new Label(average / 1000000 + " ms  ");
             //Placing the values in the table
             //Text
             krusResultsGrid.add(krusCol1, 0, 1);

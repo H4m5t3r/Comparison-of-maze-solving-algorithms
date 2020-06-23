@@ -23,3 +23,11 @@
 hs_err_pid*
 /MazeAlgorithmsComparison/target/
 /MazeAlgorithmsComparison/nbproject/
+
+# Test data files
+deadKruskal.txt
+deadRec.txt
+depthKruskal.txt
+depthRec.txt
+kruskal.txt
+recb.txt
