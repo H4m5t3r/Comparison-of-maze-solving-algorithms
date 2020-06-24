@@ -675,7 +675,6 @@ public class MazeUI extends Application {
     
     @Override
     public void stop() {
-        System.out.println("Closing");
         System.exit(0);
     }
 }

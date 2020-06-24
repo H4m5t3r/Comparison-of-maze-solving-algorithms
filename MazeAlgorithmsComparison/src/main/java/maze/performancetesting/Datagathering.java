@@ -12,7 +12,8 @@ import maze.domain.RecursiveBacktracker;
 
 /**
  * Creates text files containing test data. The tests are the same as in
- * PerformanceComparator, but here they are run 100 times each.
+ * PerformanceComparator, but here they are run 100 times each. The time unit is
+ * nanoseconds. The tests took 5-10 minutes to complete.
  * @author taleiko
  */
 public class Datagathering {
@@ -74,8 +75,8 @@ public class Datagathering {
         
         //Data gathering
         for (int percent = 0; percent < 10; percent++) {
+            System.out.println(percent * 10 + "%");
             for (int i = 0; i < 10; i++) {
-                System.out.println(percent * 10 + "%");
                 
                 start = System.nanoTime();
                 recb = new RecursiveBacktracker(3000, 3000);

@@ -1,6 +1,6 @@
 # Maze generation and comparison of maze solving algorithms
 
-In this project I will create a program that generates perfect mazes (mazes with only one solution and no loops) and compares dead-end filling and a recursive algorithm as maze solving methods by analyzing their execution times.
+In this project I will create a program that generates perfect mazes (mazes with only one solution and no loops) and compares dead-end filling and a recursive algorithm (depth-first search) as maze solving methods by analyzing their execution times. This project uses Java 11.
 
 **Note: Additional space needs to be allocated for the JVM stack and heap. Otherwise the performance tests will run out of memory.**
 

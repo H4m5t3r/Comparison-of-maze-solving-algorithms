@@ -6,14 +6,14 @@ The different algorithms used in this program are all implemented in their own J
 
 The mazes that are generated and solved are two-dimensional character arrays with corridors and walls. This means that when the width is w and the height is h it actually means that the size of the two-dimensional array is (2w + 1) * (2h + 1) because there are walls between the corridors and on each side of the maze. In this document w always stands for the maze's width and h for its height.
 
-Some of the algorithms use data structures like stacks and linked lists. These have been implemented in the package called "maze.data_structures".
+Some of the algorithms use data structures like stacks and linked lists. These have been implemented in the package called "maze.datastructures".
 
 # Maze generating algorithms
 
 ## Recursive backtracker
 The recursive backtracker method carves out a maze by starting from a room and then checking all directions around it in a random order. If it has not visited a room in the direction it looks (checked using a two-dimensional boolean array) it will add that room's x and y coordinate to their respective stack and carve out a corridor to that room. The stacks' purpose is to keep track of the route the algorithm has taken. If the algorithm reaches a room where it cannot go any further (a dead-end) it will pop the current x and y coordinates off their stacks. This way it returns to the previous room, which allows it to continue from there.
 
-To get a random maze the order of the directions has to be random. In this case it is done using a linked list and a stack where directions are pushed. Every time a room is reached the numbers 0, 1, 2 and 3 (up, right, down, left) are added to the linked list. Then a random index it chosen using `System.nanoTime() % numberOfDirectionsRemaining`. The direction at that index it removed from the linked list and added to the directions stack. When the directions have been added to the stack in a random order, the algorithm pops a value from it and checks the corresponding direction. Since all four directions are always checked before the algorithm returns to the previoius room it will continue checking the next direction since all the directions that have been added since the previous direction have all been removed from the stack by that point.
+To get a random maze the order of the directions has to be random. In this case it is done using a linked list and a stack that directions are pushed to. Every time a room is reached the numbers 0, 1, 2 and 3 (up, right, down, left) are added to the linked list. Then a random index is chosen using `System.nanoTime() % numberOfDirectionsRemaining`. The direction at that index is removed from the linked list and added to the directions stack. When the directions have been added to the stack in a random order, the algorithm pops a value from it and checks the corresponding direction. Since all four directions are always checked before the algorithm returns to the previoius room it will continue checking the next direction since all the directions that have been added since the previous direction have all been removed from the stack by that point.
 
 ```
 procedure recursion()
@@ -55,7 +55,7 @@ procedure checkDirection(y, x)
 This recursive backtracker results in a time complexity of O((2w + 1) * (2h + 1) + wh + wh). (2w + 1) * (2h + 1) comes from the base of the maze (the two-dimensional character array) containing only walls being generated. Then all spaces in the two-dimensional boolean array visited are set to false (wh) and after this the algorithm comes across every room at some point (wh). The space complexity is O((2w + 1) * (2h + 1) + wh + wh + wh + 4wh) = O((2w + 1) * (2h + 1) + 7wh). (2w + 1) * (2h + 1) is the two-dimensional character array (the maze), 3wh comes from the two-dimensional visited array and the x and y coordinates' stacks, which all have a size of w * h and 4wh comes from the direction stack that has a size of 4 * w * h.
 
 ## Kruskal's algorithm
-This maze generation method is based on creating a minimum spanning tree by connecting random nodes as long as it does not create a loop. In my implementation there are two things that the program keeps track of: rooms (nodes, marked as pink numbers) and potential corridors (edges, marked with blue circles around them).
+This maze generation method is based on creating a minimum spanning tree by connecting random nodes as long as it does not create a loop. In my implementation there are two things that the program keeps track of: rooms (nodes, marked as pink numbers in the picture) and potential corridors (edges, marked with blue circles around them in the picture).
 
 ![Kruskal implementation](https://raw.githubusercontent.com/H4m5t3r/Comparison-of-maze-solving-algorithms/master/Documentation/Pictures/Kruskal%20example.jpg)
 
@@ -66,7 +66,7 @@ The most complicated part in this process is the calculation of the adjacent roo
 # Maze solving algorithms
 
 ## Dead-end filling
-The dead-end filling algorithms solves mazes by searching for dead-ends and filling them in until it reaches a crossroad. It works for perfect mazes and can therefore solve all the mazes generated by the recursive backtracker and the Kruskal algorithm. In my implementation there are 3 methods: solve, isDeadEnd and fillDeadEnd. The solve method starts going through all the rooms, checking if they are blank spaces. If they are the isDeadEnd method is called. It checks if the room is a dead-end by checking if the number of corridors going from it is equal to 1. If the requirement is filled the fillDeadEnd method is called. It fills in the room, checks where the corridor is, fills it in and calls the isDeadEnd method in the next room. This results in a time complexity of O(w * h + r) where w is the maze's width, h is the maze's height and r is the random number of extra times rooms are checked, since the algorithm goes through all the rooms, checking if they have alreay been visited. The space complexity is O(0) since the algorithm does not use any memory and only analyzes the given maze.
+The dead-end filling algorithm solves mazes by searching for dead-ends and filling them in until it reaches a crossroad. It works for perfect mazes and can therefore solve all the mazes generated by the recursive backtracker and the Kruskal algorithm. In my implementation there are 3 methods: solve, isDeadEnd and fillDeadEnd. The solve method starts going through all the rooms, checking if they are blank spaces. If they are the isDeadEnd method is called. It checks if the room is a dead-end by checking if the number of corridors going from it is equal to 1. If the requirement is filled the fillDeadEnd method is called. It fills in the room, checks where the corridor is, fills it in and calls the isDeadEnd method in the next room. This results in a time complexity of O(w * h + r) where w is the maze's width, h is the maze's height and r is the random number of extra times rooms are checked, since the algorithm goes through all the rooms, checking if they have already been visited. The space complexity is O(0) since the algorithm does not use any memory and only analyzes the given maze.
 
 ## Depth-first search
 The algorithm solves the given maze by marking the exit and then starting a depth-first search that lasts until the exit is found.
@@ -85,7 +85,7 @@ After that the entrance is found in the same way and the search is started from 
 for allFourDirections
     if (direction == ' ' or direction == 'e') and !exitFound
         if direction == 'e'
-            direction = c
+            direction = 'c'
             exitFound = true
         else
             direction = 'c'
