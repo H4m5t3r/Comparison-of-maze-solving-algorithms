@@ -55,7 +55,7 @@ Generate a Javadoc that can be found in */target/site/apidocs*
 mvn javadoc:javadoc
 ```
 
-Create a jar file that can be found in *target* directory
+Create a jar file that can be found in */target*
 ```
 mvn package
 ```
