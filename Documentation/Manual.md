@@ -5,7 +5,7 @@ Start with downloading the latest version of the program [here](https://github.c
 ## Starting the program
 Once you have downloaded the jar file you can run it with the following command (make sure you run it in the directory where the file is saved):
 ```
-java -jar MazeAlgorithmsComparison-1.0.jar
+java -Xss512M -Xms512M  -jar MazeAlgorithmsComparison-1.0.jar
 ```
 
 ## The menu
@@ -33,9 +33,11 @@ If the "Performance tests" button is clicked in the menu the you will be taken t
 
 **NOTE: If the program throws errors it may be because it has run out of memory. I ran the tests with the following configurations (modifies the JVM stack and heap's available memory):**
 
--Xss400m
+-Xss512m
 
--Xms600m
+-Xms512m
+
+If the program still runs out of memory you can increase the values in the starting command.
 
 **The view where the user can start the performance tests.**
 
